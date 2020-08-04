@@ -15,7 +15,7 @@ const Header = ({ navigation }) => {
         }}
       />
       <View>
-        <Text style={[t.text3xl, t.fontBold]}>TurnBox</Text>
+        <Text style={[t.text3xl, t.fontBold]}>BMT Church</Text>
       </View>
     </View>
   );
