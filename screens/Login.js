@@ -16,7 +16,7 @@ const Login = ({ addUser }) => {
   const loginUser = (values) => {
     firebase
       .auth()
-      .signInWithEmailAndPassword(values.email, velues.password)
+      .signInWithEmailAndPassword(values.email, values.password)
       .user((user) => {
         console.log("Logged In");
       })

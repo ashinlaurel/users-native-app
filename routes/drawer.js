@@ -4,6 +4,7 @@ import HomeStack from "./homestack";
 import AboutStack from "./aboutstack";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
+import CreateNewUserStack from "./createnewuserstack";
 
 const RootDrawerNavigator = createDrawerNavigator({
   Home: {
@@ -17,6 +18,9 @@ const RootDrawerNavigator = createDrawerNavigator({
   },
   Register: {
     screen: Register,
+  },
+  CreateUser: {
+    screen: CreateNewUserStack,
   },
 });
 

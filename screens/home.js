@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { db } from "../firebase/firebase";
+import { Card } from "galio-framework";
 import {
   View,
   Text,
@@ -16,14 +18,29 @@ import UserForm from "./userForm";
 const Home = ({ navigation }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [users, setUsers] = useState([
-    { name: "Ashin Laurel", age: 21, address: "Trivandrum", key: "1" },
-    { name: "Alan Tom", age: 21, address: "Kottayam", key: "2" },
-    { name: "Siddarth Sajeev", age: 19, address: "Triponithara", key: "3" },
-    { name: "Arvind Ranjith", age: 21, address: "Trivandrum", key: "4" },
+    // { name: "Ashin Laurel", age: 21, address: "Trivandrum", key: "1" },
   ]);
 
-  const addUser = (user) => {
-    user.key = Math.random().toString();
+  useEffect(() => {
+    (async function getter() {
+      const usersRef = db.collection("dirusers");
+      const snapshot = await usersRef.get();
+      if (snapshot.empty) {
+        console.log("No matching documents.");
+        return;
+      }
+      let tempusers = snapshot.docs.map((i) => ({
+        key: i.id,
+        ...i.data(),
+      }));
+      setUsers(tempusers);
+    })();
+  }, []);
+
+  const addUser = async (user) => {
+    // user.key = Math.random().toString();
+    const res = await db.collection("directory").doc("LA").set(data);
+
     setUsers((users) => {
       return [user, ...users];
     });
@@ -97,6 +114,19 @@ const Home = ({ navigation }) => {
                 <Text style={[t.textxl]}>{item.name}</Text>
               </View>
             </TouchableOpacity>
+            // Galio Card--------------------------------------------
+            // <Card
+            //   flex
+            //   borderless
+            //   style={styles.card}
+            //   title="Christopher Moon"
+            //   caption="139 minutes ago"
+            //   location="Los Angeles, CA"
+            //   avatar="http://i.pravatar.cc/100?id=skater"
+            //   imageStyle={styles.cardImageRadius}
+            //   imageBlockStyle={{ padding: theme.SIZES.BASE / 2 }}
+            //   image="https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300"
+            // />
           )}
         />
       </View>
