@@ -78,24 +78,103 @@ const CreateNewUser = () => {
   };
 
   const sendUser = async (values) => {
+    let newId, URL;
     db.collection("dirusers")
       .add(values)
       .then((ref) => {
         console.log("Added document with ID: ", ref.id);
+        newId = ref.id;
         return fetch(imageUri);
       })
       .then((res) => {
         return res.blob();
       })
       .then((blob) => {
-        let refer = storage.ref().child("new-image");
-        return refer.put(blob);
+        let refer = storage.ref().child(`/images/dir/${newId}`).put(blob);
+        refer.on(
+          "state_changed",
+          function () {},
+          function (error) {
+            console.log(error);
+          },
+          function () {
+            console.log("complete");
+            refer.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+              console.log("File available at hererre", downloadURL);
+              URL = downloadURL;
+              db.collection("dirusers")
+                .doc(newId)
+                .update({ imgUrl: URL })
+                .then(function () {
+                  console.log("Document successfully updated!");
+                })
+                .catch(function (error) {
+                  // The document probably doesn't exist.
+                  console.error("Error updating document: ", error);
+                });
+            });
+          }
+        );
       })
+      .then(() => {
+        console.log("here");
+      })
+
       .catch((err) => {
         console.log(err.code);
-        return;
+        // return;
       });
   };
+
+  // const sendUser = async (values) => {
+  //   let newId, URL;
+  //   db.collection("dirusers")
+  //     .add(values)
+  //     .then((ref) => {
+  //       console.log("Added document with ID: ", ref.id);
+  //       newId = ref.id;
+  //       fetch(imageUri);
+  //     })
+  //     .then((res) => {
+  //       res.blob();
+  //     })
+  //     .then((blob) => {
+  //       let refer = storage.ref().child(`images/dir/${ref.id}`).put(blob);
+  //       refer.on(
+  //         "state_changed",
+  //         function () {},
+  //         function (error) {
+  //           console.log(error);
+  //         },
+  //         function () {
+  //           console.log("complete");
+  //           uploadTask.snapshot.ref.getDownloadURL();
+  //         }
+  //       );
+  //     })
+  //     .then(function (downloadURL) {
+  //       console.log("File available at", downloadURL);
+  //       URL = downloadURL;
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.code);
+  //       return;
+  //     });
+
+  //   db.collection("dirusers")
+  //     .doc(newId)
+  //     .update({ imgUrl: URL })
+  //     .then(function () {
+  //       console.log("Document successfully updated!");
+  //     })
+  //     .catch(function (error) {
+  //       // The document probably doesn't exist.
+  //       console.error("Error updating document: ", error);
+  //     });
+
+  //   // const res = await db.collection("test").doc().set(values);
+  //   // console.log(res);
+  // };
 
   return (
     <View style={[t.flexCol, t.itemsCenter, t.justifyCenter]}>
@@ -125,7 +204,7 @@ const CreateNewUser = () => {
       <Formik
         initialValues={{ name: "", age: "", address: "", job: "" }}
         onSubmit={(values, actions) => {
-          actions.resetForm();
+          // actions.resetForm();
           // console.log(values);
           sendUser(values);
           // uploadImage();
