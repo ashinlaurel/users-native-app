@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,19 +6,33 @@ import {
   FlatList,
   TouchableOpacity,
   Button,
+  Modal,
+  Image,
 } from "react-native";
+import { Icon } from "galio-framework";
+
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
 import Header from "../shared/header";
+import { auth } from "../firebase/firebase";
+import gif from "../assets/checkmark.gif";
 
-const Login = ({ addUser }) => {
+const Login = (props) => {
   const [error, setError] = useState("");
+  const [modalState, setModalState] = useState(false);
+  const { navigate } = props.navigation;
   const loginUser = (values) => {
-    firebase
-      .auth()
+    console.log(values.email, values.password);
+    auth
       .signInWithEmailAndPassword(values.email, values.password)
-      .user((user) => {
+      .then((user) => {
         console.log("Logged In");
+        setError("Logged In");
+        setModalState(true);
+        setTimeout(() => {
+          navigate("Home");
+          setModalState(false);
+        }, 500);
       })
       .catch(function (error) {
         console.log(error);
@@ -26,8 +40,39 @@ const Login = ({ addUser }) => {
       });
   };
 
+  const logout = () => {
+    // props.navigation.navigate("Home");
+    // auth.signOut().then(
+    //   function () {
+    //     // Sign-out successful.
+    //     console.log("Logged Out");
+    //     setError("Logged Out");
+    //   },
+    //   function (error) {
+    //     // An error happened.
+    //   }
+    // );
+  };
+
+  useEffect(() => {
+    // auth.onAuthStateChanged(function (user) {
+    //   if (user) {
+    //     console.log("User Signed In");
+    //   } else {
+    //     // No user is signed in.
+    //     console.log("User NOT Signed In");
+    //   }
+    // });
+  });
+
   return (
     <View>
+      {/* Modal */}
+      <Modal visible={modalState}>
+        <View>
+          <Image source={gif} size={40} />
+        </View>
+      </Modal>
       {/* <Header /> */}
       <View style={[t.m5]}>
         <Formik
@@ -43,6 +88,7 @@ const Login = ({ addUser }) => {
               <TextInput
                 placeholder="Email"
                 type="email"
+                defaultValue="test@test.com"
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("email")}
                 value={props.values.email}
@@ -51,6 +97,7 @@ const Login = ({ addUser }) => {
               <TextInput
                 placeholder="Password"
                 type="password"
+                defaultValue="password"
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("password")}
                 value={props.values.password}
@@ -66,7 +113,8 @@ const Login = ({ addUser }) => {
             </View>
           )}
         </Formik>
-        <Text>Hello{error}</Text>
+        <Button title="Logout" color="gray" onPress={logout} />
+        <Text>{error}</Text>
       </View>
     </View>
   );

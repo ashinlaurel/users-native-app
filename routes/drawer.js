@@ -5,6 +5,8 @@ import AboutStack from "./aboutstack";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import CreateNewUserStack from "./createnewuserstack";
+import LoginStack from "./loginstack";
+import RegisterStack from "./registerstack";
 
 const RootDrawerNavigator = createDrawerNavigator({
   Home: {
