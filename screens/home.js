@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase/firebase";
-import { Card, theme } from "galio-framework";
+import { Card, theme, Block } from "galio-framework";
 import {
   View,
   Text,
@@ -11,16 +11,20 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Image,
+  ListView,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { MaterialIcons } from "@expo/vector-icons";
 import UserForm from "./userForm";
+import { TextInput } from "react-native-gesture-handler";
 
 const Home = ({ navigation }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [users, setUsers] = useState([
-    // { name: "Ashin Laurel", age: 21, address: "Trivandrum", key: "1" },
+    // { name: "Ashin Laurel", age: 21, address: "Trivandrum", uid: "1" },
   ]);
+  const [filterusers, setFilterUsers] = useState(users);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     (async function getter() {
@@ -35,6 +39,7 @@ const Home = ({ navigation }) => {
         ...i.data(),
       }));
       setUsers(tempusers);
+      setFilterUsers(tempusers);
     })();
   }, []);
 
@@ -50,7 +55,7 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
-      <Modal visible={modalOpen} animationType={"slide"} transparent={false}>
+      {/* <Modal visible={modalOpen} animationType={"slide"} transparent={false}>
         <TouchableWithoutFeedback
           onPress={() => {
             Keyboard.dismiss();
@@ -78,10 +83,10 @@ const Home = ({ navigation }) => {
             </View>
           </View>
         </TouchableWithoutFeedback>
-      </Modal>
+      </Modal> */}
 
       {/* <Text style={[t.text3xl, t.fontBold, t.mT2, t.textCenter]}>Users</Text> */}
-      <TouchableOpacity>
+      {/* <TouchableOpacity>
         <MaterialIcons
           name="add"
           size={30}
@@ -89,13 +94,34 @@ const Home = ({ navigation }) => {
             setModalOpen(true);
           }}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+      <View style={[t.wFull]}>
+        <TextInput
+          placeholder="Search"
+          placeholderTextColor="black"
+          onTextChange={(e) => {
+            setSearch(e.target.value);
+            let temp = users.filter((user) => user.name.includes(search));
+            if (search == "") {
+              setFilterUsers(users);
+            } else {
+              setFilterUsers(temp);
+            }
+          }}
+          value={search}
+          style={[t.pY2, t.pX4, t.bgWhite, t.wFull, t.roundedFull, t.mY3]}
+          keyboardType="default"
+        />
+      </View>
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY5]}>
         <FlatList
-          numColumns={2}
-          data={users}
+          numColumns={1}
+          keyExtractor={(item) => item.uid}
+          style={[]}
+          data={filterusers}
           renderItem={({ item }) => (
             <TouchableOpacity
+              style={[]}
               onPress={() => {
                 // console.log(item);
                 // handlePress(item);
@@ -104,17 +130,31 @@ const Home = ({ navigation }) => {
             >
               <View
                 style={[
-                  t.p5,
+                  t.pY3,
                   t.bgGray300,
-                  t.m2,
+                  t.mY1,
                   t.rounded,
-                  t.w40,
+                  t.wFull,
                   t.textCenter,
+                  t.flexRow,
+                  t.itemsCenter,
+                  t.justifyStart,
                 ]}
               >
-                <Text style={[t.textxl]}>{item.name}</Text>
+                <Image
+                  source={{
+                    uri: item.imgUrl,
+                  }}
+                  style={[t.w16, t.h16, t.roundedFull, t.overflowHidden, t.mX4]}
+                />
+                <View style={[]}>
+                  <Text style={[t.text2xl, t.mX2, t.mL3, t.mR32]}>
+                    {item.name}
+                  </Text>
+                </View>
               </View>
             </TouchableOpacity>
+
             // Galio Card--------------------------------------------
           )}
         />
