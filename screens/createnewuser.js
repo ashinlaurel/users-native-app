@@ -204,7 +204,7 @@ const CreateNewUser = () => {
       <Formik
         initialValues={{ name: "", age: "", address: "", job: "" }}
         onSubmit={(values, actions) => {
-          // actions.resetForm();
+          actions.resetForm();
           // console.log(values);
           sendUser(values);
           // uploadImage();
