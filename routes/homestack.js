@@ -11,7 +11,7 @@ const screens = {
     screen: Home,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header navigation={navigation} />,
+        headerTitle: () => <Header navigation={navigation} title="Home" />,
       };
     },
   },
@@ -25,7 +25,7 @@ const screens = {
 
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    headerStyle: [t.bgTeal300],
+    headerStyle: [t.bgBlue100],
     cardStyle: { backgroundColor: "#ffffff" },
   },
 });
