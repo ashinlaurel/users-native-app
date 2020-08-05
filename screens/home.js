@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase/firebase";
-import { Card } from "galio-framework";
+import { Card, theme } from "galio-framework";
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
   Modal,
   Keyboard,
   TouchableWithoutFeedback,
+  Image,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -115,18 +116,6 @@ const Home = ({ navigation }) => {
               </View>
             </TouchableOpacity>
             // Galio Card--------------------------------------------
-            // <Card
-            //   flex
-            //   borderless
-            //   style={styles.card}
-            //   title="Christopher Moon"
-            //   caption="139 minutes ago"
-            //   location="Los Angeles, CA"
-            //   avatar="http://i.pravatar.cc/100?id=skater"
-            //   imageStyle={styles.cardImageRadius}
-            //   imageBlockStyle={{ padding: theme.SIZES.BASE / 2 }}
-            //   image="https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300"
-            // />
           )}
         />
       </View>

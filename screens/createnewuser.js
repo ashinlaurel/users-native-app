@@ -14,6 +14,7 @@ import { Formik } from "formik";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
+import { NativeViewGestureHandler } from "react-native-gesture-handler";
 
 const CreateNewUser = () => {
   const [imageUri, setImageUri] = useState(
@@ -81,21 +82,19 @@ const CreateNewUser = () => {
       .add(values)
       .then((ref) => {
         console.log("Added document with ID: ", ref.id);
-        fetch(imageUri);
+        return fetch(imageUri);
       })
       .then((res) => {
-        res.blob();
+        return res.blob();
       })
       .then((blob) => {
         let refer = storage.ref().child("new-image");
-        return ref.put(blob);
+        return refer.put(blob);
       })
       .catch((err) => {
         console.log(err.code);
         return;
       });
-    // const res = await db.collection("test").doc().set(values);
-    // console.log(res);
   };
 
   return (
@@ -129,6 +128,7 @@ const CreateNewUser = () => {
           actions.resetForm();
           // console.log(values);
           sendUser(values);
+          // uploadImage();
         }}
       >
         {(props) => (
