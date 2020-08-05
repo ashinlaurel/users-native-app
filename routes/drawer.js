@@ -7,6 +7,7 @@ import Register from "../screens/Register";
 import CreateNewUserStack from "./createnewuserstack";
 import LoginStack from "./loginstack";
 import RegisterStack from "./registerstack";
+import Header from "../shared/header";
 
 const RootDrawerNavigator = createDrawerNavigator({
   Home: {

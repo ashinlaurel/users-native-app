@@ -26,6 +26,7 @@ const screens = {
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerStyle: [t.bgTeal300],
+    cardStyle: { backgroundColor: "#ffffff" },
   },
 });
 export default HomeStack;

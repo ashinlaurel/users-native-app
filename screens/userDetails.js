@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { t } from "react-native-tailwindcss";
 
 const UserDetails = ({ navigation }) => {
@@ -10,17 +10,32 @@ const UserDetails = ({ navigation }) => {
         t.flex,
         t.itemsCenter,
         t.justifyCenter,
-        t.mY10,
+        t.mY0,
         t.mX8,
-        t.p5,
-        t.bgGray300,
+        t.mT48,
+        t.mB20,
+        t.bgBlue100,
         t.rounded,
       ]}
     >
-      <View>
-        <Text style={[t.textXl]}>Name: {navigation.getParam("name")}</Text>
-        <Text style={[t.textXl]}>Age: {navigation.getParam("age")}</Text>
-        <Text style={[t.textXl]}>
+      <View style={[t.textCenter, t.pB10]}>
+        <Image
+          source={{
+            uri: navigation.getParam("imgUrl"),
+          }}
+          style={[
+            t.w48,
+            t.h48,
+            t.roundedFull,
+            t.overflowHidden,
+            t.mX4,
+            t._mT32,
+          ]}
+        />
+        <Text style={[t.text5xl, t.textCenter]}>
+          {navigation.getParam("name")},{navigation.getParam("age")}
+        </Text>
+        <Text style={[t.textXl, t.textCenter]}>
           Address: {navigation.getParam("address")}
         </Text>
       </View>
