@@ -19,6 +19,10 @@ const Register = (props) => {
   const [modalState, setModalState] = useState(false);
   const { navigate } = props.navigation;
   const registerUser = (values) => {
+    if (values.password != values.confPassword) {
+      setError("Passwords Dont Match!");
+      return;
+    }
     // console.log(values);
     //TODO: conf Pass
     auth
@@ -37,7 +41,7 @@ const Register = (props) => {
             setTimeout(() => {
               navigate("Home");
               setModalState(false);
-            }, 500);
+            }, 1000);
           })
           .catch(function (error) {
             console.error("Error writing document: ", error);
@@ -67,7 +71,19 @@ const Register = (props) => {
         </View>
       </Modal>
 
-      <View style={[t.m5]}>
+      <Text
+        style={[
+          t.text3xl,
+          t.pY3,
+          t.textCenter,
+          t.mT10,
+          t.fontBold,
+          t.textGray800,
+        ]}
+      >
+        REGISTER
+      </Text>
+      <View style={[t.mX5]}>
         <Formik
           initialValues={{
             name: "",
@@ -82,7 +98,7 @@ const Register = (props) => {
           }}
         >
           {(props) => (
-            <View style={[t.mY8, t.wFull, t.pX3]}>
+            <View style={[t.mY2, t.wFull, t.pX3]}>
               <TextInput
                 placeholder="Name"
                 placeholderTextColor="black"
@@ -93,6 +109,7 @@ const Register = (props) => {
               <TextInput
                 placeholder="Email"
                 type="email"
+                autoCapitalize="none"
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("email")}
                 value={props.values.email}
@@ -101,6 +118,8 @@ const Register = (props) => {
               <TextInput
                 placeholder="Password"
                 type="password"
+                secureTextEntry
+                autoCapitalize="none"
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("password")}
                 value={props.values.password}
@@ -109,6 +128,8 @@ const Register = (props) => {
               <TextInput
                 placeholder="Confirm Password"
                 type="password"
+                secureTextEntry
+                autoCapitalize="none"
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("confPassword")}
                 value={props.values.confPassword}
@@ -116,7 +137,7 @@ const Register = (props) => {
               />
               <View style={[t.mY2]}>
                 <Button
-                  title="Submit"
+                  title="Register"
                   color="gray"
                   onPress={props.handleSubmit}
                 />
@@ -124,7 +145,7 @@ const Register = (props) => {
             </View>
           )}
         </Formik>
-        <Text>{error}</Text>
+        <Text style={[t.textCenter, t.fontBold]}>{error}</Text>
       </View>
     </View>
   );

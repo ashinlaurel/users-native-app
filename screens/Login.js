@@ -32,7 +32,7 @@ const Login = (props) => {
         setTimeout(() => {
           navigate("Home");
           setModalState(false);
-        }, 500);
+        }, 1000);
       })
       .catch(function (error) {
         console.log(error);
@@ -74,7 +74,19 @@ const Login = (props) => {
         </View>
       </Modal>
       {/* <Header /> */}
-      <View style={[t.m5]}>
+      <Text
+        style={[
+          t.text3xl,
+          t.pY3,
+          t.textCenter,
+          t.mT10,
+          t.fontBold,
+          t.textGray800,
+        ]}
+      >
+        LOGIN
+      </Text>
+      <View style={[t.mX5]}>
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values, actions) => {
@@ -84,11 +96,12 @@ const Login = (props) => {
           }}
         >
           {(props) => (
-            <View style={[t.mY8, t.wFull, t.pX3]}>
+            <View style={[t.mY2, t.wFull, t.pX3]}>
               <TextInput
                 placeholder="Email"
                 type="email"
                 defaultValue="test@test.com"
+                autoCapitalize="none"
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("email")}
                 value={props.values.email}
@@ -97,6 +110,8 @@ const Login = (props) => {
               <TextInput
                 placeholder="Password"
                 type="password"
+                secureTextEntry
+                autoCapitalize="none"
                 defaultValue="password"
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("password")}
@@ -105,7 +120,7 @@ const Login = (props) => {
               />
               <View style={[t.mY2]}>
                 <Button
-                  title="Submit"
+                  title="Login"
                   color="gray"
                   onPress={props.handleSubmit}
                 />
