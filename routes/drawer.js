@@ -13,17 +13,18 @@ const RootDrawerNavigator = createDrawerNavigator({
   Home: {
     screen: HomeStack,
   },
-  About: {
-    screen: AboutStack,
+  CreateUser: {
+    screen: CreateNewUserStack,
   },
+
   Login: {
     screen: Login,
   },
   Register: {
     screen: Register,
   },
-  CreateUser: {
-    screen: CreateNewUserStack,
+  About: {
+    screen: AboutStack,
   },
 });
 

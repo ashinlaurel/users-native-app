@@ -3,9 +3,9 @@ import { View, Text } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const Header = ({ navigation }) => {
+const Header = ({ navigation, title }) => {
   return (
-    <View style={[t.wFull, t.hFull, t.flexRow, t.justifyCenter, t.itemsCenter]}>
+    <View style={[t.wFull, t.hFull, t.flexRow, t.justifyStart, t.itemsCenter]}>
       <MaterialIcons
         style={[t.absolute, t.left0]}
         name="menu"
@@ -15,7 +15,7 @@ const Header = ({ navigation }) => {
         }}
       />
       <View>
-        <Text style={[t.text3xl, t.fontBold]}>BMT Church</Text>
+        <Text style={[t.text2xl, t.fontSemibold, t.mL12]}>{title}</Text>
       </View>
     </View>
   );
