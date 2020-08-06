@@ -11,12 +11,10 @@ import Header from "../shared/header";
 
 // const HomeStack = () => {
 //   return (
-//     <NavigationContainer>
-//       <Stack.Navigator>
-//         <Stack.Screen name="Home" component={Home} />
-//         <Stack.Screen name="UserDetails" component={UserDetails} />
-//       </Stack.Navigator>
-//     </NavigationContainer>
+//     <Stack.Navigator>
+//       <Stack.Screen name="Home" component={Home} />
+//       <Stack.Screen name="UserDetails" component={UserDetails} />
+//     </Stack.Navigator>
 //   );
 // };
 
