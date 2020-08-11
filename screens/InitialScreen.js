@@ -23,6 +23,9 @@ const InitialScreen = ({ navigation }) => {
 
   return (
     <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+      <Text style={[t.text5xl, t.textCenter, t.fontBold, t.mY20, t.mX8]}>
+        BETHEL MAR THOMA CHURCH
+      </Text>
       {/* Row-1----------------------------------------------------- */}
       <View style={[t.flexRow, t.justifyAround, t.mY1]}>
         <View style={[t.bgGray300, t.mX1, t.w32]}>
