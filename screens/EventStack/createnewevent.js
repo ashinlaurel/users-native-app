@@ -154,7 +154,7 @@ const CreateNewEvent = () => {
                 {organisations.map((organisation) => (
                   <Picker.Item
                     label={organisation.name}
-                    value="{organisation.name}"
+                    value={organisation.name}
                   />
                 ))}
               </Picker>
