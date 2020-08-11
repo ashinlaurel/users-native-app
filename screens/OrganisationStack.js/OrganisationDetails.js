@@ -2,8 +2,9 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Button } from "galio-framework";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const OrganisationDetails = ({ route }) => {
+const OrganisationDetails = ({ route, navigation }) => {
   // console.log("hello");
   const { name, address, email, phone, details } = route.params;
   return (
@@ -27,14 +28,19 @@ const OrganisationDetails = ({ route }) => {
         <Text style={[t.textXl, t.textCenter]}>Phone: {phone}</Text>
         <Text style={[t.textXl, t.textCenter]}>Email: {email}</Text>
         <Text style={[t.textXl, t.textCenter]}>Details: {details}</Text>
-        <View style={[t.mY2]}>
-          <Button
-            title="Upcoming Events"
-            color="gray"
+      </View>
+      <View style={[t.mY2]}>
+        <View style={[t.bgGray300, t.mX1, t.w40, t.roundedFull]}>
+          <TouchableOpacity
             onPress={() => {
-              console.log(name);
+              // console.log(name);
+              navigation.navigate("UpcomingEvents", { name });
             }}
-          />
+          >
+            <Text style={[t.textBase, t.mY2, t.mX1, t.textCenter]}>
+              Upcoming Events
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

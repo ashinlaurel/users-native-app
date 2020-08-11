@@ -9,6 +9,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Organisations from "./Organisations";
 import OrganisationDetails from "./OrganisationDetails";
 import CreateNewOrganisation from "./createneworganisation";
+import OrganisationEvents from "./OrganisationEvents";
+import EventDetails from "../EventStack/eventDetails";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -27,6 +29,8 @@ export default function OrganisationStack() {
         name="CreateOrganisation"
         component={CreateNewOrganisation}
       />
+      <Stack.Screen name="UpcomingEvents" component={OrganisationEvents} />
+      <Stack.Screen name="EventDetails" component={EventDetails} />
     </Stack.Navigator>
   );
 }
