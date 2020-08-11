@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { LoginContext } from "./LoginContext";
 
 export default function LoginChecker(props) {
-  //   const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
   const checkLoggedIn = async () => {
     const user = await AsyncStorage.getItem("user");
     console.log(user, "LC");
