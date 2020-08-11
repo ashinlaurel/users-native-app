@@ -73,7 +73,9 @@ const InitialScreen = ({ navigation }) => {
       {/* Row 3 ------------------------------------------------------------------------------------------------ */}
       <View style={[t.flexRow, t.justifyAround, t.mY1]}>
         <View style={[t.bgGray300, t.mX1, t.w32]}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Organisations")}
+          >
             <Text style={[t.textBase, t.mY6, t.mX2, t.textCenter]}>
               Organisations
             </Text>

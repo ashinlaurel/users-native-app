@@ -11,19 +11,34 @@ import {
   TouchableOpacity,
   Button,
   Image,
+  Picker,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
-import Constants from "expo-constants";
-import { NativeViewGestureHandler } from "react-native-gesture-handler";
 
 const CreateNewEvent = () => {
-  const [imageUri, setImageUri] = useState(
-    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-  );
-
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+
+  // Getting organisations for drop down menu -------------------------------------------------------------------
+  const [organisations, setOrganisations] = useState([
+    // { name: "Ashin Laurel", age: 21, address: "Trivandrum", uid: "1" },
+  ]);
+  useEffect(() => {
+    (async function getter() {
+      const eventsRef = db.collection("organisations");
+      const snapshot = await eventsRef.get();
+      if (snapshot.empty) {
+        console.log("No matching documents.");
+        return;
+      }
+      let tempusers = snapshot.docs.map((i) => ({
+        key: i.id,
+        ...i.data(),
+      }));
+      setOrganisations(tempusers);
+    })();
+  }, []);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -48,12 +63,11 @@ const CreateNewEvent = () => {
 
   const handleTimeConfirm = (date, callback) => {
     console.log("A date has been picked: ", date);
-    callback("time", moment(date).format("HH:mm"));
+    callback("time", moment(date).format("h:mm a"));
     hideTimePicker();
   };
 
   const sendUser = async (values) => {
-    let newId, URL;
     console.log(values);
     db.collection("events")
       .add(values)
@@ -79,6 +93,7 @@ const CreateNewEvent = () => {
           date: moment().format("YYYY-MM-DD"),
           time: moment().format("HH:mm"),
           time: "",
+          organisation: "",
         }}
         onSubmit={(values, actions) => {
           actions.resetForm();
@@ -125,6 +140,24 @@ const CreateNewEvent = () => {
                 }
                 onCancel={hideTimePicker}
               />
+            </View>
+
+            <View style={[]}>
+              <Picker
+                selectedValue={props.values.organisation}
+                style={{ height: 50, width: 370 }}
+                onValueChange={(itemValue, itemIndex) =>
+                  props.setFieldValue("organisation", itemValue)
+                }
+              >
+                <Picker.Item label="Select Organisation" value="" />
+                {organisations.map((organisation) => (
+                  <Picker.Item
+                    label={organisation.name}
+                    value="{organisation.name}"
+                  />
+                ))}
+              </Picker>
             </View>
 
             <View style={[t.mY2]}>

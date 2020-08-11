@@ -33,19 +33,14 @@ export default function App() {
   // ------------------------------------------------------------------------
 
   return (
-    <LoginContextHOC>
-      <NavigationContainer>
-        <Drawer.Navigator initialRouteName="Home">
-          <Drawer.Screen name="Home" component={MainStack} />
-          <Drawer.Screen name="Log In" component={LoginStack} />
-          <Drawer.Screen name="Sign Up" component={RegisterStack} />
-          <Drawer.Screen name="Create Member" component={CreateMemberStack} />
-          <Drawer.Screen name="Create Event" component={CreateEventStack} />
-          {/* <Button title="Logout" /> */}
-          {/* <Drawer.Screen name="About" component={Register} /> */}
-        </Drawer.Navigator>
-      </NavigationContainer>
-    </LoginContextHOC>
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={MainStack} />
+        <Drawer.Screen name="Log In" component={LoginStack} />
+        <Drawer.Screen name="Sign Up" component={RegisterStack} />
+        <Drawer.Screen name="Create Member" component={CreateMemberStack} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
