@@ -36,7 +36,7 @@ const InitialScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={[t.bgGray300, t.mX1, t.w32]}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Events")}>
             <Text style={[t.textBase, t.mY6, t.mX2, t.textCenter]}>Events</Text>
           </TouchableOpacity>
         </View>

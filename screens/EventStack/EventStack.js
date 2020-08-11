@@ -5,23 +5,21 @@ import _ from "lodash";
 // Navigation Imports----------------------------------------------
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import InitialScreen from "./InitialScreen";
-import Home from "./home";
-import UserDetails from "./userDetails";
-import EventStack from "../EventStack/EventStack";
+import Events from "./Events";
+import EventDetails from "./eventDetails";
+import CreateNewEvent from "./createnewevent";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
 
 // import Navigator from "./routes/drawer";
 
-export default function MainStack() {
+export default function EventStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={InitialScreen} />
-      <Stack.Screen name="Members" component={Home} />
-      <Stack.Screen name="UserDetails" component={UserDetails} />
-      <Stack.Screen name="Events" component={EventStack} />
+      <Stack.Screen name="Events List" component={Events} />
+      <Stack.Screen name="Event Details" component={EventDetails} />
+      <Stack.Screen name="Create Event" component={CreateNewEvent} />
     </Stack.Navigator>
   );
 }
