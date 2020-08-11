@@ -13,9 +13,8 @@ import { Icon } from "galio-framework";
 
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
-import Header from "../shared/header";
-import { auth } from "../firebase/firebase";
-import gif from "../assets/checkmark.gif";
+import { auth } from "../../firebase/firebase";
+import gif from "../../assets/checkmark.gif";
 
 const Login = (props) => {
   const [error, setError] = useState("");

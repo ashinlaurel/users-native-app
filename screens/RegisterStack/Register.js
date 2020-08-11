@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
-import { auth, db } from "../firebase/firebase";
-import gif from "../assets/checkmark.gif";
+import { auth, db } from "../../firebase/firebase";
+import gif from "../../assets/checkmark.gif";
 
 const Register = (props) => {
   const [error, setError] = useState("");

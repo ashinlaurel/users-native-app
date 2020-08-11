@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import { Card, theme, Block } from "galio-framework";
 import {
   View,

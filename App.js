@@ -2,14 +2,18 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { YellowBox } from "react-native";
 import _ from "lodash";
-// Navigation Imports
+// Navigation Imports----------------------------------------------
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "./screens/home";
-import InitialScreen from "./screens/InitialScreen";
-import UserDetails from "./screens/userDetails";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+// -----------------------------------------------------------------
+import MainStack from "./screens/MainStack/MainStack";
+import LoginStack from "./screens/LoginStack/LoginStack";
+import RegisterStack from "./screens/RegisterStack/RegisterStack";
+import CreateMemberStack from "./screens/CreateMemberStack.js/CreateMemberStack";
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 // import Navigator from "./routes/drawer";
 
@@ -26,11 +30,13 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={InitialScreen} />
-        <Stack.Screen name="Members" component={Home} />
-        <Stack.Screen name="UserDetails" component={UserDetails} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={MainStack} />
+        <Drawer.Screen name="Log In" component={LoginStack} />
+        <Drawer.Screen name="Sign Up" component={RegisterStack} />
+        <Drawer.Screen name="Create Member" component={CreateMemberStack} />
+        {/* <Drawer.Screen name="About" component={Register} /> */}
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

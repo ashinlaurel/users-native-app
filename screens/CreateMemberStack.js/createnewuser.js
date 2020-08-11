@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db, storage } from "../firebase/firebase";
+import { db, storage } from "../../firebase/firebase";
 import {
   View,
   Text,
@@ -14,7 +14,6 @@ import { Formik } from "formik";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
-import { NativeViewGestureHandler } from "react-native-gesture-handler";
 
 const CreateNewUser = () => {
   const [imageUri, setImageUri] = useState(
