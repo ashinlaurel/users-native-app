@@ -35,7 +35,6 @@ export default function App() {
         <Drawer.Screen name="Log In" component={LoginStack} />
         <Drawer.Screen name="Sign Up" component={RegisterStack} />
         <Drawer.Screen name="Create Member" component={CreateMemberStack} />
-        {/* <Drawer.Screen name="About" component={Register} /> */}
       </Drawer.Navigator>
     </NavigationContainer>
   );
