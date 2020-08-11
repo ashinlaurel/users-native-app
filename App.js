@@ -7,13 +7,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 // -----------------------------------------------------------------
-import MainStack from "./screens/MainStack/MainStack";
-import LoginStack from "./screens/LoginStack/LoginStack";
-import RegisterStack from "./screens/RegisterStack/RegisterStack";
-import CreateMemberStack from "./screens/CreateMemberStack.js/CreateMemberStack";
-import CreateEventStack from "./screens/CreateEventStack/CreateEventStack";
+
 import LoginContextHOC from "./context/LoginContext";
-import LoginChecker from "./context/LoginChecker";
 import MainDrawer from "./screens/MainDrawer";
 
 const Stack = createStackNavigator();

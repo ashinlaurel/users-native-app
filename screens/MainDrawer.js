@@ -13,6 +13,8 @@ import CreateMemberStack from "./CreateMemberStack.js/CreateMemberStack";
 import CreateEventStack from "./CreateEventStack/CreateEventStack";
 // import LoginContextHOC from "./context/LoginContext";
 import { LoginContext } from "../context/LoginContext";
+import CreateNewOrganisation from "./OrganisationStack.js/createneworganisation";
+import CreateNewEvent from "./CreateEventStack/createnewevent";
 
 const Drawer = createDrawerNavigator();
 
@@ -30,6 +32,19 @@ export default function MainDrawer() {
         {isLoggedIn ? (
           <>
             <Drawer.Screen name="Create Member" component={CreateMemberStack} />
+          </>
+        ) : null}
+        {isLoggedIn ? (
+          <>
+            <Drawer.Screen
+              name="Create Organisation"
+              component={CreateNewOrganisation}
+            />
+          </>
+        ) : null}
+        {isLoggedIn ? (
+          <>
+            <Drawer.Screen name="Create Event" component={CreateNewEvent} />
           </>
         ) : null}
       </Drawer.Navigator>

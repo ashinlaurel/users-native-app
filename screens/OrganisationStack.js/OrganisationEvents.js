@@ -18,7 +18,7 @@ import { Card } from "@paraboly/react-native-card";
 
 const OrganisationEvents = ({ route, navigation }) => {
   const { name } = route.params;
-  console.log(name);
+  // console.log(name);
 
   const [events, setEvents] = useState([
     // { name: "Ashin Laurel", age: 21, address: "Trivandrum", uid: "1" },
