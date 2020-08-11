@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useContext } from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { YellowBox } from "react-native";
 import _ from "lodash";
 // Navigation Imports----------------------------------------------
@@ -11,6 +11,9 @@ import MainStack from "./screens/MainStack/MainStack";
 import LoginStack from "./screens/LoginStack/LoginStack";
 import RegisterStack from "./screens/RegisterStack/RegisterStack";
 import CreateMemberStack from "./screens/CreateMemberStack.js/CreateMemberStack";
+import CreateEventStack from "./screens/CreateEventStack/CreateEventStack";
+import LoginContextHOC from "./context/LoginContext";
+import LoginChecker from "./context/LoginChecker";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -26,18 +29,23 @@ export default function App() {
       _console.warn(message);
     }
   };
+
   // ------------------------------------------------------------------------
 
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={MainStack} />
-        <Drawer.Screen name="Log In" component={LoginStack} />
-        <Drawer.Screen name="Sign Up" component={RegisterStack} />
-        <Drawer.Screen name="Create Member" component={CreateMemberStack} />
-        {/* <Drawer.Screen name="About" component={Register} /> */}
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <LoginContextHOC>
+      <NavigationContainer>
+        <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Screen name="Home" component={MainStack} />
+          <Drawer.Screen name="Log In" component={LoginStack} />
+          <Drawer.Screen name="Sign Up" component={RegisterStack} />
+          <Drawer.Screen name="Create Member" component={CreateMemberStack} />
+          <Drawer.Screen name="Create Event" component={CreateEventStack} />
+          {/* <Button title="Logout" /> */}
+          {/* <Drawer.Screen name="About" component={Register} /> */}
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </LoginContextHOC>
   );
 }
 

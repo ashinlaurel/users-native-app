@@ -88,9 +88,9 @@ const Events = ({ navigation }) => {
           ]}
           keyboardType="default"
         />
-        <TouchableOpacity onPress={() => navigation.navigate("Create Event")}>
+        {/* <TouchableOpacity onPress={() => navigation.navigate("Create Event")}>
           <Text style={[t.bgBlue400, t.mt5]}>Create Event</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <FlatList

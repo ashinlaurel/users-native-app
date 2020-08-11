@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   View,
   Text,
@@ -9,48 +9,59 @@ import {
   Modal,
   Image,
 } from "react-native";
-import { Icon } from "galio-framework";
 
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
 import { auth } from "../../firebase/firebase";
 import gif from "../../assets/checkmark.gif";
+import AsyncStorage from "@react-native-community/async-storage";
+import { LoginContext } from "../../context/LoginContext";
 
 const Login = (props) => {
   const [error, setError] = useState("");
   const [modalState, setModalState] = useState(false);
   const { navigate } = props.navigation;
-  const loginUser = (values) => {
-    console.log(values.email, values.password);
-    auth
-      .signInWithEmailAndPassword(values.email, values.password)
-      .then((user) => {
-        console.log("Logged In");
-        setError("Logged In");
-        setModalState(true);
-        setTimeout(() => {
-          navigate("Home");
-          setModalState(false);
-        }, 1000);
-      })
-      .catch(function (error) {
-        console.log(error);
-        setError(error.message);
-      });
+  const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  console.log(isLoggedIn);
+
+  const loginUser = async (values) => {
+    // console.log(values.email, values.password);
+    try {
+      let user = await auth.signInWithEmailAndPassword(
+        values.email,
+        values.password
+      );
+
+      console.log("Logged In", user.user.email);
+      setError("Logged In");
+      setIsLoggedIn(true);
+      setUser({ email: user.user.email });
+      await AsyncStorage.setItem("user", user.user.email);
+      await AsyncStorage.setItem("isLoggedIn", "true");
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    // const value = await AsyncStorage.getItem("user");
+    // console.log(value);
     // props.navigation.navigate("Home");
-    // auth.signOut().then(
-    //   function () {
-    //     // Sign-out successful.
-    //     console.log("Logged Out");
-    //     setError("Logged Out");
-    //   },
-    //   function (error) {
-    //     // An error happened.
-    //   }
-    // );
+    auth.signOut().then(
+      async function () {
+        // Sign-out successful.
+        console.log("Logged Out");
+        setError("Logged Out");
+        setIsLoggedIn(false);
+        setUser({ user: null });
+        await AsyncStorage.setItem("user", "null");
+        await AsyncStorage.setItem("isLoggedIn", "false");
+      },
+      function (error) {
+        // An error happened.
+      }
+    );
   };
 
   useEffect(() => {

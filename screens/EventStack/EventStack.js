@@ -7,7 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Events from "./Events";
 import EventDetails from "./eventDetails";
-import CreateNewEvent from "./createnewevent";
+// import CreateNewEvent from "./createnewevent";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -19,7 +19,7 @@ export default function EventStack() {
     <Stack.Navigator>
       <Stack.Screen name="Events List" component={Events} />
       <Stack.Screen name="Event Details" component={EventDetails} />
-      <Stack.Screen name="Create Event" component={CreateNewEvent} />
+      {/* <Stack.Screen name="Create Event" component={CreateNewEvent} /> */}
     </Stack.Navigator>
   );
 }
