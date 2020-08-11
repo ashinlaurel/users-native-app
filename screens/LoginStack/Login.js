@@ -21,7 +21,7 @@ const Login = (props) => {
   const [error, setError] = useState("");
   const [modalState, setModalState] = useState(false);
   const { navigate } = props.navigation;
-  const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
   console.log(isLoggedIn);
 
   const loginUser = async (values) => {

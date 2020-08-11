@@ -9,6 +9,7 @@ import Home from "./home";
 import UserDetails from "./userDetails";
 import EventStack from "../EventStack/EventStack";
 import OrganisationStack from "../OrganisationStack.js/OrganisationStack";
+import LoginChecker from "../../context/LoginChecker";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -17,13 +18,15 @@ const Stack = createStackNavigator();
 
 export default function MainStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={InitialScreen} />
-      <Stack.Screen name="Members" component={Home} />
-      <Stack.Screen name="UserDetails" component={UserDetails} />
-      <Stack.Screen name="Events" component={EventStack} />
-      <Stack.Screen name="Organisations" component={OrganisationStack} />
-    </Stack.Navigator>
+    <LoginChecker>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={InitialScreen} />
+        <Stack.Screen name="Members" component={Home} />
+        <Stack.Screen name="UserDetails" component={UserDetails} />
+        <Stack.Screen name="Events" component={EventStack} />
+        <Stack.Screen name="Organisations" component={OrganisationStack} />
+      </Stack.Navigator>
+    </LoginChecker>
   );
 }
 

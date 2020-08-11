@@ -14,6 +14,7 @@ import CreateMemberStack from "./screens/CreateMemberStack.js/CreateMemberStack"
 import CreateEventStack from "./screens/CreateEventStack/CreateEventStack";
 import LoginContextHOC from "./context/LoginContext";
 import LoginChecker from "./context/LoginChecker";
+import MainDrawer from "./screens/MainDrawer";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -33,14 +34,9 @@ export default function App() {
   // ------------------------------------------------------------------------
 
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={MainStack} />
-        <Drawer.Screen name="Log In" component={LoginStack} />
-        <Drawer.Screen name="Sign Up" component={RegisterStack} />
-        <Drawer.Screen name="Create Member" component={CreateMemberStack} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <LoginContextHOC>
+      <MainDrawer />
+    </LoginContextHOC>
   );
 }
 
