@@ -2,8 +2,13 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 import { t } from "react-native-tailwindcss";
 
-const UserDetails = ({ navigation }) => {
-  console.log("hello");
+const UserDetails = ({ route, navigation }) => {
+  //
+  // Extracting from the route params-------------------------------------------------
+  const { name, age, address, job, imgUrl } = route.params;
+  // console.log(name);
+  // ---------------------------------------------------------------------------------
+
   return (
     <View
       style={[
@@ -22,7 +27,7 @@ const UserDetails = ({ navigation }) => {
         <View>
           <Image
             source={{
-              uri: navigation.getParam("imgUrl"),
+              uri: imgUrl,
             }}
             style={[
               t.w48,
@@ -34,18 +39,10 @@ const UserDetails = ({ navigation }) => {
             ]}
           />
         </View>
-        <Text style={[t.text5xl, t.textCenter, t.pY2]}>
-          {navigation.getParam("name")}
-        </Text>
-        <Text style={[t.textXl, t.textCenter]}>
-          Age: {navigation.getParam("age")}
-        </Text>
-        <Text style={[t.textXl, t.textCenter]}>
-          Occupation: {navigation.getParam("job")}
-        </Text>
-        <Text style={[t.textXl, t.textCenter]}>
-          Address: {navigation.getParam("address")}
-        </Text>
+        <Text style={[t.text5xl, t.textCenter, t.pY2]}>{name}</Text>
+        <Text style={[t.textXl, t.textCenter]}>Age: {age}</Text>
+        <Text style={[t.textXl, t.textCenter]}>Occupation: {job}</Text>
+        <Text style={[t.textXl, t.textCenter]}>Address: {address}</Text>
       </View>
     </View>
   );
