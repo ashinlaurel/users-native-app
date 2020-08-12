@@ -15,6 +15,7 @@ import {
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
+import moment from "moment";
 
 const OrganisationEvents = ({ route, navigation }) => {
   const { name } = route.params;
@@ -109,13 +110,16 @@ const OrganisationEvents = ({ route, navigation }) => {
                 defaultTitle=""
                 iconType="Entypo"
                 defaultContent=""
+                titleColor="black"
                 onPress={() => {
                   navigation.navigate("EventDetails", item);
                   // console.log(item);
                 }}
                 topRightText={item.location}
                 // bottomRightText={`On ${item.date} at ${item.time}`}
-                content={`On ${item.date} at ${item.time}`}
+                content={`On ${moment(item.date).format(
+                  "dddd, MMMM Do YYYY "
+                )} at ${item.time}`}
               />
             </View>
             // <TouchableOpacity

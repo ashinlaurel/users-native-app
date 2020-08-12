@@ -42,13 +42,13 @@ const EventDetails = ({ route }) => {
           <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
             <Entypo name="pin" size={32} color="grey" style={[t.mX2]} />
 
-            <Text style={[t.textXl]}>{location}</Text>
+            <Text style={[t.textBase]}>{location}</Text>
           </View>
 
           <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
             <Entypo name="calendar" size={32} color="grey" style={[t.mX2]} />
 
-            <Text style={[t.textXl]}>
+            <Text style={[t.textBase]}>
               {moment(date).format("dddd, MMMM Do YYYY ")}
             </Text>
           </View>
@@ -61,7 +61,7 @@ const EventDetails = ({ route }) => {
               style={[t.mX2]}
             />
 
-            <Text style={[t.textXl]}>{time}</Text>
+            <Text style={[t.textBase]}>{time}</Text>
           </View>
         </View>
       </View>
