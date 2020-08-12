@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { YellowBox } from "react-native";
 import _ from "lodash";
 import { t } from "react-native-tailwindcss";
+import { FontAwesome } from "@expo/vector-icons";
 
 // Navigation Imports----------------------------------------------
 import { createStackNavigator } from "@react-navigation/stack";
@@ -49,13 +50,19 @@ export default function MainStack() {
                       : navigation.navigate("Login");
                   }}
                 >
-                  <Image
+                  <FontAwesome
+                    name="user-circle"
+                    size={28}
+                    color="white"
+                    style={[t.mT4, t.textCenter]}
+                  />
+                  {/* <Image
                     style={[t.w10, t.h10, t.roundedFull]}
                     source={{
                       uri:
                         "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
                     }}
-                  />
+                  /> */}
                 </TouchableOpacity>
               </View>
             ),
