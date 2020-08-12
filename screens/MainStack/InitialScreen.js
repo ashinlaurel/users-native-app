@@ -1,20 +1,12 @@
 import React, { useContext } from "react";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 
-import {
-  View,
-  Text,
-  Button,
-  FlatList,
-  TouchableOpacity,
-  Modal,
-  Keyboard,
-  TouchableWithoutFeedback,
-  Image,
-  ListView,
-} from "react-native";
+import { View, Text, TouchableOpacity, Dimensions } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { LoginContext } from "../../context/LoginContext";
+import { ScrollView } from "react-native-gesture-handler";
+
+// let ScreenHeight = Dimensions.get("window").height;
 
 const InitialScreen = ({ navigation }) => {
   const { setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
@@ -24,15 +16,15 @@ const InitialScreen = ({ navigation }) => {
   // Handling the Refresh
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+    <View style={[t.flexCol, t.justifyCenter, t.itemsCenter, t.mT8, t.hFull]}>
       <Text style={[t.text5xl, t.textCenter, t.fontBold, t.mB20, t.mX8]}>
         BETHEL MAR THOMA CHURCH
       </Text>
-      <View style={[]}>
+      <View style={[t.flexCol, t.justifyEnd]}>
         {/* Row-1----------------------------------------------------- */}
         <View style={[t.flexRow, t.justifyAround]}>
           <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Message")}>
               <Entypo
                 name="new-message"
                 size={32}
@@ -176,5 +168,7 @@ const InitialScreen = ({ navigation }) => {
     </View>
   );
 };
+
+// let Styles = StyleSheet.create({ height: ScreenHeight });
 
 export default InitialScreen;

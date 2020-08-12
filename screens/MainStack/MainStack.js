@@ -11,10 +11,12 @@ import Home from "./home";
 import UserDetails from "./userDetails";
 import EventStack from "../EventStack/EventStack";
 import OrganisationStack from "../OrganisationStack.js/OrganisationStack";
+// import MessageStack from "../MessageStack/MessageStack";
 import LoginChecker from "../../context/LoginChecker";
 import LoginStack from "../LoginStack/LoginStack";
 import { Button } from "galio-framework";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import MessageStack from "../MessageStack/MessageStack";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -85,6 +87,16 @@ export default function MainStack() {
         <Stack.Screen
           name="Organisations"
           component={OrganisationStack}
+          options={{
+            headerStyle: {
+              backgroundColor: "#E91E63",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="Message"
+          component={MessageStack}
           options={{
             headerStyle: {
               backgroundColor: "#E91E63",
