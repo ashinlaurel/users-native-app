@@ -12,7 +12,16 @@ const Stack = createStackNavigator();
 export default function CreateMemberStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Create User" component={CreateNewUser} />
+      <Stack.Screen
+        name="Create User"
+        component={CreateNewUser}
+        options={{
+          headerStyle: {
+            backgroundColor: "#E91E63",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
     </Stack.Navigator>
   );
 }

@@ -96,6 +96,7 @@ const Events = ({ navigation }) => {
         <FlatList
           numColumns={1}
           keyExtractor={(item) => item.uid}
+          contentContainerStyle={{ paddingBottom: 80 }}
           style={[]}
           data={filterEvents}
           refreshing={loading}

@@ -12,7 +12,16 @@ const Stack = createStackNavigator();
 export default function LoginStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          headerStyle: {
+            backgroundColor: "#E91E63",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
     </Stack.Navigator>
   );
 }

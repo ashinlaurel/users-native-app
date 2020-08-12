@@ -96,7 +96,7 @@ const OrganisationEvents = ({ route, navigation }) => {
         <FlatList
           numColumns={1}
           keyExtractor={(item) => item.uid}
-          style={[]}
+          contentContainerStyle={{ paddingBottom: 80 }}
           data={filterEvents}
           refreshing={loading}
           onRefresh={handleRefresh}

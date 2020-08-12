@@ -88,17 +88,12 @@ const Organisations = ({ navigation }) => {
           ]}
           keyboardType="default"
         />
-        <TouchableOpacity
-          onPress={() => navigation.navigate("CreateOrganisation")}
-        >
-          <Text style={[t.bgBlue400, t.mt5]}>Create Organisations</Text>
-        </TouchableOpacity>
       </View>
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <FlatList
           numColumns={1}
           keyExtractor={(item) => item.uid}
-          style={[]}
+          contentContainerStyle={{ paddingBottom: 80 }}
           data={filterOrganisations}
           refreshing={loading}
           onRefresh={handleRefresh}

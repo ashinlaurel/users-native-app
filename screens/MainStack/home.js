@@ -106,7 +106,7 @@ const Home = ({ navigation }) => {
         <FlatList
           numColumns={1}
           keyExtractor={(item) => item.uid}
-          style={[]}
+          contentContainerStyle={{ paddingBottom: 80 }}
           data={filterusers}
           refreshing={loading}
           onRefresh={handleRefresh}

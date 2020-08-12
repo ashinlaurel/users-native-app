@@ -13,7 +13,16 @@ const Stack = createStackNavigator();
 export default function RegisterStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Sign Up" component={Register} />
+      <Stack.Screen
+        name="Sign Up"
+        component={Register}
+        options={{
+          headerStyle: {
+            backgroundColor: "#E91E63",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
     </Stack.Navigator>
   );
 }

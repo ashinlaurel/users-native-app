@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 
 import {
@@ -14,9 +14,11 @@ import {
   ListView,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
-import { TextInput } from "react-native-gesture-handler";
+import { LoginContext } from "../../context/LoginContext";
 
 const InitialScreen = ({ navigation }) => {
+  const { setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+
   // First Time Getting Data
 
   // Handling the Refresh
@@ -26,91 +28,149 @@ const InitialScreen = ({ navigation }) => {
       <Text style={[t.text5xl, t.textCenter, t.fontBold, t.mB20, t.mX8]}>
         BETHEL MAR THOMA CHURCH
       </Text>
-      {/* Row-1----------------------------------------------------- */}
-      <View style={[t.flexRow, t.justifyAround, t.mY1]}>
-        <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
-          <Entypo name="new-message" size={32} color="black" style={[t.mT2]} />
-          <TouchableOpacity>
-            <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
-              Message
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
-          <MaterialIcons name="event" size={32} color="black" style={[t.mT2]} />
+      <View style={[]}>
+        {/* Row-1----------------------------------------------------- */}
+        <View style={[t.flexRow, t.justifyAround]}>
+          <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
+            <TouchableOpacity>
+              <Entypo
+                name="new-message"
+                size={32}
+                color="black"
+                style={[t.mT4, t.textCenter]}
+              />
 
-          <TouchableOpacity onPress={() => navigation.navigate("Events")}>
-            <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>Events</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
-          <Entypo name="paper-plane" size={32} color="black" style={[t.mT2]} />
+              <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
+                Message
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
+            <TouchableOpacity onPress={() => navigation.navigate("Events")}>
+              <MaterialIcons
+                name="event"
+                size={32}
+                color="black"
+                style={[t.mT4, t.textCenter]}
+              />
 
-          <TouchableOpacity>
-            <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
-              Circulars
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      {/* Row 2 ----------------------------------------------------------------------------------------------- */}
-      <View style={[t.flexRow, t.justifyAround, t.mY1]}>
-        <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
-          <Entypo name="new-message" size={32} color="black" style={[t.mT2]} />
+              <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
+                Events
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
+            <TouchableOpacity>
+              <Entypo
+                name="documents"
+                size={32}
+                color="black"
+                style={[t.mT4, t.textCenter]}
+              />
 
-          <TouchableOpacity>
-            <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
-              Litergy
-            </Text>
-          </TouchableOpacity>
+              <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
+                Circulars
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
-          <Entypo name="book" size={32} color="black" style={[t.mT2]} />
+        {/* Row 2 ----------------------------------------------------------------------------------------------- */}
+        <View style={[t.flexRow, t.justifyAround, t.mT1]}>
+          <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
+            <TouchableOpacity>
+              <Entypo
+                name="new-message"
+                size={32}
+                color="black"
+                style={[t.mT4, t.textCenter]}
+              />
 
-          <TouchableOpacity>
-            <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>Bible</Text>
-          </TouchableOpacity>
+              <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
+                Litergy
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
+            <TouchableOpacity>
+              <Entypo
+                name="book"
+                size={32}
+                color="black"
+                style={[t.mT4, t.textCenter]}
+              />
+
+              <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
+                Bible
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
+            <TouchableOpacity
+              onPress={() => {
+                isLoggedIn
+                  ? navigation.navigate("Members")
+                  : navigation.navigate("Login");
+              }}
+            >
+              <Entypo
+                name="users"
+                size={32}
+                color="black"
+                style={[t.mT4, t.textCenter]}
+              />
+
+              <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
+                Members
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
-          <Entypo name="users" size={32} color="black" style={[t.mT2]} />
+        {/* Row 3 ------------------------------------------------------------------------------------------------ */}
+        <View style={[t.flexRow, t.justifyAround, t.mY1]}>
+          <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Organisations")}
+            >
+              <Entypo
+                name="home"
+                size={32}
+                color="black"
+                style={[t.mT4, t.textCenter]}
+              />
 
-          <TouchableOpacity onPress={() => navigation.navigate("Members")}>
-            <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
-              Members
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      {/* Row 3 ------------------------------------------------------------------------------------------------ */}
-      <View style={[t.flexRow, t.justifyAround, t.mY1]}>
-        <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
-          <Entypo name="hand" size={32} color="black" style={[t.mT2]} />
+              <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
+                Organisations
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
+            <TouchableOpacity>
+              <Entypo
+                name="phone"
+                size={32}
+                color="black"
+                style={[t.mT4, t.textCenter]}
+              />
 
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Organisations")}
-          >
-            <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
-              Organisations
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
-          <Entypo name="phone" size={32} color="black" style={[t.mT2]} />
+              <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
+                Contact Us
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
+            <TouchableOpacity>
+              <Entypo
+                name="location-pin"
+                size={32}
+                color="black"
+                style={[t.mT4, t.textCenter]}
+              />
 
-          <TouchableOpacity>
-            <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
-              Contact Us
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}>
-          <Entypo name="location-pin" size={32} color="black" style={[t.mT2]} />
-
-          <TouchableOpacity>
-            <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
-              Locations
-            </Text>
-          </TouchableOpacity>
+              <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
+                Locations
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>

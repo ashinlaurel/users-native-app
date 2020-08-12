@@ -115,7 +115,7 @@ const Login = (props) => {
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("email")}
                 value={props.values.email}
-                style={[t.pY2, t.pX4, t.bgGray200, t.roundedFull, t.mY3]}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
               <TextInput
                 placeholder="Password"
@@ -126,7 +126,7 @@ const Login = (props) => {
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("password")}
                 value={props.values.password}
-                style={[t.pY2, t.pX4, t.bgGray200, t.roundedFull, t.mY3]}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
               <View style={[t.mY2]}>
                 <Button
@@ -138,7 +138,9 @@ const Login = (props) => {
             </View>
           )}
         </Formik>
-        <Button title="Logout" color="gray" onPress={logout} />
+        <View style={[t.mX3]}>
+          <Button title="Logout" color="gray" onPress={logout} />
+        </View>
         <Text>{error}</Text>
       </View>
     </View>

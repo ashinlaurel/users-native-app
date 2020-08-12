@@ -14,6 +14,7 @@ import { Formik } from "formik";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
+import { ScrollView } from "react-native-gesture-handler";
 
 const CreateNewUser = () => {
   const [imageUri, setImageUri] = useState(
@@ -176,83 +177,87 @@ const CreateNewUser = () => {
   // };
 
   return (
-    <View style={[t.flexCol, t.itemsCenter, t.justifyCenter]}>
-      <View style={[t.mY2, t.flexCol, t.flex, t.itemsCenter, t.justifyCenter]}>
-        <View style={[t.mY2, t.roundedFull, t.overflowHidden]}>
-          {imageUri ? (
-            <Image
-              source={{ uri: imageUri }}
-              style={{ width: 200, height: 200 }}
-            />
-          ) : null}
-        </View>
-        <View style={[t.flexRow, t.justifyCenter, t.itemsCenter]}>
-          <TouchableOpacity style={[t.mX2]}>
-            <Button
-              title="Gallery"
-              onPress={() => {
-                selectPicture();
-              }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={[t.mX2]}>
-            <Button title="Camera" onPress={takePicture} />
-          </TouchableOpacity>
-        </View>
-      </View>
-      <Formik
-        initialValues={{ name: "", age: "", address: "", job: "" }}
-        onSubmit={(values, actions) => {
-          actions.resetForm();
-          // console.log(values);
-          sendUser(values);
-          // uploadImage();
-        }}
-      >
-        {(props) => (
-          <View style={[t.mY8, t.wFull, t.pX3]}>
-            <TextInput
-              placeholder="Name"
-              placeholderTextColor="black"
-              onChangeText={props.handleChange("name")}
-              value={props.values.name}
-              style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
-            />
-
-            <TextInput
-              placeholder="Age"
-              placeholderTextColor="black"
-              onChangeText={props.handleChange("age")}
-              value={props.values.age}
-              style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
-              keyboardType="number-pad"
-            />
-            <TextInput
-              placeholder="Address"
-              placeholderTextColor="black"
-              onChangeText={props.handleChange("address")}
-              value={props.values.address}
-              style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
-            />
-            <TextInput
-              placeholder="Job"
-              placeholderTextColor="black"
-              onChangeText={props.handleChange("job")}
-              value={props.values.job}
-              style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
-            />
-
-            <View style={[t.mY2]}>
-              <Button
-                title="Submit"
-                color="gray"
-                onPress={props.handleSubmit}
+    <ScrollView>
+      <View style={[t.flexCol, t.itemsCenter, t.justifyCenter]}>
+        <View
+          style={[t.mY2, t.flexCol, t.flex, t.itemsCenter, t.justifyCenter]}
+        >
+          <View style={[t.mY2, t.roundedFull, t.overflowHidden]}>
+            {imageUri ? (
+              <Image
+                source={{ uri: imageUri }}
+                style={{ width: 200, height: 200 }}
               />
-            </View>
+            ) : null}
           </View>
-        )}
-      </Formik>
-    </View>
+          <View style={[t.flexRow, t.justifyCenter, t.itemsCenter]}>
+            <TouchableOpacity style={[t.mX2]}>
+              <Button
+                title="Gallery"
+                onPress={() => {
+                  selectPicture();
+                }}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={[t.mX2]}>
+              <Button title="Camera" onPress={takePicture} />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <Formik
+          initialValues={{ name: "", age: "", address: "", job: "" }}
+          onSubmit={(values, actions) => {
+            actions.resetForm();
+            // console.log(values);
+            sendUser(values);
+            // uploadImage();
+          }}
+        >
+          {(props) => (
+            <View style={[t.mY8, t.wFull, t.pX3]}>
+              <TextInput
+                placeholder="Name"
+                placeholderTextColor="black"
+                onChangeText={props.handleChange("name")}
+                value={props.values.name}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
+              />
+
+              <TextInput
+                placeholder="Age"
+                placeholderTextColor="black"
+                onChangeText={props.handleChange("age")}
+                value={props.values.age}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
+                keyboardType="number-pad"
+              />
+              <TextInput
+                placeholder="Address"
+                placeholderTextColor="black"
+                onChangeText={props.handleChange("address")}
+                value={props.values.address}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
+              />
+              <TextInput
+                placeholder="Job"
+                placeholderTextColor="black"
+                onChangeText={props.handleChange("job")}
+                value={props.values.job}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
+              />
+
+              <View style={[t.mY2]}>
+                <Button
+                  title="Submit"
+                  color="gray"
+                  onPress={props.handleSubmit}
+                />
+              </View>
+            </View>
+          )}
+        </Formik>
+      </View>
+    </ScrollView>
   );
 };
 

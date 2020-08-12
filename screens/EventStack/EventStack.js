@@ -17,8 +17,26 @@ const Stack = createStackNavigator();
 export default function EventStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Events List" component={Events} />
-      <Stack.Screen name="Event Details" component={EventDetails} />
+      <Stack.Screen
+        name="Events List"
+        component={Events}
+        options={{
+          headerStyle: {
+            backgroundColor: "#E91E63",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
+      <Stack.Screen
+        name="Event Details"
+        component={EventDetails}
+        options={{
+          headerStyle: {
+            backgroundColor: "#E91E63",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
       {/* <Stack.Screen name="Create Event" component={CreateNewEvent} /> */}
     </Stack.Navigator>
   );

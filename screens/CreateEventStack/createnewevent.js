@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
+import { ScrollView } from "react-native-gesture-handler";
 
 const CreateNewEvent = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -85,92 +86,97 @@ const CreateNewEvent = () => {
   };
 
   return (
-    <View style={[t.flexCol, t.itemsCenter, t.justifyCenter]}>
-      <Formik
-        initialValues={{
-          name: "",
-          location: "",
-          date: moment().format("YYYY-MM-DD"),
-          time: moment().format("HH:mm"),
-          time: "",
-          organisation: "",
-        }}
-        onSubmit={(values, actions) => {
-          actions.resetForm();
-          // console.log(values);
-          sendUser(values);
-          // uploadImage();
-        }}
-      >
-        {(props) => (
-          <View style={[t.mY8, t.wFull, t.pX3]}>
-            <TextInput
-              placeholder="Event Name"
-              placeholderTextColor="black"
-              onChangeText={props.handleChange("name")}
-              value={props.values.name}
-              style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
-            />
-
-            <TextInput
-              placeholder="Location"
-              placeholderTextColor="black"
-              onChangeText={props.handleChange("location")}
-              value={props.values.location}
-              style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
-            />
-            <View style={[t.mY2, t.wFull, t.pX3]}>
-              <Button title="Select Date" onPress={showDatePicker} />
-              <DateTimePickerModal
-                isVisible={isDatePickerVisible}
-                mode="date"
-                onConfirm={(date) =>
-                  handleDateConfirm(date, props.setFieldValue)
-                }
-                onCancel={hideDatePicker}
+    <ScrollView>
+      <View style={[t.flexCol, t.itemsCenter, t.justifyCenter]}>
+        <Formik
+          initialValues={{
+            name: "",
+            location: "",
+            date: moment().format("YYYY-MM-DD"),
+            time: moment().format("HH:mm"),
+            time: "",
+            organisation: "",
+          }}
+          onSubmit={(values, actions) => {
+            actions.resetForm();
+            // console.log(values);
+            sendUser(values);
+            // uploadImage();
+          }}
+        >
+          {(props) => (
+            <View style={[t.mY8, t.wFull, t.pX3]}>
+              <Text style={[t.text4xl, t.mB8, t.mX4, t.textCenter, t.fontBold]}>
+                Add New Event
+              </Text>
+              <TextInput
+                placeholder="Event Name"
+                placeholderTextColor="black"
+                onChangeText={props.handleChange("name")}
+                value={props.values.name}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
-            </View>
-            <View style={[t.mY2, t.wFull, t.pX3]}>
-              <Button title="Select Time" onPress={showTimePicker} />
-              <DateTimePickerModal
-                isVisible={isTimePickerVisible}
-                mode="time"
-                onConfirm={(date) =>
-                  handleTimeConfirm(date, props.setFieldValue)
-                }
-                onCancel={hideTimePicker}
-              />
-            </View>
 
-            <View style={[]}>
-              <Picker
-                selectedValue={props.values.organisation}
-                style={{ height: 50, width: 370 }}
-                onValueChange={(itemValue, itemIndex) =>
-                  props.setFieldValue("organisation", itemValue)
-                }
-              >
-                <Picker.Item label="Select Organisation" value="" />
-                {organisations.map((organisation) => (
-                  <Picker.Item
-                    label={organisation.name}
-                    value={organisation.name}
-                  />
-                ))}
-              </Picker>
-            </View>
-
-            <View style={[t.mY2]}>
-              <Button
-                title="Submit"
-                color="gray"
-                onPress={props.handleSubmit}
+              <TextInput
+                placeholder="Location"
+                placeholderTextColor="black"
+                onChangeText={props.handleChange("location")}
+                value={props.values.location}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
+              <View style={[t.mY2, t.wFull, t.pX3]}>
+                <Button title="Select Date" onPress={showDatePicker} />
+                <DateTimePickerModal
+                  isVisible={isDatePickerVisible}
+                  mode="date"
+                  onConfirm={(date) =>
+                    handleDateConfirm(date, props.setFieldValue)
+                  }
+                  onCancel={hideDatePicker}
+                />
+              </View>
+              <View style={[t.mY2, t.wFull, t.pX3]}>
+                <Button title="Select Time" onPress={showTimePicker} />
+                <DateTimePickerModal
+                  isVisible={isTimePickerVisible}
+                  mode="time"
+                  onConfirm={(date) =>
+                    handleTimeConfirm(date, props.setFieldValue)
+                  }
+                  onCancel={hideTimePicker}
+                />
+              </View>
+
+              <View style={[]}>
+                <Picker
+                  selectedValue={props.values.organisation}
+                  style={{ height: 50, width: 370 }}
+                  onValueChange={(itemValue, itemIndex) =>
+                    props.setFieldValue("organisation", itemValue)
+                  }
+                >
+                  <Picker.Item label="Select Organisation" value="" />
+                  {organisations.map((organisation) => (
+                    <Picker.Item
+                      label={organisation.name}
+                      value={organisation.name}
+                    />
+                  ))}
+                </Picker>
+              </View>
+
+              <View style={[t.mY2]}>
+                <Button
+                  title="Submit"
+                  color="gray"
+                  onPress={props.handleSubmit}
+                />
+              </View>
             </View>
-          </View>
-        )}
-      </Formik>
-    </View>
+          )}
+        </Formik>
+      </View>
+    </ScrollView>
   );
 };
 
