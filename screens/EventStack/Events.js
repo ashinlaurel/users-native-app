@@ -15,6 +15,7 @@ import {
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
+import moment from "moment";
 
 const Events = ({ navigation }) => {
   const [events, setEvents] = useState([
@@ -110,6 +111,11 @@ const Events = ({ navigation }) => {
                 defaultTitle=""
                 iconType="Entypo"
                 defaultContent=""
+                titleColor="black"
+                content={`On ${moment(item.date).format(
+                  "dddd, MMMM Do YYYY "
+                )} at ${item.time}`}
+                topRightText={item.location}
                 onPress={() => {
                   navigation.navigate("Event Details", item);
                 }}

@@ -103,9 +103,10 @@ const Organisations = ({ navigation }) => {
                 title={item.name}
                 iconName="home"
                 backgroundColor="red"
-                defaultTitle=""
+                // defaultTitle=""
                 iconType="Entypo"
-                defaultContent=""
+                // defaultContent=""
+                titleColor="black"
                 onPress={() => {
                   navigation.navigate("OrganisationDetails", item);
                 }}
