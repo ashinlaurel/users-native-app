@@ -33,36 +33,37 @@ const Login = (props) => {
       );
 
       console.log("Logged In", user.user.email);
-      setError("Logged In");
+      // setError("Logged In");
       setIsLoggedIn(true);
       setUser({ email: user.user.email });
       await AsyncStorage.setItem("user", user.user.email);
       await AsyncStorage.setItem("isLoggedIn", "true");
+      navigate("Home");
     } catch (error) {
       console.log(error);
       setError(error.message);
     }
   };
 
-  const logout = async () => {
-    // const value = await AsyncStorage.getItem("user");
-    // console.log(value);
-    // props.navigation.navigate("Home");
-    auth.signOut().then(
-      async function () {
-        // Sign-out successful.
-        console.log("Logged Out");
-        setError("Logged Out");
-        setIsLoggedIn(false);
-        setUser({ user: null });
-        await AsyncStorage.setItem("user", "null");
-        await AsyncStorage.setItem("isLoggedIn", "false");
-      },
-      function (error) {
-        // An error happened.
-      }
-    );
-  };
+  // const logout = async () => {
+  //   // const value = await AsyncStorage.getItem("user");
+  //   // console.log(value);
+  //   // props.navigation.navigate("Home");
+  //   auth.signOut().then(
+  //     async function () {
+  //       // Sign-out successful.
+  //       console.log("Logged Out");
+  //       setError("Logged Out");
+  //       setIsLoggedIn(false);
+  //       setUser({ user: null });
+  //       await AsyncStorage.setItem("user", "null");
+  //       await AsyncStorage.setItem("isLoggedIn", "false");
+  //     },
+  //     function (error) {
+  //       // An error happened.
+  //     }
+  //   );
+  // };
 
   useEffect(() => {
     // auth.onAuthStateChanged(function (user) {
@@ -131,14 +132,16 @@ const Login = (props) => {
               <View style={[t.mY2]}>
                 <Button
                   title="Login"
-                  color="gray"
+                  color="#E91E63"
                   onPress={props.handleSubmit}
                 />
               </View>
             </View>
           )}
         </Formik>
-        <Text>Don't Have an Account? Make one now!</Text>
+        <Text style={[t.textCenter, t.mY2]}>
+          Don't Have an Account? Make one now!
+        </Text>
         <View style={[t.mX3]}>
           <Button
             title="Sign Up"
@@ -148,9 +151,9 @@ const Login = (props) => {
             }}
           />
         </View>
-        <View style={[t.mX3]}>
+        {/* <View style={[t.mX3]}>
           <Button title="Logout" color="gray" onPress={logout} />
-        </View>
+        </View> */}
         <Text>{error}</Text>
       </View>
     </View>

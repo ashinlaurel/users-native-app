@@ -30,10 +30,11 @@ const Register = (props) => {
       .then(({ user }) => {
         console.log(user.uid);
         db.collection("users")
-          .doc(user.uid)
+          .doc(user.email)
           .set({
             name: values.name,
             email: values.email,
+            uid: user.uid,
           })
           .then(function () {
             console.log("Document successfully written!");

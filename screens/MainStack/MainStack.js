@@ -17,6 +17,7 @@ import { Button } from "galio-framework";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LoginContext } from "../../context/LoginContext";
 import Register from "../RegisterStack/Register";
+import AdminDetails from "./AdminDetails";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -40,7 +41,10 @@ export default function MainStack() {
               <View style={[t.mR2]}>
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate("Login");
+                    console.log(isLoggedIn);
+                    isLoggedIn
+                      ? navigation.navigate("AdminDetails")
+                      : navigation.navigate("Login");
                   }}
                 >
                   <Image
@@ -108,6 +112,16 @@ export default function MainStack() {
         <Stack.Screen
           name="Signup"
           component={Register}
+          options={{
+            headerStyle: {
+              backgroundColor: "#E91E63",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="AdminDetails"
+          component={AdminDetails}
           options={{
             headerStyle: {
               backgroundColor: "#E91E63",
