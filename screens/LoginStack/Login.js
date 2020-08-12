@@ -138,6 +138,16 @@ const Login = (props) => {
             </View>
           )}
         </Formik>
+        <Text>Don't Have an Account? Make one now!</Text>
+        <View style={[t.mX3]}>
+          <Button
+            title="Sign Up"
+            color="gray"
+            onPress={() => {
+              navigate("Signup");
+            }}
+          />
+        </View>
         <View style={[t.mX3]}>
           <Button title="Logout" color="gray" onPress={logout} />
         </View>

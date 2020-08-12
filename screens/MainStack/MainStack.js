@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { YellowBox } from "react-native";
 import _ from "lodash";
@@ -15,6 +15,8 @@ import LoginChecker from "../../context/LoginChecker";
 import LoginStack from "../LoginStack/LoginStack";
 import { Button } from "galio-framework";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { LoginContext } from "../../context/LoginContext";
+import Register from "../RegisterStack/Register";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -22,6 +24,7 @@ const Stack = createStackNavigator();
 // import Navigator from "./routes/drawer";
 
 export default function MainStack() {
+  const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
   return (
     <LoginChecker>
       <Stack.Navigator>
@@ -95,6 +98,16 @@ export default function MainStack() {
         <Stack.Screen
           name="Login"
           component={LoginStack}
+          options={{
+            headerStyle: {
+              backgroundColor: "#E91E63",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={Register}
           options={{
             headerStyle: {
               backgroundColor: "#E91E63",
