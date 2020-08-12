@@ -27,7 +27,7 @@ const CreateNewUser = () => {
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: true,
         aspect: [4, 3],
-        quality: 1,
+        quality: 0.5,
       });
       if (!result.cancelled) {
         setImageUri(result.uri);
@@ -45,7 +45,7 @@ const CreateNewUser = () => {
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: true,
         aspect: [4, 3],
-        quality: 1,
+        quality: 0.5,
       });
       if (!result.cancelled) {
         setImageUri(result.uri);
@@ -126,61 +126,11 @@ const CreateNewUser = () => {
       });
   };
 
-  // const sendUser = async (values) => {
-  //   let newId, URL;
-  //   db.collection("dirusers")
-  //     .add(values)
-  //     .then((ref) => {
-  //       console.log("Added document with ID: ", ref.id);
-  //       newId = ref.id;
-  //       fetch(imageUri);
-  //     })
-  //     .then((res) => {
-  //       res.blob();
-  //     })
-  //     .then((blob) => {
-  //       let refer = storage.ref().child(`images/dir/${ref.id}`).put(blob);
-  //       refer.on(
-  //         "state_changed",
-  //         function () {},
-  //         function (error) {
-  //           console.log(error);
-  //         },
-  //         function () {
-  //           console.log("complete");
-  //           uploadTask.snapshot.ref.getDownloadURL();
-  //         }
-  //       );
-  //     })
-  //     .then(function (downloadURL) {
-  //       console.log("File available at", downloadURL);
-  //       URL = downloadURL;
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.code);
-  //       return;
-  //     });
-
-  //   db.collection("dirusers")
-  //     .doc(newId)
-  //     .update({ imgUrl: URL })
-  //     .then(function () {
-  //       console.log("Document successfully updated!");
-  //     })
-  //     .catch(function (error) {
-  //       // The document probably doesn't exist.
-  //       console.error("Error updating document: ", error);
-  //     });
-
-  //   // const res = await db.collection("test").doc().set(values);
-  //   // console.log(res);
-  // };
-
   return (
     <ScrollView>
       <View style={[t.flexCol, t.itemsCenter, t.justifyCenter]}>
         <View
-          style={[t.mY2, t.flexCol, t.flex, t.itemsCenter, t.justifyCenter]}
+          style={[t.mT4, t.flexCol, t.flex, t.itemsCenter, t.justifyCenter]}
         >
           <View style={[t.mY2, t.roundedFull, t.overflowHidden]}>
             {imageUri ? (
@@ -190,22 +140,23 @@ const CreateNewUser = () => {
               />
             ) : null}
           </View>
-          <View style={[t.flexRow, t.justifyCenter, t.itemsCenter]}>
+          <View style={[t.flexRow, t.justifyCenter, t.itemsCenter, t.mT2]}>
             <TouchableOpacity style={[t.mX2]}>
               <Button
                 title="Gallery"
                 onPress={() => {
                   selectPicture();
                 }}
+                color="#E91E63"
               />
             </TouchableOpacity>
             <TouchableOpacity style={[t.mX2]}>
-              <Button title="Camera" onPress={takePicture} />
+              <Button title="Camera" onPress={takePicture} color="#E91E63" />
             </TouchableOpacity>
           </View>
         </View>
         <Formik
-          initialValues={{ name: "", age: "", address: "", job: "" }}
+          initialValues={{ name: "", age: "", address: "", job: "", phone: "" }}
           onSubmit={(values, actions) => {
             actions.resetForm();
             // console.log(values);
@@ -214,7 +165,7 @@ const CreateNewUser = () => {
           }}
         >
           {(props) => (
-            <View style={[t.mY8, t.wFull, t.pX3]}>
+            <View style={[t.mY4, t.wFull, t.pX3]}>
               <TextInput
                 placeholder="Name"
                 placeholderTextColor="black"
@@ -228,6 +179,14 @@ const CreateNewUser = () => {
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("age")}
                 value={props.values.age}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
+                keyboardType="number-pad"
+              />
+              <TextInput
+                placeholder="Phone"
+                placeholderTextColor="black"
+                onChangeText={props.handleChange("phone")}
+                value={props.values.phone}
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
                 keyboardType="number-pad"
               />

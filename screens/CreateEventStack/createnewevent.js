@@ -124,29 +124,6 @@ const CreateNewEvent = () => {
                 value={props.values.location}
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
-              <View style={[t.mY2, t.wFull, t.pX3]}>
-                <Button title="Select Date" onPress={showDatePicker} />
-                <DateTimePickerModal
-                  isVisible={isDatePickerVisible}
-                  mode="date"
-                  onConfirm={(date) =>
-                    handleDateConfirm(date, props.setFieldValue)
-                  }
-                  onCancel={hideDatePicker}
-                />
-              </View>
-              <View style={[t.mY2, t.wFull, t.pX3]}>
-                <Button title="Select Time" onPress={showTimePicker} />
-                <DateTimePickerModal
-                  isVisible={isTimePickerVisible}
-                  mode="time"
-                  onConfirm={(date) =>
-                    handleTimeConfirm(date, props.setFieldValue)
-                  }
-                  onCancel={hideTimePicker}
-                />
-              </View>
-
               <View style={[]}>
                 <Picker
                   selectedValue={props.values.organisation}
@@ -164,11 +141,41 @@ const CreateNewEvent = () => {
                   ))}
                 </Picker>
               </View>
+              <View style={[t.mY2, t.wFull, t.pX3]}>
+                <Button
+                  title="Select Date"
+                  onPress={showDatePicker}
+                  color="#E91E63"
+                />
+                <DateTimePickerModal
+                  isVisible={isDatePickerVisible}
+                  mode="date"
+                  onConfirm={(date) =>
+                    handleDateConfirm(date, props.setFieldValue)
+                  }
+                  onCancel={hideDatePicker}
+                />
+              </View>
+              <View style={[t.mY2, t.wFull, t.pX3]}>
+                <Button
+                  title="Select Time"
+                  onPress={showTimePicker}
+                  color="#E91E63"
+                />
+                <DateTimePickerModal
+                  isVisible={isTimePickerVisible}
+                  mode="time"
+                  onConfirm={(date) =>
+                    handleTimeConfirm(date, props.setFieldValue)
+                  }
+                  onCancel={hideTimePicker}
+                />
+              </View>
 
               <View style={[t.mY2]}>
                 <Button
                   title="Submit"
-                  color="gray"
+                  color="#E91E63"
                   onPress={props.handleSubmit}
                 />
               </View>
