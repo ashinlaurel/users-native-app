@@ -20,7 +20,8 @@ const CreateNew = () => {
   const sendUser = async (values) => {
     let newId, URL;
     console.log(values);
-    // db.collection("organisations")
+    // db.collection("message")
+    //   .doc("themessage")
     //   .add(values)
     //   .then((ref) => {
     //     console.log("Added document with ID: ", ref.id);
@@ -66,9 +67,9 @@ const CreateNew = () => {
               />
 
               <TextInput
-                placeholder="Address"
+                placeholder="Sub Heading"
                 placeholderTextColor="black"
-                onChangeText={props.handleChange("Sub Heading")}
+                onChangeText={props.handleChange("subheading")}
                 value={props.values.subheading}
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
