@@ -17,7 +17,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import bg from "../../assets/bg.jpg";
 import logo from "../../assets/logo.png";
 
-// let ScreenHeight = Dimensions.get("window").height;
+let ScreenHeight = Dimensions.get("window").height;
 
 const InitialScreen = ({ navigation }) => {
   const { setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
@@ -210,7 +210,9 @@ const InitialScreen = ({ navigation }) => {
   );
 };
 
-// let Styles = StyleSheet.create({ height: ScreenHeight });
+const styles = StyleSheet.create({
+  height: Dimensions.get("window").height - 50,
+});
 
 export default InitialScreen;
 
