@@ -13,6 +13,7 @@ import {
   TouchableWithoutFeedback,
   Image,
   ListView,
+  StyleSheet,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
@@ -42,45 +43,6 @@ const Chapters = ({ navigation, route }) => {
   // const [filterusers, setFilterUsers] = useState(users);
   const [loading, setLoading] = useState(false);
 
-  // First Time Getting Data
-  //   useEffect(() => {
-  //     (async function getter() {
-  //       const usersRef = db.collection("dirusers");
-  //       const snapshot = await usersRef.get();
-  //       if (snapshot.empty) {
-  //         console.log("No matching documents.");
-  //         return;
-  //       }
-  //       let tempusers = snapshot.docs.map((i) => ({
-  //         key: i.id,
-  //         ...i.data(),
-  //       }));
-  //       setUsers(tempusers);
-  //       setFilterUsers(tempusers);
-  //     })();
-  //   }, []);
-  //   // Handling the Refresh
-  //   const handleRefresh = async () => {
-  //     setLoading(true);
-  //     // setTimeout(() => {
-  //     //   setLoading(false);
-  //     // }, 1000);
-
-  //     const usersRef = db.collection("dirusers");
-  //     const snapshot = await usersRef.get();
-  //     if (snapshot.empty) {
-  //       console.log("No matching documents.");
-  //       return;
-  //     }
-  //     let tempusers = snapshot.docs.map((i) => ({
-  //       key: i.id,
-  //       ...i.data(),
-  //     }));
-  //     await setUsers(tempusers);
-  //     await setFilterUsers(tempusers);
-  //     setLoading(false);
-  //   };
-
   const renderSeparator = () => {
     return (
       <View
@@ -95,11 +57,11 @@ const Chapters = ({ navigation, route }) => {
   };
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
-      <Text style="text-4xl">{book}</Text>
-      <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
+    <View style={[t.flex, t.itemsCenter, t.mT2]}>
+      <Text style={[t.text3xl]}>{book}</Text>
+      <View style={[]}>
         <FlatList
-          numColumns={3}
+          numColumns={2}
           keyExtractor={(item) => item.uid}
           contentContainerStyle={{ paddingBottom: 80 }}
           data={chapters}
@@ -114,10 +76,8 @@ const Chapters = ({ navigation, route }) => {
                 navigation.navigate("Verses", item);
               }}
             >
-              <View style={[]}>
-                <Text style={[t.text2xl, t.fontSemibold, t.mX2, t.mL3, t.mR32]}>
-                  {item.name}
-                </Text>
+              <View style={[t.bgGray300, t.rounded, t.m2]}>
+                <Text style={styles.line}>{item.name}</Text>
               </View>
             </TouchableOpacity>
           )}
@@ -129,3 +89,15 @@ const Chapters = ({ navigation, route }) => {
 };
 
 export default Chapters;
+
+const styles = StyleSheet.create({
+  line: {
+    textAlign: "center", // <-- the magic
+    fontWeight: "bold",
+    fontSize: 18,
+    marginTop: 0,
+    width: 200,
+    backgroundColor: "#e4eced",
+    padding: 2,
+  },
+});
