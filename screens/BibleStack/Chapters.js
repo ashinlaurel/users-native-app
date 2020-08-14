@@ -27,17 +27,18 @@ const Chapters = ({ navigation, route }) => {
     let number = bible.Book[num - 1].Chapter.map((num) => {
       counter++;
     });
-    console.log(counter);
+    let temp = [];
+
+    for (let i = 0; i < counter; i++) {
+      temp.push({ name: i, uid: i });
+      // console.log(temp);
+    }
+    setChapters(temp);
+    // console.log(temp);
+    // console.log(counter);
     setCount(counter);
   }, []);
-  const [chapters, setChapters] = useState([
-    { name: "1", uid: "1" },
-    { name: "2", uid: "2" },
-    { name: "3", uid: "3" },
-    { name: "4", uid: "4" },
-    { name: "5", uid: "5" },
-    { name: "6", uid: "6" },
-  ]);
+  const [chapters, setChapters] = useState([]);
   // const [filterusers, setFilterUsers] = useState(users);
   const [loading, setLoading] = useState(false);
 
