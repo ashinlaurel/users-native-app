@@ -11,7 +11,7 @@ const Verses = ({ navigation }) => {
   // const [filterusers, setFilterUsers] = useState(users);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    console.log("BIBR", bible.Book[0].Chapter[1].Verse[1].length);
+    console.log("BIBR", bible.Book[0].Chapter[1].Verse[1]);
     // setVerses(bible.Book[0].Chapter[1].Verse[1]);
   }, []);
 
