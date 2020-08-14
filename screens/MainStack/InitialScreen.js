@@ -235,7 +235,7 @@ const InitialScreen = ({ navigation }) => {
                   ]}
                 >
                   <TouchableOpacity
-                    onPress={() => navigation.navigate("ContactDetails")}
+                    onPress={() => navigation.navigate("Contact Details")}
                   >
                     <Entypo
                       name="phone"
@@ -259,7 +259,9 @@ const InitialScreen = ({ navigation }) => {
                     t.roundedLg,
                   ]}
                 >
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Locations")}
+                  >
                     <Entypo
                       name="location-pin"
                       size={32}

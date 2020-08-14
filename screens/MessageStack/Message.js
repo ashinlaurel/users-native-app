@@ -2,12 +2,12 @@ import React from "react";
 import { View, Text, Image, Platform, Linking } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import moment from "moment";
 
 const Message = ({ route, navigation }) => {
   //
   // Extracting from the route params-------------------------------------------------
-  //   const { name, age, address, job, phone, imgUrl } = route.params;
+  const { mainheading, subheading, content } = route.params;
   // console.log(name);
   // ---------------------------------------------------------------------------------
 
@@ -47,10 +47,10 @@ const Message = ({ route, navigation }) => {
           <Text
             style={[t.text5xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
           >
-            A Study Of The Gospel
+            {mainheading}
           </Text>
           <Text style={[t.text2xl, t.textCenter, t.textGray800, t.pB2]}>
-            20th August 2020
+            {moment().format("dddd, MMMM Do YYYY ")}
           </Text>
           {/* <Text style={[t.textXl, t.textCenter]}>Age: {age}</Text>
         <Text style={[t.textXl, t.textCenter]}>Occupation: {job}</Text>
@@ -71,16 +71,8 @@ const Message = ({ route, navigation }) => {
         <View style={[]}>
           <View style={[]}>
             <View style={[t.flex, t.flexCol, t.mX4]}>
-              <Text style={[t.text3xl, t.fontBold, t.mB1]}>Heading</Text>
-              <Text style={[t.textXl]}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.{" "}
-              </Text>
+              <Text style={[t.text3xl, t.fontBold, t.mB1]}>{subheading}</Text>
+              <Text style={[t.textXl]}>{content}</Text>
             </View>
           </View>
         </View>

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 // Navigation Imports----------------------------------------------
 import { createStackNavigator } from "@react-navigation/stack";
 import Message from "./Message";
+import MessageList from "./MessageList";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -12,6 +13,16 @@ const Stack = createStackNavigator();
 export default function MessageStack() {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="Messages"
+        component={MessageList}
+        options={{
+          headerStyle: {
+            backgroundColor: "#1B719E",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
       <Stack.Screen
         name="Message"
         component={Message}

@@ -101,12 +101,7 @@ const UserDetails = ({ route, navigation }) => {
                 }}
                 style={[t.flex, t.flexRow]}
               >
-                <MaterialCommunityIcons
-                  name="phone"
-                  size={32}
-                  color="grey"
-                  style={[t.mX2]}
-                />
+                <Entypo name="phone" size={32} color="grey" style={[t.mX2]} />
 
                 <Text style={[t.textXl]}>Phone: {phone}</Text>
               </TouchableOpacity>

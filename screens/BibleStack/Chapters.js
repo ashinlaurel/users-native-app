@@ -58,8 +58,8 @@ const Chapters = ({ navigation, route }) => {
 
   return (
     <View style={[t.flex, t.itemsCenter, t.mT2]}>
-      <Text style={[t.text3xl]}>{book}</Text>
-      <View style={[]}>
+      <Text style={[t.text3xl, t.fontBold, t.mY5]}>{book}</Text>
+      <View style={[t.pB32]}>
         <FlatList
           numColumns={3}
           keyExtractor={(item) => item.uid}
@@ -76,6 +76,7 @@ const Chapters = ({ navigation, route }) => {
                 navigation.navigate("Verses", {
                   booknum: num,
                   vnum: item.name,
+                  book: book,
                 });
               }}
             >
