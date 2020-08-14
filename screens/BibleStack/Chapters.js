@@ -31,7 +31,7 @@ const Chapters = ({ navigation, route }) => {
     let temp = [];
 
     for (let i = 0; i < counter; i++) {
-      temp.push({ name: i, uid: i });
+      temp.push({ name: i + 1, uid: i + 1 });
       // console.log(temp);
     }
     setChapters(temp);
@@ -61,7 +61,7 @@ const Chapters = ({ navigation, route }) => {
       <Text style={[t.text3xl]}>{book}</Text>
       <View style={[]}>
         <FlatList
-          numColumns={2}
+          numColumns={3}
           keyExtractor={(item) => item.uid}
           contentContainerStyle={{ paddingBottom: 80 }}
           data={chapters}
@@ -73,10 +73,13 @@ const Chapters = ({ navigation, route }) => {
               onPress={() => {
                 // console.log(item);
                 // handlePress(item);
-                navigation.navigate("Verses", item);
+                navigation.navigate("Verses", {
+                  booknum: num,
+                  vnum: item.name,
+                });
               }}
             >
-              <View style={[t.bgGray300, t.rounded, t.m2]}>
+              <View style={[t.m2]}>
                 <Text style={styles.line}>{item.name}</Text>
               </View>
             </TouchableOpacity>
@@ -96,8 +99,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
     marginTop: 0,
-    width: 200,
+    width: 100,
     backgroundColor: "#e4eced",
-    padding: 2,
+    borderRadius: 10,
+    padding: 3,
   },
 });
