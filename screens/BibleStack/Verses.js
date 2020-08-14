@@ -6,13 +6,15 @@ import { t } from "react-native-tailwindcss";
 
 import bible from "../../assets/biblejs";
 
-const Verses = ({ navigation }) => {
+const Verses = ({ navigation, route }) => {
   const [verses, setVerses] = useState([]);
   // const [filterusers, setFilterUsers] = useState(users);
+  const { booknum, vnum } = route.params;
+  console.log(booknum, vnum);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     // console.log("BIBR", bible.Book[0].Chapter[1].Verse[1]);
-    let temp = bible.Book[0].Chapter[1].Verse.map((verse) => {
+    let temp = bible.Book[booknum - 1].Chapter[vnum - 1].Verse.map((verse) => {
       return verse;
     });
     setVerses(temp);
