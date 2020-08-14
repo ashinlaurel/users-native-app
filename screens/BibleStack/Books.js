@@ -26,44 +26,24 @@ const Books = ({ navigation }) => {
   // const [filterusers, setFilterUsers] = useState(users);
   const [loading, setLoading] = useState(false);
 
-  // First Time Getting Data
-  //   useEffect(() => {
-  //     (async function getter() {
-  //       const usersRef = db.collection("dirusers");
-  //       const snapshot = await usersRef.get();
-  //       if (snapshot.empty) {
-  //         console.log("No matching documents.");
-  //         return;
-  //       }
-  //       let tempusers = snapshot.docs.map((i) => ({
-  //         key: i.id,
-  //         ...i.data(),
-  //       }));
-  //       setUsers(tempusers);
-  //       setFilterUsers(tempusers);
-  //     })();
-  //   }, []);
-  //   // Handling the Refresh
-  //   const handleRefresh = async () => {
-  //     setLoading(true);
-  //     // setTimeout(() => {
-  //     //   setLoading(false);
-  //     // }, 1000);
+  //  var bible;
+  //  function readJsonFile() {
+  //      var rawFile = new XMLHttpRequest();
+  //      rawFile.overrideMimeType("application/json");
+  //      rawFile.onreadystatechange = function() {
+  //          if (rawFile.readyState === 4 && rawFile.status == "200") {
+  //              bible = JSON.parse(rawFile.responseText);
+  //          }
+  //      };
+  //      rawFile.open("GET", "t", true);
+  //      rawFile.send();
+  //  }
 
-  //     const usersRef = db.collection("dirusers");
-  //     const snapshot = await usersRef.get();
-  //     if (snapshot.empty) {
-  //       console.log("No matching documents.");
-  //       return;
-  //     }
-  //     let tempusers = snapshot.docs.map((i) => ({
-  //       key: i.id,
-  //       ...i.data(),
-  //     }));
-  //     await setUsers(tempusers);
-  //     await setFilterUsers(tempusers);
-  //     setLoading(false);
-  //   };
+  //  function queryverse(book, chapter, verse)
+  //  {
+  //     return bible.Book[book - 1].Chapter[chapter - 1].Verse[verse - 1].Verse;
+  //  }
+  useEffect(() => {}, []);
 
   const renderSeparator = () => {
     return (
