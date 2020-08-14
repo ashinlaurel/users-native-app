@@ -4,26 +4,16 @@ import { db } from "../../firebase/firebase";
 import { View, Text, FlatList } from "react-native";
 import { t } from "react-native-tailwindcss";
 
+import bible from "../../assets/biblejs";
+
 const Verses = ({ navigation }) => {
-  const [verses, setVerses] = useState([
-    {
-      name:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-      uid: "1",
-    },
-    {
-      name:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-      uid: "2",
-    },
-    {
-      name:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-      uid: "3",
-    },
-  ]);
+  const [verses, setVerses] = useState([]);
   // const [filterusers, setFilterUsers] = useState(users);
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    console.log("BIBR", bible.Book[0].Chapter[1].Verse[1]);
+    // setVerses(bible.Book[0].Chapter[1].Verse[1]);
+  }, []);
 
   const renderSeparator = () => {
     return (
@@ -43,7 +33,7 @@ const Verses = ({ navigation }) => {
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <FlatList
           numColumns={1}
-          keyExtractor={(item) => item.uid}
+          keyExtractor={(item) => item.Verseid}
           contentContainerStyle={{ paddingBottom: 80 }}
           data={verses}
           // refreshing={loading}
@@ -68,10 +58,10 @@ const Verses = ({ navigation }) => {
                 t.pY4,
               ]}
             >
-              <Text style={[t.textLg, t.fontBold]}>{item.uid}</Text>
+              <Text style={[t.textLg, t.fontBold]}>{item.Verseid}</Text>
               <View style={[]}>
                 <Text style={[t.textLg, t.fontSemibold, t.mX2, t.mL3, t.mR16]}>
-                  {item.name}
+                  {item.Verse}
                 </Text>
               </View>
             </View>
