@@ -15,6 +15,7 @@ import OrganisationStack from "../OrganisationStack.js/OrganisationStack";
 // import MessageStack from "../MessageStack/MessageStack";
 import LoginChecker from "../../context/LoginChecker";
 import LoginStack from "../LoginStack/LoginStack";
+import BibleStack from "../BibleStack/BibleStack";
 import { Button } from "galio-framework";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LoginContext } from "../../context/LoginContext";
@@ -111,6 +112,16 @@ export default function MainStack() {
         <Stack.Screen
           name="Message"
           component={MessageStack}
+          options={{
+            headerStyle: {
+              backgroundColor: "#1B719E",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="Bible"
+          component={BibleStack}
           options={{
             headerStyle: {
               backgroundColor: "#1B719E",

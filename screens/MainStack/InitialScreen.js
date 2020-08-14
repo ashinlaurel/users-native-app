@@ -114,7 +114,7 @@ const InitialScreen = ({ navigation }) => {
               <View
                 style={[t.bgGray300, t.mX1, t.w32, t.flexCol, t.itemsCenter]}
               >
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("Bible")}>
                   <Entypo
                     name="book"
                     size={32}
@@ -210,9 +210,9 @@ const InitialScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  height: Dimensions.get("window").height - 50,
-});
+// const stylestwo = StyleSheet.create({
+//   height: Dimensions.get("window").height - 50,
+// });
 
 export default InitialScreen;
 
