@@ -22,6 +22,7 @@ import { LoginContext } from "../../context/LoginContext";
 import Register from "../RegisterStack/Register";
 import AdminDetails from "./AdminDetails";
 import MessageStack from "../MessageStack/MessageStack";
+import ContactDetails from "../ContactUs/ContactUs";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -152,6 +153,16 @@ export default function MainStack() {
         <Stack.Screen
           name="AdminDetails"
           component={AdminDetails}
+          options={{
+            headerStyle: {
+              backgroundColor: "#E91E63",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="ContactDetails"
+          component={ContactDetails}
           options={{
             headerStyle: {
               backgroundColor: "#E91E63",

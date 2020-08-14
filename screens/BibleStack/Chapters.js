@@ -2,18 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/firebase";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 
-import {
-  View,
-  Text,
-  Button,
-  FlatList,
-  TouchableOpacity,
-  Modal,
-  Keyboard,
-  TouchableWithoutFeedback,
-  Image,
-  ListView,
-} from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import bible from "../../assets/biblejs";
@@ -38,47 +27,7 @@ const Chapters = ({ navigation, route }) => {
     { name: "5", uid: "5" },
     { name: "6", uid: "6" },
   ]);
-  // const [filterusers, setFilterUsers] = useState(users);
   const [loading, setLoading] = useState(false);
-
-  // First Time Getting Data
-  //   useEffect(() => {
-  //     (async function getter() {
-  //       const usersRef = db.collection("dirusers");
-  //       const snapshot = await usersRef.get();
-  //       if (snapshot.empty) {
-  //         console.log("No matching documents.");
-  //         return;
-  //       }
-  //       let tempusers = snapshot.docs.map((i) => ({
-  //         key: i.id,
-  //         ...i.data(),
-  //       }));
-  //       setUsers(tempusers);
-  //       setFilterUsers(tempusers);
-  //     })();
-  //   }, []);
-  //   // Handling the Refresh
-  //   const handleRefresh = async () => {
-  //     setLoading(true);
-  //     // setTimeout(() => {
-  //     //   setLoading(false);
-  //     // }, 1000);
-
-  //     const usersRef = db.collection("dirusers");
-  //     const snapshot = await usersRef.get();
-  //     if (snapshot.empty) {
-  //       console.log("No matching documents.");
-  //       return;
-  //     }
-  //     let tempusers = snapshot.docs.map((i) => ({
-  //       key: i.id,
-  //       ...i.data(),
-  //     }));
-  //     await setUsers(tempusers);
-  //     await setFilterUsers(tempusers);
-  //     setLoading(false);
-  //   };
 
   const renderSeparator = () => {
     return (
@@ -95,7 +44,7 @@ const Chapters = ({ navigation, route }) => {
 
   return (
     <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
-      <Text style="text-4xl">{book}</Text>
+      <Text style={[t.text4xl, t.fontBold]}>{book}</Text>
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <FlatList
           numColumns={3}
