@@ -11,8 +11,11 @@ const Verses = ({ navigation }) => {
   // const [filterusers, setFilterUsers] = useState(users);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    console.log("BIBR", bible.Book[0].Chapter[1].Verse[1]);
-    // setVerses(bible.Book[0].Chapter[1].Verse[1]);
+    // console.log("BIBR", bible.Book[0].Chapter[1].Verse[1]);
+    let temp = bible.Book[0].Chapter[1].Verse.map((verse) => {
+      return verse;
+    });
+    setVerses(temp);
   }, []);
 
   const renderSeparator = () => {
