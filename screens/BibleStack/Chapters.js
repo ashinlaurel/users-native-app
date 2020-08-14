@@ -16,8 +16,20 @@ import {
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
+import bible from "../../assets/biblejs";
 
-const Chapters = ({ navigation }) => {
+const Chapters = ({ navigation, route }) => {
+  const { num, book } = route.params;
+  const [count, setCount] = useState(0);
+  let counter = 0;
+
+  useEffect(() => {
+    let number = bible.Book[num - 1].Chapter.map((num) => {
+      counter++;
+    });
+    console.log(counter);
+    setCount(counter);
+  }, []);
   const [chapters, setChapters] = useState([
     { name: "1", uid: "1" },
     { name: "2", uid: "2" },
@@ -83,6 +95,7 @@ const Chapters = ({ navigation }) => {
 
   return (
     <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+      <Text style="text-4xl">{book}</Text>
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <FlatList
           numColumns={3}

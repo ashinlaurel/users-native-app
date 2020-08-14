@@ -61,7 +61,7 @@ const Verses = ({ navigation }) => {
                 t.pY4,
               ]}
             >
-              <Text style={[t.textLg, t.fontBold]}>{item.Verseid}</Text>
+              {/* <Text style={[t.textLg, t.fontBold]}>{item.Verseid}</Text> */}
               <View style={[]}>
                 <Text style={[t.textLg, t.fontSemibold, t.mX2, t.mL3, t.mR16]}>
                   {item.Verse}
