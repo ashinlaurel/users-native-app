@@ -145,7 +145,7 @@ const CreateNewEvent = () => {
                 <Button
                   title="Select Date"
                   onPress={showDatePicker}
-                  color="#E91E63"
+                  color="#1B719E"
                 />
                 <DateTimePickerModal
                   isVisible={isDatePickerVisible}
@@ -160,7 +160,7 @@ const CreateNewEvent = () => {
                 <Button
                   title="Select Time"
                   onPress={showTimePicker}
-                  color="#E91E63"
+                  color="#1B719E"
                 />
                 <DateTimePickerModal
                   isVisible={isTimePickerVisible}
@@ -175,7 +175,7 @@ const CreateNewEvent = () => {
               <View style={[t.mY2]}>
                 <Button
                   title="Submit"
-                  color="#E91E63"
+                  color="#1B719E"
                   onPress={props.handleSubmit}
                 />
               </View>

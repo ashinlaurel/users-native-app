@@ -147,7 +147,7 @@ const CreateNewUser = () => {
                 onPress={() => {
                   selectPicture();
                 }}
-                color="#E91E63"
+                color="#1B719E"
               />
             </TouchableOpacity>
             <TouchableOpacity style={[t.mX2]}>

@@ -17,7 +17,7 @@ export default function CreateMemberStack() {
         component={CreateNewUser}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}

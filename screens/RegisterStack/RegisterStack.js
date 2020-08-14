@@ -18,7 +18,7 @@ export default function RegisterStack() {
         component={Register}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}

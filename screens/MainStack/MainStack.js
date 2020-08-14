@@ -37,7 +37,7 @@ export default function MainStack() {
           component={InitialScreen}
           options={({ navigation }) => ({
             headerStyle: {
-              backgroundColor: "#E91E63",
+              backgroundColor: "#1B719E",
             },
             headerTintColor: "#fff",
             headerRight: () => (
@@ -73,7 +73,7 @@ export default function MainStack() {
           component={Home}
           options={{
             headerStyle: {
-              backgroundColor: "#E91E63",
+              backgroundColor: "#1B719E",
             },
             headerTintColor: "#fff",
           }}
@@ -83,7 +83,7 @@ export default function MainStack() {
           component={UserDetails}
           options={{
             headerStyle: {
-              backgroundColor: "#E91E63",
+              backgroundColor: "#1B719E",
             },
             headerTintColor: "#fff",
           }}
@@ -93,7 +93,7 @@ export default function MainStack() {
           component={EventStack}
           options={{
             headerStyle: {
-              backgroundColor: "#E91E63",
+              backgroundColor: "#1B719E",
             },
             headerTintColor: "#fff",
           }}
@@ -103,7 +103,7 @@ export default function MainStack() {
           component={OrganisationStack}
           options={{
             headerStyle: {
-              backgroundColor: "#E91E63",
+              backgroundColor: "#1B719E",
             },
             headerTintColor: "#fff",
           }}
@@ -113,7 +113,7 @@ export default function MainStack() {
           component={MessageStack}
           options={{
             headerStyle: {
-              backgroundColor: "#E91E63",
+              backgroundColor: "#1B719E",
             },
             headerTintColor: "#fff",
           }}
@@ -123,7 +123,7 @@ export default function MainStack() {
           component={LoginStack}
           options={{
             headerStyle: {
-              backgroundColor: "#E91E63",
+              backgroundColor: "#1B719E",
             },
             headerTintColor: "#fff",
           }}
@@ -133,7 +133,7 @@ export default function MainStack() {
           component={Register}
           options={{
             headerStyle: {
-              backgroundColor: "#E91E63",
+              backgroundColor: "#1B719E",
             },
             headerTintColor: "#fff",
           }}

@@ -17,7 +17,7 @@ export default function MessageStack() {
         component={Message}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}

@@ -22,7 +22,7 @@ export default function EventStack() {
         component={Events}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}
@@ -32,7 +32,7 @@ export default function EventStack() {
         component={EventDetails}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}

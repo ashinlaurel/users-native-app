@@ -17,7 +17,7 @@ export default function LoginStack() {
         component={Login}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}

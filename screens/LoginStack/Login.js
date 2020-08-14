@@ -132,7 +132,7 @@ const Login = (props) => {
               <View style={[t.mY2]}>
                 <Button
                   title="Login"
-                  color="#E91E63"
+                  color="#1B719E"
                   onPress={props.handleSubmit}
                 />
               </View>

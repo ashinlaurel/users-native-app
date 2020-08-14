@@ -25,7 +25,7 @@ export default function OrganisationStack() {
         component={Organisations}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}
@@ -35,7 +35,7 @@ export default function OrganisationStack() {
         component={OrganisationDetails}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}
@@ -45,7 +45,7 @@ export default function OrganisationStack() {
         component={CreateNewOrganisation}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}
@@ -55,7 +55,7 @@ export default function OrganisationStack() {
         component={OrganisationEvents}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}
@@ -65,7 +65,7 @@ export default function OrganisationStack() {
         component={EventDetails}
         options={{
           headerStyle: {
-            backgroundColor: "#E91E63",
+            backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}
