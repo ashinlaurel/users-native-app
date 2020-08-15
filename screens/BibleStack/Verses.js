@@ -10,7 +10,7 @@ const Verses = ({ navigation, route }) => {
   const [verses, setVerses] = useState([]);
   // const [filterusers, setFilterUsers] = useState(users);
   const { booknum, vnum } = route.params;
-  console.log(booknum, vnum);
+  // console.log(booknum, vnum);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     // console.log("BIBR", bible.Book[0].Chapter[1].Verse[1]);

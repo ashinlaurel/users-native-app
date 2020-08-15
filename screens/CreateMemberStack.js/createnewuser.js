@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Button,
   Image,
+  Alert,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
@@ -78,6 +79,10 @@ const CreateNewUser = () => {
   };
 
   const sendUser = async (values) => {
+    if (values.name == "") {
+      Alert.alert("Error", "A Name is necessary ");
+      return;
+    }
     let newId, URL;
     db.collection("dirusers")
       .add(values)

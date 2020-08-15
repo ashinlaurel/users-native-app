@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   Button,
   Image,
+  Alert,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
@@ -18,6 +19,10 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const CreateNewOrganisation = () => {
   const sendUser = async (values) => {
+    if (values.name == "") {
+      Alert.alert("Error", "A Organisation name is necessary ");
+      return;
+    }
     let newId, URL;
     console.log(values);
     db.collection("organisations")

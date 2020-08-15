@@ -6,21 +6,22 @@ export default function LoginChecker(props) {
   const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
   const checkLoggedIn = async () => {
     const user = await AsyncStorage.getItem("user");
-    console.log(user, "LC");
-    if (user === "null") {
+    console.log(user, "LC", user == null);
+    if (user == "null" || user == null) {
       console.log("LoginCheck Logged Out");
       await setIsLoggedIn(false);
       await setUser({ user: null });
     } else {
-      console.log("loginCheck logged IN", user);
       await setIsLoggedIn(true);
       await setUser({ email: user });
+      console.log("loginCheck logged IN", user, isLoggedIn);
     }
   };
 
   useEffect(() => {
     console.log("USE EFFECT");
     checkLoggedIn();
+    console.log(isLoggedIn);
   }, []);
   return <>{props.children}</>;
 }

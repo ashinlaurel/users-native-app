@@ -12,6 +12,7 @@ import {
   Button,
   Image,
   Picker,
+  Alert,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
@@ -20,6 +21,7 @@ import { ScrollView } from "react-native-gesture-handler";
 const CreateNewEvent = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+  const [err, setErr] = useState("");
 
   // Getting organisations for drop down menu -------------------------------------------------------------------
   const [organisations, setOrganisations] = useState([
@@ -69,7 +71,13 @@ const CreateNewEvent = () => {
   };
 
   const sendUser = async (values) => {
-    console.log(values);
+    // console.log(values.name == "");
+    if (values.name == "") {
+      setErr("All fields are empty!");
+      Alert.alert("Error", "Fields are empty ");
+      return;
+    }
+
     db.collection("events")
       .add(values)
       .then((ref) => {
@@ -183,6 +191,7 @@ const CreateNewEvent = () => {
           )}
         </Formik>
       </View>
+      {/* <Tex>{err}</Tex> */}
     </ScrollView>
   );
 };
