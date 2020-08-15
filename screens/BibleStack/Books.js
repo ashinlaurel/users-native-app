@@ -347,7 +347,7 @@ const Books = ({ navigation }) => {
                 />
                 <View style={[]}>
                   <Text
-                    style={[t.text2xl, t.fontSemibold, t.mX2, t.mL3, t.mR16]}
+                    style={[t.text2xl, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
                   >
                     {item.book}
                   </Text>

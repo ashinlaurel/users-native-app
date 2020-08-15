@@ -9,8 +9,8 @@ import bible from "../../assets/biblejs";
 const Verses = ({ navigation, route }) => {
   const [verses, setVerses] = useState([]);
   // const [filterusers, setFilterUsers] = useState(users);
-  const { booknum, vnum } = route.params;
-  // console.log(booknum, vnum);
+  const { booknum, vnum, book } = route.params;
+  console.log(booknum, vnum);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     // console.log("BIBR", bible.Book[0].Chapter[1].Verse[1]);
@@ -34,7 +34,11 @@ const Verses = ({ navigation, route }) => {
   };
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
+    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT10]}>
+      <Text style={[t.text3xl, t.fontBold, t.mY2]}>
+        {book}-{vnum}
+      </Text>
+
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <FlatList
           numColumns={1}
@@ -43,7 +47,7 @@ const Verses = ({ navigation, route }) => {
           data={verses}
           // refreshing={loading}
           // onRefresh={handleRefresh}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             // <TouchableOpacity
             //   style={[]}
             //   onPress={() => {
@@ -63,9 +67,9 @@ const Verses = ({ navigation, route }) => {
                 t.pY4,
               ]}
             >
-              {/* <Text style={[t.textLg, t.fontBold]}>{item.Verseid}</Text> */}
+              <Text style={[t.textLg, t.fontBold]}>{index + 1}</Text>
               <View style={[]}>
-                <Text style={[t.textLg, t.fontSemibold, t.mX2, t.mL3, t.mR16]}>
+                <Text style={[t.textLg, t.fontSemibold, t.mX2, t.mL6, t.mR10]}>
                   {item.Verse}
                 </Text>
               </View>

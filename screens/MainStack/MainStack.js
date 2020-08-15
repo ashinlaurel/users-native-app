@@ -11,6 +11,7 @@ import InitialScreen from "./InitialScreen";
 import Home from "./home";
 import UserDetails from "./userDetails";
 import EventStack from "../EventStack/EventStack";
+import Locations from "../Locations/Locations";
 import OrganisationStack from "../OrganisationStack.js/OrganisationStack";
 // import MessageStack from "../MessageStack/MessageStack";
 import LoginChecker from "../../context/LoginChecker";
@@ -22,6 +23,7 @@ import { LoginContext } from "../../context/LoginContext";
 import Register from "../RegisterStack/Register";
 import AdminDetails from "./AdminDetails";
 import MessageStack from "../MessageStack/MessageStack";
+import ContactDetails from "../ContactUs/ContactUs";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -152,6 +154,26 @@ export default function MainStack() {
         <Stack.Screen
           name="AdminDetails"
           component={AdminDetails}
+          options={{
+            headerStyle: {
+              backgroundColor: "#E91E63",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="Contact Details"
+          component={ContactDetails}
+          options={{
+            headerStyle: {
+              backgroundColor: "#E91E63",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="Locations"
+          component={Locations}
           options={{
             headerStyle: {
               backgroundColor: "#E91E63",

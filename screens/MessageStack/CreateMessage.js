@@ -25,21 +25,20 @@ const CreateNew = () => {
     }
     let newId, URL;
     console.log(values);
-    // db.collection("message")
-    //   .doc("themessage")
-    //   .add(values)
-    //   .then((ref) => {
-    //     console.log("Added document with ID: ", ref.id);
-    //   })
-    //   .then(() => {
-    //     console.log("here");
-    //   })
+    db.collection("messages")
+      .add(values)
+      .then((ref) => {
+        console.log("Added document with ID: ", ref.id);
+      })
+      .then(() => {
+        console.log("here");
+      })
 
-    //   .catch((err) => {
-    //     // console.log(err.code);
-    //     throw err;
-    //     // return;
-    //   });
+      .catch((err) => {
+        // console.log(err.code);
+        throw err;
+        // return;
+      });
   };
 
   return (
@@ -82,7 +81,7 @@ const CreateNew = () => {
                 placeholder="Message"
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("content")}
-                value={props.values.Content}
+                value={props.values.content}
                 multiline={true}
                 textAlignVertical="top"
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedLg, t.mY3, t.h40]}
