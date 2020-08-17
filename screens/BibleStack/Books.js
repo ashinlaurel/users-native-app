@@ -311,11 +311,13 @@ const Books = ({ navigation }) => {
 
   return (
     <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
-      <Button
-        title={old ? "New Testement" : "Old Testement"}
-        onPress={() => setOld(!old)}
-        style={[t.mY5]}
-      />
+      <View style={[t.mT2, t.mY3]}>
+        <Button
+          title={old ? "New Testement" : "Old Testement"}
+          onPress={() => setOld(!old)}
+          style={[]}
+        />
+      </View>
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <FlatList
           numColumns={1}
