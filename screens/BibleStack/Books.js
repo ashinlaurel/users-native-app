@@ -6,6 +6,7 @@ import { View, Text, Button, FlatList, TouchableOpacity } from "react-native";
 import { t } from "react-native-tailwindcss";
 
 const Books = ({ navigation }) => {
+  const [old, setOld] = useState(true);
   const [books, setBooks] = useState([
     {
       num: 1,
@@ -305,7 +306,12 @@ const Books = ({ navigation }) => {
   };
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
+    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+      <Button
+        title={old ? "New Testement" : "Old Testement"}
+        onPress={() => setOld(!old)}
+        style={[t.mY5]}
+      />
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <FlatList
           numColumns={1}
@@ -315,45 +321,51 @@ const Books = ({ navigation }) => {
           // refreshing={loading}
           // onRefresh={handleRefresh}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              style={[]}
-              onPress={() => {
-                // console.log(item);
-                // handlePress(item);
-                navigation.navigate("Chapters", item);
-              }}
-            >
-              <View
-                style={[
-                  t.pY3,
-                  t.wFull,
-                  t.textCenter,
-                  t.flexRow,
-                  t.itemsCenter,
-                  t.justifyStart,
-                ]}
-              >
-                {/* <Image
-                  source={{
-                    uri: item.imgUrl,
-                  }}
-                  style={[t.w16, t.h16, t.roundedFull, t.overflowHidden, t.mX4]}
-                /> */}
-                <Entypo
-                  name="book"
-                  size={32}
-                  color="black"
-                  style={[t.mT4, t.textCenter]}
-                />
-                <View style={[]}>
-                  <Text
-                    style={[t.text2xl, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
+            <View>
+              {(old && parseInt(item.num) < 39) || parseInt(item.num) >= 39 ? (
+                <View>
+                  <TouchableOpacity
+                    style={[]}
+                    onPress={() => {
+                      // console.log(item);
+                      // handlePress(item);
+                      navigation.navigate("Chapters", item);
+                    }}
                   >
-                    {item.book}
-                  </Text>
+                    <View
+                      style={[
+                        t.pY3,
+                        t.wFull,
+                        t.textCenter,
+                        t.flexRow,
+                        t.itemsCenter,
+                        t.justifyStart,
+                      ]}
+                    >
+                      <Entypo
+                        name="book"
+                        size={32}
+                        color="black"
+                        style={[t.mT4, t.textCenter]}
+                      />
+                      <View style={[]}>
+                        <Text
+                          style={[
+                            t.text2xl,
+                            t.fontSemibold,
+                            t.mX2,
+                            t.mL3,
+                            t.mR32,
+                          ]}
+                        >
+                          {item.book}
+                        </Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
                 </View>
-              </View>
-            </TouchableOpacity>
+              ) : null}
+            </View>
           )}
           ItemSeparatorComponent={renderSeparator}
         />

@@ -14,7 +14,7 @@ import { t } from "react-native-tailwindcss";
 import { LoginContext } from "../../context/LoginContext";
 import { ScrollView } from "react-native-gesture-handler";
 //bg
-import bg from "../../assets/bg.jpg";
+import bg from "../../assets/bg.png";
 import logo from "../../assets/logo.png";
 
 let ScreenHeight = Dimensions.get("window").height;
@@ -45,7 +45,7 @@ const InitialScreen = ({ navigation }) => {
               <View style={[t.flexRow, t.justifyAround]}>
                 <View
                   style={[
-                    t.bgGray300,
+                    t.bgOrange400,
                     t.mX1,
                     t.w32,
                     t.flexCol,
@@ -70,7 +70,7 @@ const InitialScreen = ({ navigation }) => {
                 </View>
                 <View
                   style={[
-                    t.bgGray300,
+                    t.bgYellow400,
                     t.mX1,
                     t.w32,
                     t.flexCol,
@@ -95,7 +95,7 @@ const InitialScreen = ({ navigation }) => {
                 </View>
                 <View
                   style={[
-                    t.bgGray300,
+                    t.bgGreen400,
                     t.mX1,
                     t.w32,
                     t.flexCol,
@@ -121,7 +121,7 @@ const InitialScreen = ({ navigation }) => {
               <View style={[t.flexRow, t.justifyAround, t.mT1]}>
                 <View
                   style={[
-                    t.bgGray300,
+                    t.bgGreen400,
                     t.mX1,
                     t.w32,
                     t.flexCol,
@@ -138,13 +138,13 @@ const InitialScreen = ({ navigation }) => {
                     />
 
                     <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
-                      Litergy
+                      Lectionary
                     </Text>
                   </TouchableOpacity>
                 </View>
                 <View
                   style={[
-                    t.bgGray300,
+                    t.bgOrange400,
                     t.mX1,
                     t.w32,
                     t.flexCol,
@@ -169,7 +169,7 @@ const InitialScreen = ({ navigation }) => {
                 </View>
                 <View
                   style={[
-                    t.bgGray300,
+                    t.bgYellow400,
                     t.mX1,
                     t.w32,
                     t.flexCol,
@@ -201,7 +201,7 @@ const InitialScreen = ({ navigation }) => {
               <View style={[t.flexRow, t.justifyAround, t.mY1, t.pB4]}>
                 <View
                   style={[
-                    t.bgGray300,
+                    t.bgYellow400,
                     t.mX1,
                     t.w32,
                     t.flexCol,
@@ -226,7 +226,7 @@ const InitialScreen = ({ navigation }) => {
                 </View>
                 <View
                   style={[
-                    t.bgGray300,
+                    t.bgGreen400,
                     t.mX1,
                     t.w32,
                     t.flexCol,
@@ -251,7 +251,7 @@ const InitialScreen = ({ navigation }) => {
                 </View>
                 <View
                   style={[
-                    t.bgGray300,
+                    t.bgOrange400,
                     t.mX1,
                     t.w32,
                     t.flexCol,
