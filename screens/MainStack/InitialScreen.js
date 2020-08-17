@@ -51,7 +51,15 @@ const InitialScreen = ({ navigation }) => {
             <View style={[t.flexCol, t.mT10, t.justifyEnd]}>
               {/* Row-1----------------------------------------------------- */}
               <View style={[t.flexRow, t.justifyAround]}>
-                <View style={[t.bgOrange400, t.w32, t.flexCol, t.itemsCenter]}>
+                <View
+                  style={[
+                    t.bgOrange400,
+                    t.w32,
+                    t.flexCol,
+                    t.itemsCenter,
+                    { backgroundColor: "#f5d311" },
+                  ]}
+                >
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Message")}
                   >
@@ -67,7 +75,15 @@ const InitialScreen = ({ navigation }) => {
                     </Text>
                   </TouchableOpacity>
                 </View>
-                <View style={[t.bgYellow300, t.w32, t.flexCol, t.itemsCenter]}>
+                <View
+                  style={[
+                    t.bgYellow300,
+                    t.w32,
+                    t.flexCol,
+                    t.itemsCenter,
+                    { backgroundColor: "#a4e05e" },
+                  ]}
+                >
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Events")}
                   >
@@ -83,7 +99,15 @@ const InitialScreen = ({ navigation }) => {
                     </Text>
                   </TouchableOpacity>
                 </View>
-                <View style={[t.bgBlue200, t.w32, t.flexCol, t.itemsCenter]}>
+                <View
+                  style={[
+                    t.bgBlue200,
+                    t.w32,
+                    t.flexCol,
+                    t.itemsCenter,
+                    { backgroundColor: "#72aaf2" },
+                  ]}
+                >
                   <TouchableOpacity>
                     <Entypo
                       name="documents"
@@ -100,7 +124,15 @@ const InitialScreen = ({ navigation }) => {
               </View>
               {/* Row 2 ----------------------------------------------------------------------------------------------- */}
               <View style={[t.flexRow, t.justifyAround]}>
-                <View style={[t.bgGreen400, t.w32, t.flexCol, t.itemsCenter]}>
+                <View
+                  style={[
+                    t.bgGreen400,
+                    t.w32,
+                    t.flexCol,
+                    t.itemsCenter,
+                    { backgroundColor: "#a4e05e" },
+                  ]}
+                >
                   <TouchableOpacity>
                     <Entypo
                       name="new-message"
@@ -114,7 +146,15 @@ const InitialScreen = ({ navigation }) => {
                     </Text>
                   </TouchableOpacity>
                 </View>
-                <View style={[t.bgOrange400, t.w32, t.flexCol, t.itemsCenter]}>
+                <View
+                  style={[
+                    t.bgOrange400,
+                    t.w32,
+                    t.flexCol,
+                    t.itemsCenter,
+                    { backgroundColor: "#72aaf2" },
+                  ]}
+                >
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Bible")}
                   >
@@ -125,12 +165,28 @@ const InitialScreen = ({ navigation }) => {
                       style={[t.mT4, t.textCenter]}
                     />
 
-                    <Text style={[t.textBase, t.mY3, t.mX2, t.textCenter]}>
+                    <Text
+                      style={[
+                        t.textBase,
+                        t.mY3,
+                        t.mX2,
+                        t.textCenter,
+                        { backgroundColor: "#72aaf2" },
+                      ]}
+                    >
                       Bible
                     </Text>
                   </TouchableOpacity>
                 </View>
-                <View style={[t.bgYellow400, t.w32, t.flexCol, t.itemsCenter]}>
+                <View
+                  style={[
+                    t.bgYellow400,
+                    t.w32,
+                    t.flexCol,
+                    t.itemsCenter,
+                    { backgroundColor: "#f5d311" },
+                  ]}
+                >
                   <TouchableOpacity
                     onPress={() => {
                       isLoggedIn
@@ -152,16 +208,14 @@ const InitialScreen = ({ navigation }) => {
                 </View>
               </View>
               {/* Row 3 ------------------------------------------------------------------------------------------------ */}
-              <View style={[t.flexRow, t.justifyAround, t.mY1, t.pB4]}>
+              <View style={[t.flexRow, t.justifyAround, t.pB4]}>
                 <View
                   style={[
-                    // t.bgYellow400,
-                    { backgroundColor: "#f7c614" },
-                    t.mX1,
+                    t.bgYellow400,
                     t.w32,
                     t.flexCol,
                     t.itemsCenter,
-                    t.roundedLg,
+                    { backgroundColor: "#72aaf2" },
                   ]}
                 >
                   <TouchableOpacity
@@ -179,7 +233,15 @@ const InitialScreen = ({ navigation }) => {
                     </Text>
                   </TouchableOpacity>
                 </View>
-                <View style={[t.bgGreen400, t.w32, t.flexCol, t.itemsCenter]}>
+                <View
+                  style={[
+                    t.bgGreen400,
+                    t.w32,
+                    t.flexCol,
+                    t.itemsCenter,
+                    { backgroundColor: "#f5d311" },
+                  ]}
+                >
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Contact Details")}
                   >
@@ -195,7 +257,15 @@ const InitialScreen = ({ navigation }) => {
                     </Text>
                   </TouchableOpacity>
                 </View>
-                <View style={[t.bgOrange400, t.w32, t.flexCol, t.itemsCenter]}>
+                <View
+                  style={[
+                    t.bgOrange400,
+                    t.w32,
+                    t.flexCol,
+                    t.itemsCenter,
+                    { backgroundColor: "#a4e05e" },
+                  ]}
+                >
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Locations")}
                   >
