@@ -16,7 +16,6 @@ import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import { ScrollView } from "react-native-gesture-handler";
-import avatar from "../../assets/theavatar.png";
 
 const CreateNewUser = () => {
   const [imageUri, setImageUri] = useState(

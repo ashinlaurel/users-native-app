@@ -7,7 +7,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import BibleInitial from "./BibleInitial";
 import Books from "./Books";
 import Chapters from "./Chapters";
+import MalVerses from "./MalVersus";
 import Verses from "./Verses";
+import MalBooks from "./MalBooks";
+import MalChapters from "./MalChapters";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -38,6 +41,16 @@ export default function BibleStack() {
         }}
       />
       <Stack.Screen
+        name="MalBooks"
+        component={MalBooks}
+        options={{
+          headerStyle: {
+            backgroundColor: "#1B719E",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
+      <Stack.Screen
         name="Chapters"
         component={Chapters}
         options={{
@@ -48,8 +61,28 @@ export default function BibleStack() {
         }}
       />
       <Stack.Screen
+        name="MalChapters"
+        component={MalChapters}
+        options={{
+          headerStyle: {
+            backgroundColor: "#1B719E",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
+      <Stack.Screen
         name="Verses"
         component={Verses}
+        options={{
+          headerStyle: {
+            backgroundColor: "#1B719E",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
+      <Stack.Screen
+        name="MalVerses"
+        component={MalVerses}
         options={{
           headerStyle: {
             backgroundColor: "#1B719E",
