@@ -16,10 +16,11 @@ import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import { ScrollView } from "react-native-gesture-handler";
+import avatar from "../../assets/theavatar.png";
 
 const CreateNewUser = () => {
   const [imageUri, setImageUri] = useState(
-    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+    "https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png"
   );
 
   const selectPicture = async () => {

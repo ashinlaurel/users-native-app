@@ -328,8 +328,8 @@ const Books = ({ navigation }) => {
           // onRefresh={handleRefresh}
           renderItem={({ item }) => (
             <View>
-              {(old && parseInt(item.num) < 39) ||
-              (!old && parseInt(item.num) >= 39) ? (
+              {(old && parseInt(item.num) < 40) ||
+              (!old && parseInt(item.num) >= 40) ? (
                 <View>
                   <TouchableOpacity
                     style={[]}

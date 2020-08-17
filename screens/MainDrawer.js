@@ -32,15 +32,12 @@ export default function MainDrawer() {
         <Drawer.Screen name="Sign Up" component={RegisterStack} />
         {isLoggedIn ? (
           <>
-            <Drawer.Screen name="Create Member" component={CreateMemberStack} />
+            <Drawer.Screen name="Create Message" component={CreateNewMessage} />
           </>
         ) : null}
         {isLoggedIn ? (
           <>
-            <Drawer.Screen
-              name="Create Organisation"
-              component={CreateNewOrganisation}
-            />
+            <Drawer.Screen name="Create Member" component={CreateMemberStack} />
           </>
         ) : null}
         {isLoggedIn ? (
@@ -50,7 +47,10 @@ export default function MainDrawer() {
         ) : null}
         {isLoggedIn ? (
           <>
-            <Drawer.Screen name="Create Message" component={CreateNewMessage} />
+            <Drawer.Screen
+              name="Create Organisation"
+              component={CreateNewOrganisation}
+            />
           </>
         ) : null}
       </Drawer.Navigator>
