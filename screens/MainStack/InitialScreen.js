@@ -201,7 +201,8 @@ const InitialScreen = ({ navigation }) => {
               <View style={[t.flexRow, t.justifyAround, t.mY1, t.pB4]}>
                 <View
                   style={[
-                    t.bgYellow400,
+                    // t.bgYellow400,
+                    { backgroundColor: "#f7c614" },
                     t.mX1,
                     t.w32,
                     t.flexCol,
