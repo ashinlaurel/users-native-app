@@ -98,174 +98,178 @@ const Books = ({ navigation }) => {
     },
     {
       num: 23,
-      book: "Jeremiah",
+      book: "Isaiah",
     },
     {
       num: 24,
-      book: "Lamentations",
+      book: "Jeremiah",
     },
     {
       num: 25,
-      book: "Ezekiel",
+      book: "Lamentations",
     },
     {
       num: 26,
-      book: "Daniel",
+      book: "Ezekiel",
     },
     {
       num: 27,
-      book: "Hosea",
+      book: "Daniel",
     },
     {
       num: 28,
-      book: "Joel",
+      book: "Hosea",
     },
     {
       num: 29,
-      book: "Amos",
+      book: "Joel",
     },
     {
       num: 30,
-      book: "Obadiah",
+      book: "Amos",
     },
     {
       num: 31,
-      book: "Jonah",
+      book: "Obadiah",
     },
     {
       num: 32,
-      book: "Micah",
+      book: "Jonah",
     },
     {
       num: 33,
-      book: "Nahum",
+      book: "Micah",
     },
     {
       num: 34,
-      book: "Habakkuk",
+      book: "Nahum",
     },
     {
       num: 35,
-      book: "Zephaniah",
+      book: "Habakkuk",
     },
     {
       num: 36,
-      book: "Haggai",
+      book: "Zephaniah",
     },
     {
       num: 37,
-      book: "Zechariah",
+      book: "Haggai",
     },
     {
       num: 38,
-      book: "Malachi",
+      book: "Zechariah",
     },
     {
       num: 39,
-      book: "Matthew",
+      book: "Malachi",
     },
     {
       num: 40,
-      book: "Mark",
+      book: "Matthew",
     },
     {
       num: 41,
-      book: "Luke",
+      book: "Mark",
     },
     {
       num: 42,
-      book: "John",
+      book: "Luke",
     },
     {
       num: 43,
-      book: "Acts",
+      book: "John",
     },
     {
       num: 44,
-      book: "Romans",
+      book: "Acts",
     },
     {
       num: 45,
-      book: "1 Corinthians",
+      book: "Romans",
     },
     {
       num: 46,
-      book: "2 Corinthians",
+      book: "1 Corinthians",
     },
     {
       num: 47,
-      book: "Galatians",
+      book: "2 Corinthians",
     },
     {
       num: 48,
-      book: "Ephesians",
+      book: "Galatians",
     },
     {
       num: 49,
-      book: "Philippians",
+      book: "Ephesians",
     },
     {
       num: 50,
-      book: "Colossians",
+      book: "Philippians",
     },
     {
       num: 51,
-      book: "1 Thessalonians",
+      book: "Colossians",
     },
     {
       num: 52,
-      book: "2 Thessalonians",
+      book: "1 Thessalonians",
     },
     {
       num: 53,
-      book: "1 Timothy",
+      book: "2 Thessalonians",
     },
     {
       num: 54,
-      book: "2 Timothy",
+      book: "1 Timothy",
     },
     {
       num: 55,
-      book: "Titus",
+      book: "2 Timothy",
     },
     {
       num: 56,
-      book: "Philemon",
+      book: "Titus",
     },
     {
       num: 57,
-      book: "Hebrews",
+      book: "Philemon",
     },
     {
       num: 58,
-      book: "James",
+      book: "Hebrews",
     },
     {
       num: 59,
-      book: "1 Peter",
+      book: "James",
     },
     {
       num: 60,
-      book: "2 Peter",
+      book: "1 Peter",
     },
     {
       num: 61,
-      book: "1 John",
+      book: "2 Peter",
     },
     {
       num: 62,
-      book: "2 John",
+      book: "1 John",
     },
     {
       num: 63,
-      book: "3 John",
+      book: "2 John",
     },
     {
       num: 64,
-      book: "Jude",
+      book: "3 John",
     },
     {
       num: 65,
+      book: "Jude",
+    },
+    {
+      num: 66,
       book: "Revelation",
     },
   ]);
@@ -322,7 +326,7 @@ const Books = ({ navigation }) => {
           // onRefresh={handleRefresh}
           renderItem={({ item }) => (
             <View>
-              {(old && parseInt(item.num) < 39) || parseInt(item.num) >= 39 ? (
+              {(old && parseInt(item.num) < 40) || parseInt(item.num) >= 40 ? (
                 <View>
                   <TouchableOpacity
                     style={[]}
@@ -367,7 +371,7 @@ const Books = ({ navigation }) => {
               ) : null}
             </View>
           )}
-          ItemSeparatorComponent={renderSeparator}
+          // ItemSeparatorComponent={renderSeparator}
         />
       </View>
     </View>

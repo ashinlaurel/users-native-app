@@ -51,7 +51,14 @@ const InitialScreen = ({ navigation }) => {
             <View style={[t.flexCol, t.mT10, t.justifyEnd]}>
               {/* Row-1----------------------------------------------------- */}
               <View style={[t.flexRow, t.justifyAround]}>
-                <View style={[t.bgOrange400, t.w32, t.flexCol, t.itemsCenter]}>
+                <View
+                  style={[
+                    { backgroundColor: "#dddddd" },
+                    t.w32,
+                    t.flexCol,
+                    t.itemsCenter,
+                  ]}
+                >
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Message")}
                   >
