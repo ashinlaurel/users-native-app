@@ -294,7 +294,7 @@ const Books = ({ navigation }) => {
   //  {
   //     return bible.Book[book - 1].Chapter[chapter - 1].Verse[verse - 1].Verse;
   //  }
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   const renderSeparator = () => {
     return (

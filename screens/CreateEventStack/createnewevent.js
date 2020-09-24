@@ -180,7 +180,7 @@ const CreateNewEvent = () => {
                 />
               </View>
 
-              <View style={[t.mY2]}>
+              <View style={[t.mY2, t.mX3]}>
                 <Button
                   title="Submit"
                   color="#1B719E"

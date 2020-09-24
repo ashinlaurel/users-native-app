@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../../firebase/firebase";
-import { Entypo, MaterialIcons } from "@expo/vector-icons";
 
 import {
   View,
@@ -8,11 +6,6 @@ import {
   Button,
   FlatList,
   TouchableOpacity,
-  Modal,
-  Keyboard,
-  TouchableWithoutFeedback,
-  Image,
-  ListView,
   StyleSheet,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
