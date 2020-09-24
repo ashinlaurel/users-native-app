@@ -108,7 +108,9 @@ const InitialScreen = ({ navigation }) => {
                     { backgroundColor: "#72aaf2" },
                   ]}
                 >
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Circulars")}
+                  >
                     <Entypo
                       name="documents"
                       size={32}
