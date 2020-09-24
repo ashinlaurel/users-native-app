@@ -17,6 +17,7 @@ import CreateNewOrganisation from "./OrganisationStack.js/createneworganisation"
 import CreateNewEvent from "./CreateEventStack/createnewevent";
 import CreateNewMessage from "./MessageStack/CreateMessage";
 import VerifyUsers from "./verifyUsers/VerifyUsers";
+import CreateNewCircular from "./CreateCircularStack/CreateCircularStack";
 
 const Drawer = createDrawerNavigator();
 
@@ -57,6 +58,7 @@ export default function MainDrawer() {
         {isLoggedIn ? (
           <>
             <Drawer.Screen name="Verify Users" component={VerifyUsers} />
+            <Drawer.Screen name="Add Circular" component={CreateNewCircular} />
           </>
         ) : null}
       </Drawer.Navigator>

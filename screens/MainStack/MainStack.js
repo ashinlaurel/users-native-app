@@ -23,6 +23,7 @@ import { LoginContext } from "../../context/LoginContext";
 import Register from "../RegisterStack/Register";
 import AdminDetails from "./AdminDetails";
 import MessageStack from "../MessageStack/MessageStack";
+import CircularStack from "../CircularStack/CircularStack";
 import ContactDetails from "../ContactUs/ContactUs";
 import EditMember from "./EditMember";
 // -----------------------------------------------------------------
@@ -185,6 +186,16 @@ export default function MainStack() {
         <Stack.Screen
           name="Locations"
           component={Locations}
+          options={{
+            headerStyle: {
+              backgroundColor: "#E91E63",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="Circulars"
+          component={CircularStack}
           options={{
             headerStyle: {
               backgroundColor: "#E91E63",
