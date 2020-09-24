@@ -16,6 +16,7 @@ import { LoginContext } from "../context/LoginContext";
 import CreateNewOrganisation from "./OrganisationStack.js/createneworganisation";
 import CreateNewEvent from "./CreateEventStack/createnewevent";
 import CreateNewMessage from "./MessageStack/CreateMessage";
+import VerifyUsers from "./verifyUsers/VerifyUsers";
 
 const Drawer = createDrawerNavigator();
 
@@ -51,6 +52,11 @@ export default function MainDrawer() {
               name="Create Organisation"
               component={CreateNewOrganisation}
             />
+          </>
+        ) : null}
+        {isLoggedIn ? (
+          <>
+            <Drawer.Screen name="Verify Users" component={VerifyUsers} />
           </>
         ) : null}
       </Drawer.Navigator>

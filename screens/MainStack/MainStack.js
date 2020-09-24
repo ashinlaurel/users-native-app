@@ -24,6 +24,7 @@ import Register from "../RegisterStack/Register";
 import AdminDetails from "./AdminDetails";
 import MessageStack from "../MessageStack/MessageStack";
 import ContactDetails from "../ContactUs/ContactUs";
+import EditMember from "./EditMember";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -74,6 +75,16 @@ export default function MainStack() {
         <Stack.Screen
           name="Members"
           component={Home}
+          options={{
+            headerStyle: {
+              backgroundColor: "#1B719E",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="EditMember"
+          component={EditMember}
           options={{
             headerStyle: {
               backgroundColor: "#1B719E",

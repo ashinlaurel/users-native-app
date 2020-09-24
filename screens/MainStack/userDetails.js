@@ -1,16 +1,38 @@
 import React from "react";
-import { View, Text, Image, Platform, Linking } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Platform,
+  Linking,
+  Button,
+  Alert,
+} from "react-native";
 import { t } from "react-native-tailwindcss";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import { db } from "../../firebase/firebase";
 
 const UserDetails = ({ route, navigation }) => {
   //
   // Extracting from the route params-------------------------------------------------
-  const { name, age, address, job, phone, imgUrl } = route.params;
+  const { name, age, address, job, phone, imgUrl, key } = route.params;
   // console.log(name);
   // ---------------------------------------------------------------------------------
-
+  //delete
+  const handleDelete = () => {
+    console.log(key);
+    db.collection("dirusers")
+      .doc(key)
+      .delete()
+      .then(function () {
+        console.log("Document successfully deleted!");
+      })
+      .catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
+    navigation.navigate("Members");
+  };
   // Calling code
   const dialCall = () => {
     let phoneNumber = "";
@@ -107,6 +129,40 @@ const UserDetails = ({ route, navigation }) => {
               </TouchableOpacity>
             </View>
           </View>
+        </View>
+        <View style={[t.flex, t.flexRow, t.wFull, t.justifyAround]}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("EditMember", route.params);
+            }}
+            style={[t.bgBlue600, t.mX10, t.mY5, t.roundedFull, t.shadowMd]}
+          >
+            <Text style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}>
+              Edit
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              Alert.alert(
+                "Are you sure you want to delete user permanently",
+                "",
+                [
+                  {
+                    text: "Yes",
+                    onPress: () => handleDelete(),
+                    style: "cancel",
+                  },
+                  { text: "No", onPress: () => console.log("No delete") },
+                ],
+                { cancelable: false }
+              );
+            }}
+            style={[t.bgBlue600, t.mX10, t.mY5, t.roundedFull, t.shadowMd]}
+          >
+            <Text style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}>
+              Delete
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>

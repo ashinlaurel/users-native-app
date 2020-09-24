@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/firebase";
-import { Card, theme, Block } from "galio-framework";
 import {
   View,
   Text,
-  Button,
+  //   Button,
   FlatList,
   TouchableOpacity,
   Modal,
@@ -12,9 +11,20 @@ import {
   TouchableWithoutFeedback,
   Image,
   ListView,
+  Alert,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
+// import { Card } from "@paraboly/react-native-card";
+import { Entypo, MaterialIcons } from "@expo/vector-icons";
+import {
+  Card,
+  CardTitle,
+  CardContent,
+  CardAction,
+  CardButton,
+  CardImage,
+} from "react-native-material-cards";
 
 const VerifyUsers = ({ navigation }) => {
   const [users, setUsers] = useState([
@@ -39,6 +49,7 @@ const VerifyUsers = ({ navigation }) => {
       }));
       setUsers(tempusers);
       setFilterUsers(tempusers);
+      console.log(tempusers);
     })();
   }, []);
   // Handling the Refresh
@@ -62,22 +73,44 @@ const VerifyUsers = ({ navigation }) => {
     await setFilterUsers(tempusers);
     setLoading(false);
   };
+  const handleVerify = (id) => {
+    let updateuser = [];
+    // console.log("here", id);
+    users.map((user) => {
+      if (user.key == id) {
+        user.verified = 1;
 
-  const renderSeparator = () => {
-    return (
-      <View
-        style={{
-          height: 1,
-          width: "86%",
-          backgroundColor: "#CED0CE",
-          marginLeft: "5%",
-        }}
-      />
-    );
+        db.collection("dirusers")
+          .doc(id)
+          .update({
+            verified: 1,
+          })
+          .then(function () {
+            console.log("Document successfully updated!");
+          })
+          .catch(function (error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+          });
+
+        Alert.alert("Verified");
+      }
+      updateuser.push(user);
+    });
+    setUsers(updateuser);
+    setFilterUsers(updateuser);
   };
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+    <View
+      style={[
+        t.flex,
+        t.justifyCenter,
+        // t.itemsCenter,
+        t.mT8,
+        t.flexCol,
+      ]}
+    >
       <View style={[t.wFull]}>
         <TextInput
           placeholder="Search"
@@ -102,52 +135,36 @@ const VerifyUsers = ({ navigation }) => {
           keyboardType="default"
         />
       </View>
-      <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
+      <View style={[t.pY2, t.pX5]}>
         <FlatList
           numColumns={1}
-          keyExtractor={(item) => item.uid}
+          keyExtractor={(item) => item.key}
           contentContainerStyle={{ paddingBottom: 80 }}
           data={filterusers}
           refreshing={loading}
           onRefresh={handleRefresh}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              style={[]}
-              onPress={() => {
-                // console.log(item);
-                // handlePress(item);
-                navigation.navigate("UserDetails", item);
-              }}
-            >
-              <View
-                style={[
-                  t.pY3,
-                  t.wFull,
-                  t.textCenter,
-                  t.flexRow,
-                  t.itemsCenter,
-                  t.justifyStart,
-                ]}
-              >
-                <Image
-                  source={{
-                    uri: item.imgUrl,
-                  }}
-                  style={[t.w16, t.h16, t.roundedFull, t.overflowHidden, t.mX4]}
+            <View style={[]}>
+              <Card style={[t.wFull]}>
+                <CardTitle title={item.name} />
+                <CardContent
+                  text={`Age:${item.age} . Address:${item.address} . Job:${item.job}`}
                 />
-                <View style={[]}>
-                  <Text
-                    style={[t.text2xl, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
-                  >
-                    {item.name}
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-
-            // Galio Card--------------------------------------------
+                <CardAction separator={true} inColumn={false}>
+                  <CardButton
+                    onPress={() => {
+                      item.verified == 1
+                        ? Alert.alert("Already Verified")
+                        : handleVerify(item.key);
+                    }}
+                    title={item.verified == 1 ? `Verified` : `Verify`}
+                    color={item.verified == 1 ? `green` : `maroon`}
+                  />
+                </CardAction>
+              </Card>
+            </View>
           )}
-          ItemSeparatorComponent={renderSeparator}
+          //   ItemSeparatorComponent={renderSeparator}
         />
       </View>
     </View>
