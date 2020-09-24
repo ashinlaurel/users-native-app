@@ -161,7 +161,14 @@ const CreateNewUser = () => {
           </View>
         </View>
         <Formik
-          initialValues={{ name: "", age: "", address: "", job: "", phone: "" }}
+          initialValues={{
+            name: "",
+            age: "",
+            address: "",
+            job: "",
+            phone: "",
+            verified: 0,
+          }}
           onSubmit={(values, actions) => {
             actions.resetForm();
             // console.log(values);
