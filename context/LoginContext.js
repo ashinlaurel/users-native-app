@@ -6,6 +6,7 @@ export const LoginContext = createContext();
 const LoginContextHOC = (props) => {
   const [user, setUser] = useState({ name: "." });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [role, setRole] = useState(2);
 
   //   useEffect(() => {
   //     async () => {
@@ -24,7 +25,9 @@ const LoginContextHOC = (props) => {
   //     };
   //   }, []);
   return (
-    <LoginContext.Provider value={{ user, setUser, isLoggedIn, setIsLoggedIn }}>
+    <LoginContext.Provider
+      value={{ role, setRole, user, setUser, isLoggedIn, setIsLoggedIn }}
+    >
       {props.children}
     </LoginContext.Provider>
   );

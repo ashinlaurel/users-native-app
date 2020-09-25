@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { db } from "../../firebase/firebase";
 import {
   View,
   Text,
@@ -21,7 +22,9 @@ const Login = (props) => {
   const [error, setError] = useState("");
   const [modalState, setModalState] = useState(false);
   const { navigate } = props.navigation;
-  const { setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { setRole, setUser, isLoggedIn, setIsLoggedIn } = useContext(
+    LoginContext
+  );
   console.log(isLoggedIn);
 
   const loginUser = async (values) => {
@@ -31,6 +34,22 @@ const Login = (props) => {
         values.email,
         values.password
       );
+      console.log("KEY", user.email);
+      db.collection("users")
+        .doc(user.user.email)
+        .get()
+        .then(function (doc) {
+          if (doc.exists) {
+            // console.log("Document data:", doc.data().role);
+            setRole(doc.data().role);
+          } else {
+            // doc.data() will be undefined in this case
+            // console.log("No such document!");
+          }
+        })
+        .catch(function (error) {
+          console.log("Error getting Login Doc:", error);
+        });
 
       console.log("Logged In", user.user.email);
       // setError("Logged In");

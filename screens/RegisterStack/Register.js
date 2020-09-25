@@ -35,6 +35,7 @@ const Register = (props) => {
             name: values.name,
             email: values.email,
             uid: user.uid,
+            role: 2, ///////////////////----------->Not verified
           })
           .then(function () {
             console.log("Document successfully written!");
@@ -91,6 +92,7 @@ const Register = (props) => {
             email: "",
             password: "",
             confPassword: "",
+            verified: 0,
           }}
           onSubmit={(values, actions) => {
             // actions.resetForm();
