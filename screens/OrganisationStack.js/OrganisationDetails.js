@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, Image, Alert } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { db } from "../../firebase/firebase";
-import { Button } from "galio-framework";
+// import { Button } from "galio-framework";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
-import Ripple from "react-native-material-ripple";
+// import Ripple from "react-native-material-ripple";
+import { LoginContext } from "../../context/LoginContext";
 
 const OrganisationDetails = ({ route, navigation }) => {
   // console.log("hello");
   const { name, address, email, phone, details, key } = route.params;
+  const { role } = useContext(LoginContext);
+
   const handleDelete = () => {
     console.log(key);
     db.collection("organisations")
@@ -116,40 +119,48 @@ const OrganisationDetails = ({ route, navigation }) => {
           {/* </Ripple> */}
         </View>
       </View>
-      <View style={[t.flex, t.flexRow, t.wFull, t.justifyAround]}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("EditOrg", route.params);
-          }}
-          style={[t.bgBlue600, t.mX10, t.mT3, t.roundedFull, t.shadowMd]}
-        >
-          <Text style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}>
-            Edit
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            Alert.alert(
-              "Are you sure you want to delete this organisation permanently ?",
-              "",
-              [
-                {
-                  text: "Yes",
-                  onPress: () => handleDelete(),
-                  style: "cancel",
-                },
-                { text: "No", onPress: () => console.log("No delete") },
-              ],
-              { cancelable: false }
-            );
-          }}
-          style={[t.bgBlue600, t.mX10, t.mT3, t.roundedFull, t.shadowMd]}
-        >
-          <Text style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}>
-            Delete
-          </Text>
-        </TouchableOpacity>
-      </View>
+      {role == 0 ? (
+        <>
+          <View style={[t.flex, t.flexRow, t.wFull, t.justifyAround]}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("EditOrg", route.params);
+              }}
+              style={[t.bgBlue600, t.mX10, t.mT3, t.roundedFull, t.shadowMd]}
+            >
+              <Text
+                style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}
+              >
+                Edit
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                Alert.alert(
+                  "Are you sure you want to delete this organisation permanently ?",
+                  "",
+                  [
+                    {
+                      text: "Yes",
+                      onPress: () => handleDelete(),
+                      style: "cancel",
+                    },
+                    { text: "No", onPress: () => console.log("No delete") },
+                  ],
+                  { cancelable: false }
+                );
+              }}
+              style={[t.bgBlue600, t.mX10, t.mT3, t.roundedFull, t.shadowMd]}
+            >
+              <Text
+                style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}
+              >
+                Delete
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </>
+      ) : null}
     </View>
   );
 };

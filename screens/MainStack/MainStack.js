@@ -17,7 +17,7 @@ import OrganisationStack from "../OrganisationStack.js/OrganisationStack";
 import LoginChecker from "../../context/LoginChecker";
 import LoginStack from "../LoginStack/LoginStack";
 import BibleStack from "../BibleStack/BibleStack";
-import { Button } from "galio-framework";
+// import { Button } from "galio-framework";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LoginContext } from "../../context/LoginContext";
 import Register from "../RegisterStack/Register";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import { db } from "../../firebase/firebase";
-import { Card, theme, Block } from "galio-framework";
+// import { Card, theme, Block } from "galio-framework";
 import {
   View,
   Text,
