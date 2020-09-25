@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   View,
   Text,
@@ -12,11 +12,14 @@ import { t } from "react-native-tailwindcss";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { db } from "../../firebase/firebase";
+import { MembersContext } from "../../context/Members";
 
 const UserDetails = ({ route, navigation }) => {
   //
   // Extracting from the route params-------------------------------------------------
   const { name, age, address, job, phone, imgUrl, key } = route.params;
+
+  const { filterusers, setFilterUsers } = useContext(MembersContext);
   // console.log(name);
   // ---------------------------------------------------------------------------------
   //delete

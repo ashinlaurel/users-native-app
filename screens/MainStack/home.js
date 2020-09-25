@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import { db } from "../../firebase/firebase";
 import { Card, theme, Block } from "galio-framework";
 import {
@@ -15,31 +15,26 @@ import {
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
+import { MembersContext } from "../../context/Members";
+import { useFocusEffect } from "@react-navigation/native";
 
 const Home = ({ navigation }) => {
   const [users, setUsers] = useState([
     // { name: "Ashin Laurel", age: 21, address: "Trivandrum", uid: "1" },
   ]);
-  const [filterusers, setFilterUsers] = useState(users);
+  const { filterusers, setFilterUsers } = useContext(MembersContext);
+  // const [filterusers, setFilterUsers] = useState(users);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // useMemo(() => setFilterUsers(filterusers), [filterusers]);
   // First Time Getting Data
+
   useEffect(() => {
-    (async function getter() {
-      const usersRef = db.collection("dirusers");
-      const snapshot = await usersRef.get();
-      if (snapshot.empty) {
-        console.log("No matching documents.");
-        return;
-      }
-      let tempusers = snapshot.docs.map((i) => ({
-        key: i.id,
-        ...i.data(),
-      }));
-      setUsers(tempusers);
-      setFilterUsers(tempusers);
-    })();
+    const unsubscribe = navigation.addListener("focus", () => {
+      handleRefresh();
+    });
+    return unsubscribe;
   }, []);
   // Handling the Refresh
   const handleRefresh = async () => {
