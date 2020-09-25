@@ -14,7 +14,7 @@ export default function LoginChecker(props) {
   const checkLoggedIn = async () => {
     const user = await AsyncStorage.getItem("user");
     let rl = await AsyncStorage.getItem("role");
-    console.log("role", rl);
+    // console.log("role", rl);
     setRole(parseInt(rl));
     console.log(user, "LC", user == null);
     if (user == "null" || user == null) {

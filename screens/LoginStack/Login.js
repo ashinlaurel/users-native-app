@@ -39,11 +39,13 @@ const Login = (props) => {
       db.collection("users")
         .doc(user.user.email)
         .get()
-        .then(function (doc) {
+        .then(async (doc) => {
           if (doc.exists) {
             // console.log("Document data:", doc.data().role);
             setRole(doc.data().role);
-            r = doc.data().role;
+            r = await doc.data().role;
+            console.log("SETITEM", "" + r);
+            await AsyncStorage.setItem("role", "" + r);
           } else {
             // doc.data() will be undefined in this case
             // console.log("No such document!");
@@ -59,7 +61,7 @@ const Login = (props) => {
       setUser({ email: user.user.email });
       await AsyncStorage.setItem("user", user.user.email);
       await AsyncStorage.setItem("isLoggedIn", "true");
-      await AsyncStorage.setItem("role", toString(r));
+
       navigate("Home");
     } catch (error) {
       console.log(error);
