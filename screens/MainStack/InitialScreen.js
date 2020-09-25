@@ -22,7 +22,7 @@ let ScreenHeight = Dimensions.get("window").height;
 
 const InitialScreen = ({ navigation }) => {
   const { role, user, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
-  console.log("USER___---->", role);
+  // console.log("USER___---->", role);
 
   // First Time Getting Data
 

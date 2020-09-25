@@ -24,7 +24,9 @@ const Drawer = createDrawerNavigator();
 // import Navigator from "./routes/drawer";
 
 export default function MainDrawer() {
-  const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { user, setUser, isLoggedIn, setIsLoggedIn, role } = useContext(
+    LoginContext
+  );
   return (
     <NavigationContainer>
       {/* <LoginContextHOC> */}
@@ -32,22 +34,22 @@ export default function MainDrawer() {
         <Drawer.Screen name="Home" component={MainStack} />
         <Drawer.Screen name="Log In" component={LoginStack} />
         <Drawer.Screen name="Sign Up" component={RegisterStack} />
-        {isLoggedIn ? (
+        {isLoggedIn && role == 0 ? (
           <>
             <Drawer.Screen name="Create Message" component={CreateNewMessage} />
           </>
         ) : null}
-        {isLoggedIn ? (
+        {isLoggedIn && role == 0 ? (
           <>
             <Drawer.Screen name="Create Member" component={CreateMemberStack} />
           </>
         ) : null}
-        {isLoggedIn ? (
+        {isLoggedIn && role == 0 ? (
           <>
             <Drawer.Screen name="Create Event" component={CreateNewEvent} />
           </>
         ) : null}
-        {isLoggedIn ? (
+        {isLoggedIn && role == 0 ? (
           <>
             <Drawer.Screen
               name="Create Organisation"
@@ -55,7 +57,7 @@ export default function MainDrawer() {
             />
           </>
         ) : null}
-        {isLoggedIn ? (
+        {isLoggedIn && role == 0 ? (
           <>
             <Drawer.Screen name="Verify Users" component={VerifyUsers} />
             <Drawer.Screen name="Add Circular" component={CreateNewCircular} />
