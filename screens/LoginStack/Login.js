@@ -44,7 +44,7 @@ const Login = (props) => {
             // console.log("Document data:", doc.data().role);
             setRole(doc.data().role);
             r = await doc.data().role;
-            console.log("SETITEM", "" + r);
+            // console.log("SETITEM", "" + r);
             await AsyncStorage.setItem("role", "" + r);
           } else {
             // doc.data() will be undefined in this case
