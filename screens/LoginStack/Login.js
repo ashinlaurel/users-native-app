@@ -29,6 +29,7 @@ const Login = (props) => {
 
   const loginUser = async (values) => {
     // console.log(values.email, values.password);
+    let r = 2;
     try {
       let user = await auth.signInWithEmailAndPassword(
         values.email,
@@ -42,6 +43,7 @@ const Login = (props) => {
           if (doc.exists) {
             // console.log("Document data:", doc.data().role);
             setRole(doc.data().role);
+            r = doc.data().role;
           } else {
             // doc.data() will be undefined in this case
             // console.log("No such document!");
@@ -57,6 +59,7 @@ const Login = (props) => {
       setUser({ email: user.user.email });
       await AsyncStorage.setItem("user", user.user.email);
       await AsyncStorage.setItem("isLoggedIn", "true");
+      await AsyncStorage.setItem("role", toString(r));
       navigate("Home");
     } catch (error) {
       console.log(error);
