@@ -9,6 +9,7 @@ import {
   ImageBackground,
   Image,
   StyleSheet,
+  Alert,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { LoginContext } from "../../context/LoginContext";
@@ -20,7 +21,8 @@ import logo from "../../assets/logo.png";
 let ScreenHeight = Dimensions.get("window").height;
 
 const InitialScreen = ({ navigation }) => {
-  const { setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { role, user, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  console.log("USER___---->", role);
 
   // First Time Getting Data
 
@@ -192,7 +194,11 @@ const InitialScreen = ({ navigation }) => {
                   <TouchableOpacity
                     onPress={() => {
                       isLoggedIn
-                        ? navigation.navigate("Members")
+                        ? role == 2
+                          ? Alert.alert(
+                              "Your account has not been verified by admin."
+                            )
+                          : navigation.navigate("Members")
                         : navigation.navigate("Login");
                     }}
                   >
