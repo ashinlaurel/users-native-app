@@ -194,6 +194,8 @@ const EditMember = ({ route, navigation }) => {
             actions.resetForm();
             // console.log(values);
             sendUser(values);
+            navigation.navigate("Members");
+
             // uploadImage();
           }}
         >
