@@ -49,10 +49,7 @@
     "react-navigation": "^4.4.0",
     "react-navigation-drawer": "^2.5.0",
     "react-navigation-stack": "^2.8.2",
-<<<<<<< HEAD
-=======
     "rn-pdf-reader-js": "^4.1.1",
->>>>>>> 0890987455e29ab8dce061c60cb19aab70749e77
     "stack": "^0.1.0"
   },
   "devDependencies": {
