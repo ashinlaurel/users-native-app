@@ -103,7 +103,9 @@ const EditMember = ({ route, navigation }) => {
       .then(() => {
         Alert.alert("Information updated");
       })
-
+      .then(() => {
+        navigation.navigate("Members");
+      })
       .catch(function (error) {
         // The document probably doesn't exist.
         console.error("Error updating document: ", error);
@@ -194,7 +196,6 @@ const EditMember = ({ route, navigation }) => {
             actions.resetForm();
             // console.log(values);
             sendUser(values);
-            navigation.navigate("Members");
 
             // uploadImage();
           }}

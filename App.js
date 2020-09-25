@@ -8,8 +8,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 // -----------------------------------------------------------------
 
+import DataContextHOC from "./context/DataContext";
 import LoginContextHOC from "./context/LoginContext";
-import MembersContextHOC from "./context/Members";
 import MainDrawer from "./screens/MainDrawer";
 
 const Stack = createStackNavigator();
@@ -31,9 +31,9 @@ export default function App() {
 
   return (
     <LoginContextHOC>
-      <MembersContextHOC>
+      <DataContextHOC>
         <MainDrawer />
-      </MembersContextHOC>
+      </DataContextHOC>
     </LoginContextHOC>
   );
 }

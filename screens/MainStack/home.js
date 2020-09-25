@@ -15,14 +15,14 @@ import {
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
-import { MembersContext } from "../../context/Members";
+import { DataContext } from "../../context/DataContext";
 import { useFocusEffect } from "@react-navigation/native";
 
 const Home = ({ navigation }) => {
   const [users, setUsers] = useState([
     // { name: "Ashin Laurel", age: 21, address: "Trivandrum", uid: "1" },
   ]);
-  const { filterusers, setFilterUsers } = useContext(MembersContext);
+  const { filterusers, setFilterUsers } = useContext(DataContext);
   // const [filterusers, setFilterUsers] = useState(users);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);

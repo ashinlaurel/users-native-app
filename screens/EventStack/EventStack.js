@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Events from "./Events";
 import EventDetails from "./eventDetails";
+import EditEvent from "./EditEvent";
 // import CreateNewEvent from "./createnewevent";
 // -----------------------------------------------------------------
 
@@ -30,6 +31,16 @@ export default function EventStack() {
       <Stack.Screen
         name="Event Details"
         component={EventDetails}
+        options={{
+          headerStyle: {
+            backgroundColor: "#1B719E",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
+      <Stack.Screen
+        name="Edit Event"
+        component={EditEvent}
         options={{
           headerStyle: {
             backgroundColor: "#1B719E",

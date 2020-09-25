@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { db } from "../../firebase/firebase";
 import {
   View,
@@ -16,31 +16,22 @@ import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
+import { DataContext } from "../../context/DataContext";
 
 const Events = ({ navigation }) => {
   const [events, setEvents] = useState([
     // { name: "Ashin Laurel", age: 21, address: "Trivandrum", uid: "1" },
   ]);
-  const [filterEvents, setFilterEvents] = useState(events);
+  const { filterEvents, setFilterEvents } = useContext(DataContext);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
   // First Time Getting Data
   useEffect(() => {
-    (async function getter() {
-      const eventsRef = db.collection("events");
-      const snapshot = await eventsRef.get();
-      if (snapshot.empty) {
-        console.log("No matching documents.");
-        return;
-      }
-      let tempusers = snapshot.docs.map((i) => ({
-        key: i.id,
-        ...i.data(),
-      }));
-      setEvents(tempusers);
-      setFilterEvents(tempusers);
-    })();
+    const unsubscribe = navigation.addListener("focus", () => {
+      handleRefresh();
+    });
+    return unsubscribe;
   }, []);
   // Handling the Refresh
   const handleRefresh = async () => {
@@ -124,51 +115,6 @@ const Events = ({ navigation }) => {
                 content={`On ${item.date} at ${item.time}`}
               />
             </View>
-            // <TouchableOpacity
-            //   style={[]}
-            //   onPress={() => {
-            //     // console.log(item);
-            //     // handlePress(item);
-            //     // navigation.navigate("UserDetails", item);
-            //   }}
-            // >
-            //   <View
-            //     style={[
-            //       t.pY3,
-            //       t.wFull,
-            //       t.textCenter,
-            //       t.flexRow,
-            //       t.itemsCenter,
-            //       t.justifyStart,
-            //     ]}
-            //   >
-            //     <View style={[]}>
-            //       <Text style={[t.textmd, t.fontSemibold, t.mX2, t.mL3, t.mR2]}>
-            //         {item.name}
-            //       </Text>
-            //     </View>
-
-            //     <View style={[]}>
-            //       <Text style={[t.textmd, t.fontSemibold, t.mX2, t.mL3, t.mR2]}>
-            //         {item.location}
-            //       </Text>
-            //     </View>
-
-            //     <View style={[]}>
-            //       <Text style={[t.textmd, t.fontSemibold, t.mX2, t.mL3, t.mR2]}>
-            //         {item.date}
-            //       </Text>
-            //     </View>
-            //     <View style={[]}>
-            //       <Text style={[t.textmd, t.fontSemibold, t.mX2, t.mL3, t.mR2]}>
-            //         {item.time}
-            //       </Text>
-            //     </View>
-
-            //   </View>
-            // </TouchableOpacity>
-
-            // Galio Card--------------------------------------------
           )}
           // ItemSeparatorComponent={renderSeparator}
         />

@@ -1,13 +1,29 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { db } from "../../firebase/firebase";
+import { View, Text, Image, Alert } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const EventDetails = ({ route }) => {
+const EventDetails = ({ route, navigation }) => {
   // console.log("hello");
-  const { name, location, date, time } = route.params;
+  const { name, location, date, time, key } = route.params;
+
+  const handleDelete = () => {
+    console.log(key);
+    db.collection("events")
+      .doc(key)
+      .delete()
+      .then(function () {
+        console.log("Document successfully deleted!");
+      })
+      .catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
+    navigation.navigate("Events List");
+  };
 
   return (
     <View
@@ -62,6 +78,44 @@ const EventDetails = ({ route }) => {
             />
 
             <Text style={[t.textBase]}>{time}</Text>
+          </View>
+          <View style={[t.flex, t.flexRow, t.wFull, t.justifyAround]}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Edit Event", route.params);
+              }}
+              style={[t.bgBlue600, t.mX10, t.mY5, t.roundedFull, t.shadowMd]}
+            >
+              <Text
+                style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}
+              >
+                Edit
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                Alert.alert(
+                  "Are you sure you want to delete user permanently",
+                  "",
+                  [
+                    {
+                      text: "Yes",
+                      onPress: () => handleDelete(),
+                      style: "cancel",
+                    },
+                    { text: "No", onPress: () => console.log("No delete") },
+                  ],
+                  { cancelable: false }
+                );
+              }}
+              style={[t.bgBlue600, t.mX10, t.mY5, t.roundedFull, t.shadowMd]}
+            >
+              <Text
+                style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}
+              >
+                Delete
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
