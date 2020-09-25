@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { db } from "../../firebase/firebase";
 import {
   View,
@@ -16,31 +16,23 @@ import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
+import { DataContext } from "../../context/DataContext";
 
 const MessageList = ({ navigation }) => {
   const [messages, setMessages] = useState([
     // { name: "Ashin Laurel", age: 21, address: "Trivandrum", uid: "1" },
   ]);
-  const [filterMessages, setFilterMessages] = useState(messages);
+  const { filterMessages, setFilterMessages } = useContext(DataContext);
+
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
   // First Time Getting Data
   useEffect(() => {
-    (async function getter() {
-      const messagesRef = db.collection("messages");
-      const snapshot = await messagesRef.get();
-      if (snapshot.empty) {
-        console.log("No matching documents.");
-        return;
-      }
-      let tempusers = snapshot.docs.map((i) => ({
-        key: i.id,
-        ...i.data(),
-      }));
-      setMessages(tempusers);
-      setFilterMessages(tempusers);
-    })();
+    const unsubscribe = navigation.addListener("focus", () => {
+      handleRefresh();
+    });
+    return unsubscribe;
   }, []);
   // Handling the Refresh
   const handleRefresh = async () => {

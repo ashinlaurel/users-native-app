@@ -112,7 +112,7 @@ const OrganisationEvents = ({ route, navigation }) => {
                 defaultContent=""
                 titleColor="black"
                 onPress={() => {
-                  navigation.navigate("EventDetails", item);
+                  // navigation.navigate("EventDetails", item);
                   // console.log(item);
                 }}
                 topRightText={item.location}

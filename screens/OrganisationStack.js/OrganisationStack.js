@@ -11,6 +11,7 @@ import OrganisationDetails from "./OrganisationDetails";
 import CreateNewOrganisation from "./createneworganisation";
 import OrganisationEvents from "./OrganisationEvents";
 import EventDetails from "../EventStack/eventDetails";
+import EditOrgEvent from "./EditOrganisationEvent";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -63,6 +64,16 @@ export default function OrganisationStack() {
       <Stack.Screen
         name="EventDetails"
         component={EventDetails}
+        options={{
+          headerStyle: {
+            backgroundColor: "#1B719E",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
+      <Stack.Screen
+        name="EditOrgEventDetails"
+        component={EditOrgEvent}
         options={{
           headerStyle: {
             backgroundColor: "#1B719E",

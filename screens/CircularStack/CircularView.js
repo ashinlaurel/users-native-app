@@ -3,12 +3,12 @@ import { View } from "react-native";
 import PDFReader from "rn-pdf-reader-js";
 
 const CircularView = ({ route }) => {
-  const { uri } = route.params;
+  const { docUrl } = route.params;
 
   return (
     <PDFReader
       source={{
-        uri: uri,
+        uri: docUrl,
       }}
     />
   );
