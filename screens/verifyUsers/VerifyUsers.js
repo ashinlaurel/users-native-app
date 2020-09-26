@@ -36,21 +36,10 @@ const VerifyUsers = ({ navigation }) => {
 
   // First Time Getting Data
   useEffect(() => {
-    (async function getter() {
-      const usersRef = db.collection("dirusers").where("role", "==", "2");
-      const snapshot = await usersRef.get();
-      if (snapshot.empty) {
-        console.log("No matching documents.");
-        return;
-      }
-      let tempusers = snapshot.docs.map((i) => ({
-        key: i.id,
-        ...i.data(),
-      }));
-      setUsers(tempusers);
-      setFilterUsers(tempusers);
-      console.log(tempusers);
-    })();
+    const unsubscribe = navigation.addListener("focus", () => {
+      handleRefresh();
+    });
+    return unsubscribe;
   }, []);
   // Handling the Refresh
   const handleRefresh = async () => {
