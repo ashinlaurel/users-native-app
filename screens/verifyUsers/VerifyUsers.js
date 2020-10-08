@@ -37,7 +37,7 @@ const VerifyUsers = ({ navigation }) => {
   // First Time Getting Data
   useEffect(() => {
     (async function getter() {
-      const usersRef = db.collection("dirusers").where("role", "==", "2");
+      const usersRef = db.collection("users").where("role", "==", 2);
       const snapshot = await usersRef.get();
       if (snapshot.empty) {
         console.log("No matching documents.");

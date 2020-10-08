@@ -16,11 +16,14 @@ import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import { ScrollView } from "react-native-gesture-handler";
+import { firestore } from "firebase";
 
-const CreateNewUser = () => {
+const CreateNewUser = ({ navigation }) => {
   const [imageUri, setImageUri] = useState(
     "https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png"
   );
+  const [houseName, setHouseName] = useState("TEST");
+  const [houseId, setHouseId] = useState("IDDD");
 
   const selectPicture = async () => {
     try {
@@ -80,10 +83,17 @@ const CreateNewUser = () => {
 
   const sendUser = async (values) => {
     if (values.name == "") {
-      Alert.alert("Error", "A Name is necessary ");
+      Alert.alert("Error", "A Name is requires ");
       return;
     }
+    if (houseName == "" || houseId == "") {
+      Alert.alert("Error", "House Name is requires ");
+      return;
+    }
+
     let newId, URL;
+    values.houseName = houseName;
+    values.houseId = houseId;
     db.collection("dirusers")
       .add(values)
       .then((ref) => {
@@ -98,7 +108,7 @@ const CreateNewUser = () => {
         let refer = storage.ref().child(`/images/dir/${newId}`).put(blob);
         refer.on(
           "state_changed",
-          function () {},
+          function () { },
           function (error) {
             console.log(error);
           },
@@ -123,6 +133,11 @@ const CreateNewUser = () => {
       })
       .then(() => {
         console.log("here");
+        db.collection("housenames").doc(houseId).update({
+          members: firestore.FieldValue.arrayUnion({ name: values.name, id: newId })
+        }).then(() => {
+          console.log("House Name added")
+        })
       })
 
       .catch((err) => {
@@ -185,6 +200,22 @@ const CreateNewUser = () => {
                 value={props.values.name}
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
+              <View style={[t.mY2]}>
+                <Button
+                  title="Pick House Name"
+                  color="gray"
+                  onPress={() =>
+                    navigation.navigate("HouseNameList", {
+                      setHouseName: setHouseName,
+                      setHouseId: setHouseId,
+                      'hope': "HOPE"
+                    })
+                  }
+                />
+              </View>
+              <View style={[t.mY2]}>
+                <Text>House Name: {houseName}</Text>
+              </View>
 
               <TextInput
                 placeholder="Age"
@@ -220,7 +251,7 @@ const CreateNewUser = () => {
               <View style={[t.mY2]}>
                 <Button
                   title="Submit"
-                  color="gray"
+                  color="blue"
                   onPress={props.handleSubmit}
                 />
               </View>
