@@ -136,6 +136,11 @@ const Home = ({ navigation }) => {
                   >
                     {item.name}
                   </Text>
+                  <Text
+                    style={[t.textXl, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
+                  >
+                    {item.houseName}
+                  </Text>
                 </View>
               </View>
             </TouchableOpacity>
