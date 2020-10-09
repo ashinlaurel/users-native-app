@@ -143,7 +143,7 @@ const HouseNameList = ({ route, navigation }) => {
         </TouchableOpacity> */}
       </View>
       
-      <View style={[t.wFull]}>
+      <View style={[t.wFull,t.mB64]}>
         <FlatList
           numColumns={1}
           keyExtractor={(item) => item.uid}
