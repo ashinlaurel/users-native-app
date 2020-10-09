@@ -21,7 +21,7 @@ const MalVerses = ({ navigation, route }) => {
     // );
     // setVerses(temp);
     
-    rdb.ref(`/Book/${booknum-1}/Chapter/${vnum-1}/Verse`).once('value').then(function(snapshot) {
+    rdb.ref(`/Book/Book/${booknum-1}/Chapter/${vnum-1}/Verse`).once('value').then(function(snapshot) {
       // console.log(snapshot.val());
       setVerses(snapshot.val());
       // ...
