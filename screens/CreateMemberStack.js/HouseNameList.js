@@ -14,6 +14,7 @@ import {
   CardButton,
   CardImage,
 } from "react-native-material-cards";
+import { cos } from "react-native-reanimated";
 
 const HouseNameList = ({ route, navigation }) => {
   const [events, setEvents] = useState([
@@ -99,7 +100,7 @@ const HouseNameList = ({ route, navigation }) => {
 
             <View style={[t.mY2]}>
               <Button
-                title="Create House Name"
+                title="Create New House Name"
                 color="grey"
                 onPress={props.handleSubmit}
               />
@@ -118,8 +119,10 @@ const HouseNameList = ({ route, navigation }) => {
           placeholderTextColor="black"
           onChangeText={(text) => {
             setSearch(text);
+            // console.log(events);
+          
             let temp = events.filter((event) =>
-              event.name.toLowerCase().includes(search.toLowerCase())
+              event.HouseName.toLowerCase().includes(search.toLowerCase())
             );
             setFilterEvents(temp);
           }}
@@ -139,6 +142,7 @@ const HouseNameList = ({ route, navigation }) => {
           <Text style={[t.bgBlue400, t.mt5]}>Create Event</Text>
         </TouchableOpacity> */}
       </View>
+      
       <View style={[t.wFull]}>
         <FlatList
           numColumns={1}
@@ -152,8 +156,8 @@ const HouseNameList = ({ route, navigation }) => {
             <View style={[t.pY3]}>
               <Card style={[t.wFull]}>
                 <CardTitle title={item.HouseName} />
-                <CardContent><Text> {item.members.map((mem) =>
-                  <>  {mem.name}</>
+                <CardContent><Text style={[t.fontSemibold]}>Members: {item.members.map((mem) =>
+                  <>  {mem.name},</>
                 )} </Text></CardContent>
                 <CardAction separator={true} inColumn={false}>
                   <CardButton
@@ -171,6 +175,7 @@ const HouseNameList = ({ route, navigation }) => {
         // ItemSeparatorComponent={renderSeparator}
         />
       </View>
+      
     </View>
   );
 };

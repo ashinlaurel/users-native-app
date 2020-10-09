@@ -19,7 +19,8 @@ import { LoginContext } from "../../context/LoginContext";
 const UserDetails = ({ route, navigation }) => {
   //
   // Extracting from the route params-------------------------------------------------
-  const { name, age, address, job, phone, imgUrl, key } = route.params;
+  const { name, age, address, job, phone, imgUrl, key ,houseName} = route.params;
+  
 
   const { role } = useContext(LoginContext);
 
@@ -86,12 +87,17 @@ const UserDetails = ({ route, navigation }) => {
             />
           </View>
           <Text
-            style={[t.text5xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
+            style={[t.text4xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
           >
             {name}
           </Text>
-          <Text style={[t.text2xl, t.textCenter, t.textGray800, t.pB2]}>
-            {address}
+          <Text
+            style={[t.text2xl, t.textCenter, t.pT1, t.textGray800, t.fontSemibold]}
+          >
+             {houseName}
+          </Text>
+          <Text style={[t.textXl, t.textCenter, t.textGray800, t.pB2]}>
+            Address:{address}
           </Text>
           {/* <Text style={[t.textXl, t.textCenter]}>Age: {age}</Text>
         <Text style={[t.textXl, t.textCenter]}>Occupation: {job}</Text>

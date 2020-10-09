@@ -9,6 +9,7 @@ import {
   Button,
   Image,
   Alert,
+  ActivityIndicator
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
@@ -22,8 +23,9 @@ const CreateNewUser = ({ navigation }) => {
   const [imageUri, setImageUri] = useState(
     "https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png"
   );
-  const [houseName, setHouseName] = useState("TEST");
-  const [houseId, setHouseId] = useState("IDDD");
+  const [houseName, setHouseName] = useState("");
+  const [houseId, setHouseId] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const selectPicture = async () => {
     try {
@@ -90,7 +92,7 @@ const CreateNewUser = ({ navigation }) => {
       Alert.alert("Error", "House Name is requires ");
       return;
     }
-
+    setLoading(true)
     let newId, URL;
     values.houseName = houseName;
     values.houseId = houseId;
@@ -122,10 +124,14 @@ const CreateNewUser = ({ navigation }) => {
                 .update({ imgUrl: URL })
                 .then(function () {
                   console.log("Document successfully updated!");
+                  setLoading(false)
                 })
                 .catch(function (error) {
                   // The document probably doesn't exist.
                   console.error("Error updating document: ", error);
+                  setLoading(false)
+                  Alert.alert("Error");
+
                 });
             });
           }
@@ -137,6 +143,8 @@ const CreateNewUser = ({ navigation }) => {
           members: firestore.FieldValue.arrayUnion({ name: values.name, id: newId })
         }).then(() => {
           console.log("House Name added")
+          setHouseName("");
+          setHouseId("");
         })
       })
 
@@ -148,6 +156,9 @@ const CreateNewUser = ({ navigation }) => {
 
   return (
     <ScrollView>
+    {loading?
+    <ActivityIndicator style={[t.mY64]} animating={loading} size="large" />
+    :
       <View style={[t.flexCol, t.itemsCenter, t.justifyCenter]}>
         <View
           style={[t.mT4, t.flexCol, t.flex, t.itemsCenter, t.justifyCenter]}
@@ -213,9 +224,11 @@ const CreateNewUser = ({ navigation }) => {
                   }
                 />
               </View>
-              <View style={[t.mY2]}>
-                <Text>House Name: {houseName}</Text>
+              {houseName!==""?
+              <View style={[t.mY2,t.pY2,t.pX3,t.bgGray200]}>
+                <Text style={[t.fontSemibold,t.uppercase]}>House Name: {houseName}</Text>
               </View>
+              :null}
 
               <TextInput
                 placeholder="Age"
@@ -259,6 +272,7 @@ const CreateNewUser = ({ navigation }) => {
           )}
         </Formik>
       </View>
+    }
     </ScrollView>
   );
 };
