@@ -8,6 +8,7 @@ const DataContextHOC = (props) => {
   const [filterMessages, setFilterMessages] = useState([]);
   const [filterCirculars, setFilterCirculars] = useState([]);
   const [filterOrganisations, setFilterOrganisations] = useState([]);
+  const [filterLectItems, setFilterLectItems] = useState([]);
 
   return (
     <DataContext.Provider
@@ -22,6 +23,8 @@ const DataContextHOC = (props) => {
         setFilterCirculars,
         filterOrganisations,
         setFilterOrganisations,
+        filterLectItems,
+        setFilterLectItems,
       }}
     >
       {props.children}

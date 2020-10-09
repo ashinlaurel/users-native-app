@@ -19,6 +19,7 @@ import CreateNewMessage from "./MessageStack/CreateMessage";
 import VerifyUsers from "./verifyUsers/VerifyUsers";
 import CreateNewCircular from "./CreateCircularStack/CreateCircularStack";
 import VerifyUsersStack from "./verifyUsers/VerifyUsersStack";
+import CreateLectionaryStack from "./CreateLectionaryStack/CreateLectionaryStack";
 
 const Drawer = createDrawerNavigator();
 
@@ -62,6 +63,14 @@ export default function MainDrawer() {
           <>
             <Drawer.Screen name="Verify Users" component={VerifyUsersStack} />
             <Drawer.Screen name="Add Circular" component={CreateNewCircular} />
+          </>
+        ) : null}
+        {isLoggedIn && role == 0 ? (
+          <>
+            <Drawer.Screen
+              name="Add Lectionary"
+              component={CreateLectionaryStack}
+            />
           </>
         ) : null}
       </Drawer.Navigator>
