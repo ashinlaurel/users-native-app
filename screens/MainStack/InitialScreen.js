@@ -137,7 +137,9 @@ const InitialScreen = ({ navigation }) => {
                     { backgroundColor: "#a4e05e" },
                   ]}
                 >
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Lectionary")}
+                  >
                     <Entypo
                       name="new-message"
                       size={32}

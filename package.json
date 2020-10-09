@@ -38,6 +38,7 @@
     "react-native-material-cards": "^1.0.15",
     "react-native-material-ripple": "^0.9.1",
     "react-native-modal-datetime-picker": "^8.9.3",
+    "react-native-month-year-picker": "^1.4.1",
     "react-native-reanimated": "~1.9.0",
     "react-native-safe-area-context": "~3.0.7",
     "react-native-screens": "~2.9.0",
