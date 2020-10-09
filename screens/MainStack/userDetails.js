@@ -41,18 +41,7 @@ const UserDetails = ({ route, navigation }) => {
   console.log(houseId)
     const eventsRef = db.collection("housenames").doc(houseId);
     const doc = await eventsRef.get();
-    // if (snapshot.empty) {
-    //   console.log("No matching documents.");
-    //   return;
-    // }
-    // let tempusers = snapshot.docs.map((i) => ({
-    //   key: i.id,
-    //   ...i.data(),
-    // }));
-    await console.log(doc.data())
     await sethouseMembers(doc.data().members);
-    // await setFilterEvents(tempusers);
-    // setLoading(false);
   };
 
   const handleDelete = () => {
