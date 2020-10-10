@@ -101,7 +101,7 @@ const LectionaryList = ({ navigation }) => {
                 // defaultContent=""
                 titleColor="black"
                 onPress={() => {
-                  navigation.navigate("LectDetails", item);
+                  navigation.navigate("Lectionary Details", item);
                 }}
                 // topRightText={item.location}
                 // bottomRightText={`On ${item.date} at ${item.time}`}

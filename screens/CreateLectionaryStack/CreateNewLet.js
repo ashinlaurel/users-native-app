@@ -59,16 +59,66 @@ const CreateNewLet = () => {
     hideDatePicker();
   };
 
+  const MonthYearChecker = async (values) => {
+    // Checking if already date and month combo exists--------
+    try {
+      let checker = 0;
+      const eventsRef = db.collection("lectmy");
+      const snapshot = await eventsRef.get();
+      if (snapshot.empty) {
+        console.log("No matching documents.");
+        return;
+      }
+      snapshot.forEach((doc) => {
+        let temp = doc.data();
+        console.log(temp);
+        if (temp.month == values.month && temp.year == values.year) {
+          console.log("equal");
+          return;
+        }
+      });
+      console.log("not equal");
+      checker = 1;
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const sendUser = async (values) => {
-    // console.log(values.heading == "");
+    console.log(values.heading == "");
     if (values.heading == "") {
       setErr("All fields are empty!");
       Alert.alert("Error", "Fields are empty ");
       return;
     }
 
+    values.month = moment(values.date).format("MMMM");
+    values.year = moment(values.date).format("YYYY");
     values.lessons = lessons;
     console.log(values);
+
+    // let checker = MonthYearChecker(values);
+    // console.log(checker);
+
+    // let checker = MonthYearChecker(values);
+    // console.log(checker);
+
+    // let temp = { month: "June", year: "2020" };
+
+    // db.collection("lectmy")
+    //   .add(temp)
+    //   .then((ref) => {
+    //     console.log("Added document with ID: ", ref.id);
+    //   })
+    //   .then(() => {
+    //     console.log("here");
+    //   })
+
+    //   .catch((err) => {
+    //     console.log(err.code);
+    //     // return;
+    //   });
 
     db.collection("lectionary")
       .add(values)
@@ -131,6 +181,8 @@ const CreateNewLet = () => {
           initialValues={{
             heading: "",
             date: moment().format("YYYY-MM-DD"),
+            month: moment().format("MMMM"),
+            year: moment().format("YYYY"),
           }}
           onSubmit={(values, actions) => {
             actions.resetForm();

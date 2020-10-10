@@ -2,19 +2,36 @@ import React, { useContext } from "react";
 import { View, Text, Image, Platform, Linking, Alert } from "react-native";
 import { db } from "../../firebase/firebase";
 import { t } from "react-native-tailwindcss";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import {
+  ScrollView,
+  TouchableOpacity,
+  FlatList,
+} from "react-native-gesture-handler";
 import moment from "moment";
 import { LoginContext } from "../../context/LoginContext";
 
 const LectDetails = ({ route, navigation }) => {
   //
   // Extracting from the route params-------------------------------------------------
-  const { mainheading, subheading, content, key } = route.params;
+  const { heading, date, lessons } = route.params;
 
   const { role } = useContext(LoginContext);
 
   // console.log(name);
   // ---------------------------------------------------------------------------------
+  const renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "86%",
+          backgroundColor: "#CED0CE",
+          marginLeft: "5%",
+        }}
+      />
+    );
+  };
+
   const handleDelete = () => {
     console.log(key);
     db.collection("messages")
@@ -64,12 +81,12 @@ const LectDetails = ({ route, navigation }) => {
           <Text
             style={[t.text5xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
           >
-            {mainheading}
+            {moment(date).format("MMMM YYYY")}
           </Text>
-          <Text style={[t.text2xl, t.textCenter, t.textGray800, t.pB2]}>
+          {/* <Text style={[t.text2xl, t.textCenter, t.textGray800, t.pB2]}>
             {moment().format("dddd, MMMM Do YYYY ")}
-          </Text>
-          {role == 0 ? (
+          </Text> */}
+          {/* {role == 0 ? (
             <>
               <View style={[t.flex, t.flexRow, t.wFull, t.justifyAround]}>
                 <TouchableOpacity
@@ -134,7 +151,7 @@ const LectDetails = ({ route, navigation }) => {
                 </TouchableOpacity>
               </View>
             </>
-          ) : null}
+          ) : null} */}
           {/* <Text style={[t.textXl, t.textCenter]}>Age: {age}</Text>
         <Text style={[t.textXl, t.textCenter]}>Occupation: {job}</Text>
         <Text style={[t.textXl, t.textCenter]}>Address: {address}</Text> */}
@@ -154,10 +171,58 @@ const LectDetails = ({ route, navigation }) => {
         <View style={[]}>
           <View style={[]}>
             <View style={[t.flex, t.flexCol, t.mX4]}>
-              <Text style={[t.text3xl, t.fontBold, t.mB1]}>{subheading}</Text>
-              <Text style={[t.textXl]}>{content}</Text>
+              <Text style={[t.textXl, t.fontBold]}>{heading}</Text>
             </View>
           </View>
+        </View>
+        <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
+          <FlatList
+            numColumns={1}
+            keyExtractor={(item) => item.uid}
+            contentContainerStyle={{ paddingBottom: 80 }}
+            data={lessons}
+            // refreshing={loading}
+            // onRefresh={handleRefresh}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={[]}
+                onPress={() => {
+                  console.log(item);
+                  // handlePress(item);
+                  //   navigation.navigate("UserDetails", item);
+                }}
+              >
+                <View
+                  style={[
+                    t.pY3,
+                    t.wFull,
+                    t.textCenter,
+                    t.flexRow,
+                    t.itemsCenter,
+                    t.justifyStart,
+                  ]}
+                >
+                  <View
+                    style={[t.flex, t.flexRow, t.justifyBetween, t.itemsCenter]}
+                  >
+                    <Text
+                      style={[t.textBase, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
+                    >
+                      {item.title}
+                    </Text>
+                    <Text
+                      style={[t.textBase, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
+                    >
+                      {item.lesson}
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+
+              // Galio Card--------------------------------------------
+            )}
+            ItemSeparatorComponent={renderSeparator}
+          />
         </View>
       </View>
     </ScrollView>
