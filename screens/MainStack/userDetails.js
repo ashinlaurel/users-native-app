@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -12,22 +12,38 @@ import { t } from "react-native-tailwindcss";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { db } from "../../firebase/firebase";
+
 import { DataContext } from "../../context/DataContext";
 import Login from "../LoginStack/Login";
 import { LoginContext } from "../../context/LoginContext";
 
+
 const UserDetails = ({ route, navigation }) => {
   //
   // Extracting from the route params-------------------------------------------------
-  const { name, age, address, job, phone, imgUrl, key ,houseName} = route.params;
+  const { name, age, address, job, phone, imgUrl, key ,houseName,houseId} = route.params;
   
 
   const { role } = useContext(LoginContext);
 
   const { filterusers, setFilterUsers } = useContext(DataContext);
+  const [houseMembers, sethouseMembers] = useState([]);
   // console.log(name);
   // ---------------------------------------------------------------------------------
   //delete
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      handleRefresh();
+    });
+    return unsubscribe;
+  }, []);
+  const handleRefresh = async () => {
+  console.log(houseId)
+    const eventsRef = db.collection("housenames").doc(houseId);
+    const doc = await eventsRef.get();
+    await sethouseMembers(doc.data().members);
+  };
+
   const handleDelete = () => {
     console.log(key);
     db.collection("dirusers")
@@ -87,10 +103,13 @@ const UserDetails = ({ route, navigation }) => {
             />
           </View>
           <Text
-            style={[t.text4xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
+            style={[t.text3xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
           >
             {name}
           </Text>
+
+         
+
           <Text
             style={[t.text2xl, t.textCenter, t.pT1, t.textGray800, t.fontSemibold]}
           >
@@ -115,33 +134,48 @@ const UserDetails = ({ route, navigation }) => {
           t.mY4,
         ]}
       >
-        <View style={[]}>
+        <View style={[t.wFull]}>
           <View style={[]}>
-            <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
-              <Entypo name="pin" size={32} color="grey" style={[t.mX2]} />
+        
 
-              <Text style={[t.textXl]}>Occupation: {job}</Text>
+            <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
+                    <Entypo name="pin" size={24} color="grey" style={[t.mX2]} />
+                    <Text style={[t.textBase,t.fontBold]}>Occupation:  </Text>
+                    <Text style={[t.textBase]}>{job}</Text>
             </View>
 
-            <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
-              <Entypo name="calendar" size={32} color="grey" style={[t.mX2]} />
+          
 
-              <Text style={[t.textXl]}>Age: {age}</Text>
+            <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
+                    <Entypo name="calendar" size={24} color="grey" style={[t.mX2]} />
+                    <Text style={[t.textBase,t.fontBold]}>Age:  </Text>
+                    <Text style={[t.textBase]}>{age}</Text>
             </View>
 
-            <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
+            <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
               <TouchableOpacity
                 onPress={() => {
                   dialCall();
                 }}
                 style={[t.flex, t.flexRow]}
               >
-                <Entypo name="phone" size={32} color="grey" style={[t.mX2]} />
+                <Entypo name="phone" size={24} color="grey" style={[t.mX2]} />
 
-                <Text style={[t.textXl]}>Phone: {phone}</Text>
-              </TouchableOpacity>
+                <Text style={[t.textBase,t.fontBold]}>Phone:  </Text>
+                    <Text style={[t.textBase]}>{phone}</Text></TouchableOpacity>
             </View>
           </View>
+
+          <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
+                    <Entypo name="calendar" size={24} color="grey" style={[t.mX2]} />
+                    <Text style={[t.textBase,t.fontBold]}>Family Members: </Text>
+                    <Text style={[t.textBase]}>
+                    {houseMembers.map((mem) =>
+                  <>  {mem.name!==name?<>{mem.name}</>:null}</>
+                    )}
+
+                    </Text>
+            </View>
         </View>
         {role == 0 ? (
           <>

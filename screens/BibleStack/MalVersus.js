@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../../firebase/firebase";
+import { rdb } from "../../firebase/firebase";
 
 import { View, Text, FlatList } from "react-native";
 import { t } from "react-native-tailwindcss";
 
-import malbible from "../../assets/malbiblejs";
+// import malbible from "../../assets/malbiblejs";
 
 const MalVerses = ({ navigation, route }) => {
   const [verses, setVerses] = useState([]);
@@ -14,12 +14,19 @@ const MalVerses = ({ navigation, route }) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     // console.log("BIBR", bible.Book[0].Chapter[1].Verse[1]);
-    let temp = malbible.Book[booknum - 1].Chapter[vnum - 1].Verse.map(
-      (verse) => {
-        return verse;
-      }
-    );
-    setVerses(temp);
+    // let temp = malbible.Book[booknum - 1].Chapter[vnum - 1].Verse.map(
+    //   (verse) => {
+    //     return verse;
+    //   }
+    // );
+    // setVerses(temp);
+    
+    rdb.ref(`/Book/Book/${booknum-1}/Chapter/${vnum-1}/Verse`).once('value').then(function(snapshot) {
+      // console.log(snapshot.val());
+      setVerses(snapshot.val());
+      // ...
+    });
+    
   }, []);
 
   const renderSeparator = () => {

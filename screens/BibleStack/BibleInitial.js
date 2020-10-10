@@ -51,7 +51,7 @@ const BibleInitial = ({ navigation }) => {
               // )} at ${item.time}`}
               // topRightText={item.location}
               onPress={() => {
-                // navigation.navigate("MalBooks");
+                navigation.navigate("MalBooks");
               }}
               // topRightText={item.location}
               // bottomRightText={`On ${item.date} at ${item.time}`}

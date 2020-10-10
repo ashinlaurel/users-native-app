@@ -36,11 +36,11 @@ const OrganisationDetails = ({ route, navigation }) => {
         t.justifyCenter,
         t.mY0,
         t.mX1,
-        t.mT10,
+        t.mT2,
         t.mB20,
         t.bgGray100,
         t.rounded,
-        t.pY10,
+        t.pY5,
       ]}
     >
       {/* <View style={[t.textCenter, t.pB10, t.flexCol, t.itemsCenter]}>
@@ -54,40 +54,43 @@ const OrganisationDetails = ({ route, navigation }) => {
       <View>
         <Entypo
           name="bell"
-          size={64}
+          size={20}
           color="#e80e5a"
-          style={[t.mT4, t.textCenter]}
+          style={[ t.textCenter]}
         />
       </View>
 
-      <Text style={[t.text5xl, t.mY3, t.textCenter]}>{name}</Text>
+      <Text style={[t.textXl, t.mY3, t.textCenter,t.fontBold]}>{name}</Text>
 
-      <View style={[]}>
-        <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
-          <Entypo name="pin" size={32} color="grey" style={[t.mX2]} />
+      <View style={[t.wFull,]}>
 
+        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
+          <Entypo name="pin" size={24} color="grey" style={[t.mX2]} />
+          <Text style={[t.textBase,t.fontBold]}>Location:  </Text>
+          
           <Text style={[t.textBase]}>{address}</Text>
         </View>
 
-        <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
-          <Entypo name="phone" size={32} color="grey" style={[t.mX2]} />
+        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
+          <Entypo name="phone" size={24} color="grey" style={[t.mX2]} />
+          <Text style={[t.textBase,t.fontBold]}>Phone:  </Text>
 
           <Text style={[t.textBase]}>{phone}</Text>
         </View>
 
-        <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
+        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
           <MaterialCommunityIcons
             name="email"
-            size={32}
+            size={24}
             color="grey"
             style={[t.mX2]}
           />
-
+          <Text style={[t.textBase,t.fontBold]}>Email:  </Text>
           <Text style={[t.textBase]}>{email}</Text>
         </View>
-        <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
-          <Entypo name="edit" size={32} color="grey" style={[t.mX2]} />
-
+        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5,t.flexWrap]}>
+          <Entypo name="edit" size={24} color="grey" style={[t.mX2]} />
+          <Text style={[t.textBase,t.fontBold]}>Details:  </Text>
           <Text style={[t.textBase]}>{details}</Text>
         </View>
       </View>
