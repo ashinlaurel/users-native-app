@@ -61,7 +61,7 @@ const MessageList = ({ navigation }) => {
       <View style={[t.wFull]}>
         <TextInput
           placeholder="Search"
-          placeholderTextColor="black"
+          placeholderTextColor="grey"
           onChangeText={(text) => {
             setSearch(text);
             let temp = messages.filter((message) =>
@@ -75,7 +75,7 @@ const MessageList = ({ navigation }) => {
             t.pX5,
             t.bgWhite,
             t.roundedFull,
-            t.border,
+            // t.border,
             t.mX5,
             t.mY3,
           ]}

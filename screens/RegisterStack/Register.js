@@ -107,7 +107,7 @@ const Register = (props) => {
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("name")}
                 value={props.values.name}
-                style={[t.pY2, t.pX4, t.bgGray200, t.roundedFull, t.mY3]}
+                style={[t.pY2, t.pX4,t.bgWhite, t.roundedFull, t.mY3]}
               />
               <TextInput
                 placeholder="Email"
@@ -116,7 +116,7 @@ const Register = (props) => {
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("email")}
                 value={props.values.email}
-                style={[t.pY2, t.pX4, t.bgGray200, t.roundedFull, t.mY3]}
+                style={[t.pY2, t.pX4,t.bgWhite, t.roundedFull, t.mY3]}
               />
               <TextInput
                 placeholder="Password"
@@ -126,7 +126,7 @@ const Register = (props) => {
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("password")}
                 value={props.values.password}
-                style={[t.pY2, t.pX4, t.bgGray200, t.roundedFull, t.mY3]}
+                style={[t.pY2, t.pX4,t.bgWhite, t.roundedFull, t.mY3]}
               />
               <TextInput
                 placeholder="Confirm Password"
@@ -136,7 +136,7 @@ const Register = (props) => {
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("confPassword")}
                 value={props.values.confPassword}
-                style={[t.pY2, t.pX4, t.bgGray200, t.roundedFull, t.mY3]}
+                style={[t.pY2, t.pX4,t.bgWhite, t.roundedFull, t.mY3]}
               />
               <View style={[t.mY2]}>
                 <Button
