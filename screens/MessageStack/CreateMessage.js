@@ -32,6 +32,7 @@ const CreateNew = () => {
       })
       .then(() => {
         console.log("here");
+        Alert.alert("New message created");
       })
 
       .catch((err) => {

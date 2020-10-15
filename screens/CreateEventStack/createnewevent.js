@@ -85,6 +85,7 @@ const CreateNewEvent = () => {
       })
       .then(() => {
         console.log("here");
+        Alert.alert("Even created");
       })
 
       .catch((err) => {

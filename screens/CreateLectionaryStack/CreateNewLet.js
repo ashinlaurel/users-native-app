@@ -68,7 +68,7 @@ const CreateNewLet = () => {
     }
 
     values.lessons = lessons;
-    console.log(values);
+    // console.log(values);
 
     db.collection("lectionary")
       .add(values)
@@ -77,6 +77,7 @@ const CreateNewLet = () => {
       })
       .then(() => {
         console.log("here");
+        Alert.alert("Added to lectionary")
       })
 
       .catch((err) => {
@@ -100,7 +101,7 @@ const CreateNewLet = () => {
               let temp = [...lessons];
               temp[i].title = t;
               setLessons(temp);
-              console.log(lessons);
+              // console.log(lessons);
             }}
             value={lessons[i].title}
             style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}

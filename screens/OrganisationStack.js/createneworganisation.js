@@ -32,6 +32,7 @@ const CreateNewOrganisation = () => {
       })
       .then(() => {
         console.log("here");
+        Alert.alert("New Organisation created")
       })
 
       .catch((err) => {

@@ -60,9 +60,9 @@ const AdminDetails = ({ route, navigation }) => {
           <Text style={[t.text2xl]}>Email: {user.email}</Text>
         </View>
       </View>
-      <Text style={[t.textBase, t.textCenter, t.mY5]}>
+      {/* <Text style={[t.textBase, t.textCenter, t.mY5]}>
         You are logged in as Admin
-      </Text>
+      </Text> */}
       <View style={[t.mX3]}>
         <Button title="Logout" color="" onPress={logout} />
       </View>

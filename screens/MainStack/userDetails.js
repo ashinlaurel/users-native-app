@@ -16,6 +16,8 @@ import { db } from "../../firebase/firebase";
 import { DataContext } from "../../context/DataContext";
 import Login from "../LoginStack/Login";
 import { LoginContext } from "../../context/LoginContext";
+import { firestore } from "firebase";
+
 
 
 const UserDetails = ({ route, navigation }) => {
@@ -45,6 +47,8 @@ const UserDetails = ({ route, navigation }) => {
   };
 
   const handleDelete = () => {
+    
+    // return;
     console.log(key);
     db.collection("dirusers")
       .doc(key)
@@ -55,8 +59,37 @@ const UserDetails = ({ route, navigation }) => {
       .catch(function (error) {
         console.error("Error removing document: ", error);
       });
+      deletefromHouse();
+
+      
+
     navigation.navigate("Members");
   };
+
+  const deletefromHouse = async()=>{
+    try{
+      let house= await db.collection("housenames").doc(houseId).get();
+      console.log(house.data().members.length);
+      
+      let members = await house.data().members;
+      let ind=0;
+      for(let i=0;i<members.length;i++){
+        if(members[i].id==key) ind=i;
+      }
+      if(members.length>1){
+        
+        await db.collection("housenames").doc(houseId)
+        .update({
+          members: firestore.FieldValue.arrayRemove(members[ind])
+      });
+      
+      }else{
+        await db.collection("housenames").doc(houseId).delete();
+      }
+    }catch(err){
+      console.log(err);
+    }
+  }
   // Calling code
   const dialCall = () => {
     let phoneNumber = "";

@@ -9,6 +9,7 @@ import {
   Button,
   Modal,
   Image,
+  Alert,
 } from "react-native";
 
 import { t } from "react-native-tailwindcss";
@@ -66,6 +67,7 @@ const Login = (props) => {
     } catch (error) {
       console.log(error);
       setError(error.message);
+      Alert.alert("Cannot find user")
     }
   };
 
@@ -178,7 +180,7 @@ const Login = (props) => {
         {/* <View style={[t.mX3]}>
           <Button title="Logout" color="gray" onPress={logout} />
         </View> */}
-        <Text>{error}</Text>
+        {/* <Text>{error}</Text> */}
       </View>
     </View>
   );
