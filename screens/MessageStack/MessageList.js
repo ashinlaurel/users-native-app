@@ -61,7 +61,7 @@ const MessageList = ({ navigation }) => {
       <View style={[t.wFull]}>
         <TextInput
           placeholder="Search"
-          placeholderTextColor="black"
+          placeholderTextColor="grey"
           onChangeText={(text) => {
             setSearch(text);
             let temp = messages.filter((message) =>
@@ -75,7 +75,7 @@ const MessageList = ({ navigation }) => {
             t.pX5,
             t.bgWhite,
             t.roundedFull,
-            t.border,
+            // t.border,
             t.mX5,
             t.mY3,
           ]}
@@ -88,7 +88,7 @@ const MessageList = ({ navigation }) => {
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <FlatList
           numColumns={1}
-          keyExtractor={(item) => item.uid}
+          keyExtractor={(item) => item.key}
           contentContainerStyle={{ paddingBottom: 80 }}
           style={[]}
           data={filterMessages}
@@ -107,7 +107,7 @@ const MessageList = ({ navigation }) => {
                 content={`On ${moment(item.date).format(
                   "dddd, MMMM Do YYYY "
                 )} `}
-                // topRightText={item.location}
+                // topRightText={item.id}
                 onPress={() => {
                   navigation.navigate("Message", item);
                 }}

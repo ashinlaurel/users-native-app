@@ -9,6 +9,7 @@ import {
   Button,
   Modal,
   Image,
+  Alert,
 } from "react-native";
 
 import { t } from "react-native-tailwindcss";
@@ -61,13 +62,36 @@ const Login = (props) => {
       setUser({ email: user.user.email });
       await AsyncStorage.setItem("user", user.user.email);
       await AsyncStorage.setItem("isLoggedIn", "true");
-
+      Alert.alert("Logged In")
       navigate("Home");
     } catch (error) {
       console.log(error);
       setError(error.message);
+      Alert.alert("Cannot find user")
     }
   };
+
+const LoginWithCode = (mycode)=>{
+    let data;
+    db.collection("logincode").doc("1").get().then(function(doc) {
+      if (doc.exists) {
+          console.log("Document data:", doc.data());
+          if(doc.data().code===mycode){
+            setRole(1);
+            setIsLoggedIn(true);
+            Alert.alert("Logged In")
+            navigate("Home");
+            setUser({ email: "temporary user" }); 
+          }else{
+
+            Alert.alert("Code doesn't work")
+          }
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  })
+}
 
   // const logout = async () => {
   //   // const value = await AsyncStorage.getItem("user");
@@ -175,10 +199,51 @@ const Login = (props) => {
             }}
           />
         </View>
+        <Text style={[t.textCenter, t.mY2]}>
+          Or 
+        </Text>
+
+        {/* ////LOGIN WITH CODE */}
+        <Text style={[t.textCenter, t.mY2]}>
+          Enter Login Code
+        </Text>
+        <Formik
+          initialValues={{ code: "" }}
+          onSubmit={(values, actions) => {
+            // actions.resetForm();
+            // loginUser(values);
+            console.log(values.code)
+            //   console.log(values);
+            LoginWithCode(values.code);
+          }}
+        >
+          {(props) => (
+            <View style={[t.mY2, t.wFull, t.pX3]}>
+              <TextInput
+                placeholder="Code"
+                type="code"
+                defaultValue="code"
+                autoCapitalize="none"
+                placeholderTextColor="black"
+                onChangeText={props.handleChange("code")}
+                value={props.values.code}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
+              />
+              
+              <View style={[t.mY2]}>
+                <Button
+                  title="Login with Code"
+                  color="#1B719E"
+                  onPress={props.handleSubmit}
+                />
+              </View>
+            </View>
+          )}
+        </Formik>
         {/* <View style={[t.mX3]}>
           <Button title="Logout" color="gray" onPress={logout} />
         </View> */}
-        <Text>{error}</Text>
+        {/* <Text>{error}</Text> */}
       </View>
     </View>
   );

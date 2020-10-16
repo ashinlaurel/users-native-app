@@ -75,6 +75,7 @@ const CreateNewCircular = () => {
                 .update({ docUrl: URL })
                 .then(function () {
                   console.log("Document successfully updated!");
+                  Alert.alert("Circular uploaded")
                 })
                 .catch(function (error) {
                   // The document probably doesn't exist.

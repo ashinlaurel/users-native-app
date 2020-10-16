@@ -111,7 +111,7 @@ const EventDetails = ({ route, navigation }) => {
                 <TouchableOpacity
                   onPress={() => {
                     Alert.alert(
-                      "Are you sure you want to delete user permanently",
+                      "Are you sure you want to delete event permanently",
                       "",
                       [
                         {

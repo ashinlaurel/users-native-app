@@ -74,7 +74,7 @@ const LectionaryList = ({ navigation }) => {
             t.pY1,
             t.pX5,
             t.bgWhite,
-            t.roundedFull,
+            // t.roundedFull,
             t.border,
             t.mX5,
             t.mY3,

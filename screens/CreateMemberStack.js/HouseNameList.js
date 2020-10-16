@@ -132,7 +132,7 @@ const HouseNameList = ({ route, navigation }) => {
             t.pX5,
             t.bgWhite,
             t.roundedFull,
-            t.border,
+            // t.border,
             t.mX5,
             t.mY3,
           ]}

@@ -264,7 +264,7 @@ const CreateNewUser = ({ navigation }) => {
               <View style={[t.mY2]}>
                 <Button
                   title="Submit"
-                  color="blue"
+                  color="grey"
                   onPress={props.handleSubmit}
                 />
               </View>

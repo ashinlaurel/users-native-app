@@ -21,7 +21,9 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.turnbox.turnbox"
+      "package": "com.turnbox.turnbox",
+      "googleServicesFile": "./google-services.json",
+      "useNextNotificationsApi": true,
     }
   }
 }
