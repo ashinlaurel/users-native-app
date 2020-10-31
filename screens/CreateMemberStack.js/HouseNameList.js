@@ -156,9 +156,9 @@ const HouseNameList = ({ route, navigation }) => {
             <View style={[t.pY3]}>
               <Card style={[t.wFull]}>
                 <CardTitle title={item.HouseName} />
-                <CardContent><Text style={[t.fontSemibold]}>Members: {item.members.map((mem) =>
+                <CardContent><Text style={[t.fontSemibold]}>Members: {item.members?item.members.map((mem) =>
                   <>  {mem.name},</>
-                )} </Text></CardContent>
+                ):""} </Text></CardContent>
                 <CardAction separator={true} inColumn={false}>
                   <CardButton
                     onPress={() => {
