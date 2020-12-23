@@ -97,7 +97,16 @@ const Home = ({ navigation }) => {
           keyboardType="default"
         />
       </View>
-      <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
+      <View
+        style={[
+          // t.flex,
+          // t.itemsCenter,
+          // t.justifyCenter,
+          t.mY1,
+          t.wFull,
+          // t.border2,
+        ]}
+      >
         <FlatList
           numColumns={1}
           keyExtractor={(item) => item.uid}
@@ -132,12 +141,12 @@ const Home = ({ navigation }) => {
                 />
                 <View style={[]}>
                   <Text
-                    style={[t.text2xl, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
+                    style={[t.textXl, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
                   >
                     {item.name}
                   </Text>
                   <Text
-                    style={[t.textXl, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
+                    style={[t.textBase, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
                   >
                     {item.houseName}
                   </Text>
