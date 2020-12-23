@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { db, storage } from "../../firebase/firebase";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
@@ -127,7 +127,7 @@ const CreateNewLet = () => {
       })
       .then(() => {
         console.log("here");
-        Alert.alert("Added to lectionary")
+        Alert.alert("Added to lectionary");
       })
 
       .catch((err) => {
@@ -180,6 +180,7 @@ const CreateNewLet = () => {
       <View style={[t.flexCol, t.itemsCenter, t.justifyCenter]}>
         <Formik
           initialValues={{
+            newmonth: moment().format("MMMM-YYYY"),
             heading: "",
             date: moment().format("YYYY-MM-DD"),
             month: moment().format("MMMM"),
@@ -203,6 +204,7 @@ const CreateNewLet = () => {
               <Text style={[t.fontBold, t.text2xl, t.selfCenter]}>
                 Date : {moment(props.values.date).format("MMMM YYYY")}
               </Text>
+
               <View style={[t.mY2, t.wFull, t.pX3]}>
                 <Button
                   title="Select Date"

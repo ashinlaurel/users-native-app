@@ -18,13 +18,20 @@ import Login from "../LoginStack/Login";
 import { LoginContext } from "../../context/LoginContext";
 import { firestore } from "firebase";
 
-
-
 const UserDetails = ({ route, navigation }) => {
   //
   // Extracting from the route params-------------------------------------------------
-  const { name, age, address, job, phone, imgUrl, key ,houseName,houseId} = route.params;
-  
+  const {
+    name,
+    age,
+    address,
+    job,
+    phone,
+    imgUrl,
+    key,
+    houseName,
+    houseId,
+  } = route.params;
 
   const { role } = useContext(LoginContext);
 
@@ -40,14 +47,13 @@ const UserDetails = ({ route, navigation }) => {
     return unsubscribe;
   }, []);
   const handleRefresh = async () => {
-  console.log(houseId)
+    console.log(houseId);
     const eventsRef = db.collection("housenames").doc(houseId);
     const doc = await eventsRef.get();
     await sethouseMembers(doc.data().members);
   };
 
   const handleDelete = () => {
-    
     // return;
     console.log(key);
     db.collection("dirusers")
@@ -59,37 +65,35 @@ const UserDetails = ({ route, navigation }) => {
       .catch(function (error) {
         console.error("Error removing document: ", error);
       });
-      deletefromHouse();
-
-      
+    deletefromHouse();
 
     navigation.navigate("Members");
   };
 
-  const deletefromHouse = async()=>{
-    try{
-      let house= await db.collection("housenames").doc(houseId).get();
+  const deletefromHouse = async () => {
+    try {
+      let house = await db.collection("housenames").doc(houseId).get();
       console.log(house.data().members.length);
-      
+
       let members = await house.data().members;
-      let ind=0;
-      for(let i=0;i<members.length;i++){
-        if(members[i].id==key) ind=i;
+      let ind = 0;
+      for (let i = 0; i < members.length; i++) {
+        if (members[i].id == key) ind = i;
       }
-      if(members.length>1){
-        
-        await db.collection("housenames").doc(houseId)
-        .update({
-          members: firestore.FieldValue.arrayRemove(members[ind])
-      });
-      
-      }else{
+      if (members.length > 1) {
+        await db
+          .collection("housenames")
+          .doc(houseId)
+          .update({
+            members: firestore.FieldValue.arrayRemove(members[ind]),
+          });
+      } else {
         await db.collection("housenames").doc(houseId).delete();
       }
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
   // Calling code
   const dialCall = () => {
     let phoneNumber = "";
@@ -141,16 +145,20 @@ const UserDetails = ({ route, navigation }) => {
             {name}
           </Text>
 
-         
-
           <Text
-            style={[t.text2xl, t.textCenter, t.pT1, t.textGray800, t.fontSemibold]}
+            style={[
+              t.textXl,
+              t.textCenter,
+              t.pT1,
+              t.textGray800,
+              t.fontSemibold,
+            ]}
           >
-             {houseName}
+            {houseName}
           </Text>
-          <Text style={[t.textXl, t.textCenter, t.textGray800, t.pB2]}>
+          {/* <Text style={[t.textXl, t.textCenter, t.textGray800, t.pB2]}>
             Address:{address}
-          </Text>
+          </Text> */}
           {/* <Text style={[t.textXl, t.textCenter]}>Age: {age}</Text>
         <Text style={[t.textXl, t.textCenter]}>Occupation: {job}</Text>
         <Text style={[t.textXl, t.textCenter]}>Address: {address}</Text> */}
@@ -169,23 +177,52 @@ const UserDetails = ({ route, navigation }) => {
       >
         <View style={[t.wFull]}>
           <View style={[]}>
-        
-
-            <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
-                    <Entypo name="pin" size={24} color="grey" style={[t.mX2]} />
-                    <Text style={[t.textBase,t.fontBold]}>Occupation:  </Text>
-                    <Text style={[t.textBase]}>{job}</Text>
+            <View
+              style={[
+                t.flex,
+                t.flexRow,
+                t.pY2,
+                t.mY1,
+                t.bgWhite,
+                t.shadowMd,
+                t.pX5,
+                t.flexWrap,
+              ]}
+            >
+              <Entypo name="pin" size={24} color="grey" style={[t.mX2]} />
+              <Text style={[t.textBase, t.fontBold]}>Occupation: </Text>
+              <Text style={[t.textBase]}>{job}</Text>
             </View>
 
-          
+            {/* <View
+              style={[
+                t.flex,
+                t.flexRow,
+                t.pY2,
+                t.mY1,
+                t.bgWhite,
+                t.shadowMd,
+                t.pX5,
+                t.flexWrap,
+              ]}
+            >
+              <Entypo name="calendar" size={24} color="grey" style={[t.mX2]} />
+              <Text style={[t.textBase, t.fontBold]}>Age: </Text>
+              <Text style={[t.textBase]}>{age}</Text>
+            </View> */}
 
-            <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
-                    <Entypo name="calendar" size={24} color="grey" style={[t.mX2]} />
-                    <Text style={[t.textBase,t.fontBold]}>Age:  </Text>
-                    <Text style={[t.textBase]}>{age}</Text>
-            </View>
-
-            <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
+            <View
+              style={[
+                t.flex,
+                t.flexRow,
+                t.pY2,
+                t.mY1,
+                t.bgWhite,
+                t.shadowMd,
+                t.pX5,
+                t.flexWrap,
+              ]}
+            >
               <TouchableOpacity
                 onPress={() => {
                   dialCall();
@@ -194,21 +231,48 @@ const UserDetails = ({ route, navigation }) => {
               >
                 <Entypo name="phone" size={24} color="grey" style={[t.mX2]} />
 
-                <Text style={[t.textBase,t.fontBold]}>Phone:  </Text>
-                    <Text style={[t.textBase]}>{phone}</Text></TouchableOpacity>
+                <Text style={[t.textBase, t.fontBold]}>Phone: </Text>
+                <Text style={[t.textBase]}>{phone}</Text>
+              </TouchableOpacity>
             </View>
           </View>
 
-          <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
-                    <Entypo name="calendar" size={24} color="grey" style={[t.mX2]} />
-                    <Text style={[t.textBase,t.fontBold]}>Family Members: </Text>
-                    <Text style={[t.textBase]}>
-                    {houseMembers.map((mem) =>
-                  <>  {mem.name!==name?<>{mem.name}</>:null}</>
-                    )}
-
-                    </Text>
-            </View>
+          <View
+            style={[
+              t.flex,
+              t.flexRow,
+              t.pY2,
+              t.mY1,
+              t.bgWhite,
+              t.shadowMd,
+              t.pX5,
+              t.flexWrap,
+            ]}
+          >
+            <Entypo name="calendar" size={24} color="grey" style={[t.mX2]} />
+            <Text style={[t.textBase, t.fontBold]}>Family Members: </Text>
+            <Text style={[t.textBase]}>
+              {houseMembers.map((mem) => (
+                <> {mem.name !== name ? <>{mem.name}</> : null}</>
+              ))}
+            </Text>
+          </View>
+          <View
+            style={[
+              t.flex,
+              t.flexRow,
+              t.pY2,
+              t.mY1,
+              t.bgWhite,
+              t.shadowMd,
+              t.pX5,
+              t.flexWrap,
+            ]}
+          >
+            <Entypo name="calendar" size={24} color="grey" style={[t.mX2]} />
+            <Text style={[t.textBase, t.fontBold]}>Address: </Text>
+            <Text style={[t.textBase]}>{address}</Text>
+          </View>
         </View>
         {role == 0 ? (
           <>
