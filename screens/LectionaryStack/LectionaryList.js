@@ -22,10 +22,12 @@ const LectionaryList = ({ navigation }) => {
   const [lectionaryitems, setLectionaryItems] = useState([
     // { name: "Ashin Laurel", age: 21, address: "Trivandrum", uid: "1" },
   ]);
+  const [lectTitles, setlectTitles] = useState([]);
   const { filterLectItems, setFilterLectItems } = useContext(DataContext);
 
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  let months = new Set();
 
   // First Time Getting Data
   useEffect(() => {
@@ -51,6 +53,17 @@ const LectionaryList = ({ navigation }) => {
       key: i.id,
       ...i.data(),
     }));
+    let temp2=[];
+    tempusers.map(i=>{
+      temp2.push(`${i.month} ${i.year}`)
+    })
+
+    temp2.map(i=>{
+      if(!months.has(i)) months.add(i);
+    })
+    console.log("Here")
+    console.log(months);
+    await setlectTitles([...months]);
     await setLectionaryItems(tempusers);
     await setFilterLectItems(tempusers);
     setLoading(false);
@@ -67,7 +80,17 @@ const LectionaryList = ({ navigation }) => {
             let temp = lectionaryitems.filter((item) =>
               item.name.toLowerCase().includes(search.toLowerCase())
             );
+
             setFilterLectItems(temp);
+            let temp2=[];
+          temp.map(i=>{
+            temp2.push(`${i.month} ${i.year}`)
+          })
+         months.clear();
+          temp2.map(i=>{
+            if(!months.has(i)) months.add(i);
+          })
+           setlectTitles([...months]);
           }}
           value={search}
           style={[
@@ -87,13 +110,13 @@ const LectionaryList = ({ navigation }) => {
           numColumns={1}
           keyExtractor={(item) => item.uid}
           contentContainerStyle={{ paddingBottom: 80 }}
-          data={filterLectItems}
+          data={lectTitles}
           refreshing={loading}
           onRefresh={handleRefresh}
           renderItem={({ item }) => (
             <View style={[t.pY3]}>
               <Card
-                title={moment(item.date).format("MMMM YYYY")}
+                title={item}
                 iconName="home"
                 backgroundColor="red"
                 // defaultTitle=""
@@ -101,7 +124,7 @@ const LectionaryList = ({ navigation }) => {
                 // defaultContent=""
                 titleColor="black"
                 onPress={() => {
-                  navigation.navigate("Lectionary Details", item);
+                  navigation.navigate("Lectionary Details", {item,lectionaryitems});
                 }}
                 // topRightText={item.location}
                 // bottomRightText={`On ${item.date} at ${item.time}`}

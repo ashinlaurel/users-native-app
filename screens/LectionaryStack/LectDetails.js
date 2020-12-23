@@ -13,7 +13,7 @@ import { LoginContext } from "../../context/LoginContext";
 const LectDetails = ({ route, navigation }) => {
   //
   // Extracting from the route params-------------------------------------------------
-  const { heading, date, lessons } = route.params;
+  const { item,lectdetails } = route.params;
 
   const { role } = useContext(LoginContext);
 
@@ -80,81 +80,10 @@ const LectDetails = ({ route, navigation }) => {
           </View>
           <Text
             style={[t.text5xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
-          >
-            {moment(date).format("MMMM YYYY")}
+          >{item}
+            {/* {moment(date).format("MMMM YYYY")} */}
           </Text>
-          {/* <Text style={[t.text2xl, t.textCenter, t.textGray800, t.pB2]}>
-            {moment().format("dddd, MMMM Do YYYY ")}
-          </Text> */}
-          {/* {role == 0 ? (
-            <>
-              <View style={[t.flex, t.flexRow, t.wFull, t.justifyAround]}>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate("Edit Message", route.params);
-                  }}
-                  style={[
-                    t.bgBlue600,
-                    t.mX10,
-                    t.mT3,
-                    t.roundedFull,
-                    t.shadowMd,
-                  ]}
-                >
-                  <Text
-                    style={[
-                      t.mX10,
-                      t.mY2,
-                      t.uppercase,
-                      t.fontBold,
-                      t.textWhite,
-                    ]}
-                  >
-                    Edit
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {
-                    Alert.alert(
-                      "Are you sure you want to delete this message permanently ?",
-                      "",
-                      [
-                        {
-                          text: "Yes",
-                          onPress: () => handleDelete(),
-                          style: "cancel",
-                        },
-                        { text: "No", onPress: () => console.log("No delete") },
-                      ],
-                      { cancelable: false }
-                    );
-                  }}
-                  style={[
-                    t.bgBlue600,
-                    t.mX10,
-                    t.mT3,
-                    t.roundedFull,
-                    t.shadowMd,
-                  ]}
-                >
-                  <Text
-                    style={[
-                      t.mX10,
-                      t.mY2,
-                      t.uppercase,
-                      t.fontBold,
-                      t.textWhite,
-                    ]}
-                  >
-                    Delete
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </>
-          ) : null} */}
-          {/* <Text style={[t.textXl, t.textCenter]}>Age: {age}</Text>
-        <Text style={[t.textXl, t.textCenter]}>Occupation: {job}</Text>
-        <Text style={[t.textXl, t.textCenter]}>Address: {address}</Text> */}
+          
         </View>
       </View>
       {/* Details---------------------------- */}
@@ -171,16 +100,16 @@ const LectDetails = ({ route, navigation }) => {
         <View style={[]}>
           <View style={[]}>
             <View style={[t.flex, t.flexCol, t.mX4]}>
-              <Text style={[t.textXl, t.fontBold]}>{heading}</Text>
+              <Text style={[t.textXl, t.fontBold]}>{item}</Text>
             </View>
           </View>
         </View>
         <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
-          <FlatList
+          {/* <FlatList
             numColumns={1}
             keyExtractor={(item) => item.uid}
             contentContainerStyle={{ paddingBottom: 80 }}
-            data={lessons}
+            data={{item}}
             // refreshing={loading}
             // onRefresh={handleRefresh}
             renderItem={({ item }) => (
@@ -222,7 +151,7 @@ const LectDetails = ({ route, navigation }) => {
               // Galio Card--------------------------------------------
             )}
             ItemSeparatorComponent={renderSeparator}
-          />
+          /> */}
         </View>
       </View>
     </ScrollView>
