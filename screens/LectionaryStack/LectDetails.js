@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, Image, Platform, Linking, Alert } from "react-native";
 import { db } from "../../firebase/firebase";
 import { t } from "react-native-tailwindcss";
@@ -13,7 +13,8 @@ import { LoginContext } from "../../context/LoginContext";
 const LectDetails = ({ route, navigation }) => {
   //
   // Extracting from the route params-------------------------------------------------
-  const { item,lectdetails } = route.params;
+  const { item,lectionaryitems } = route.params;
+  const [lessons, setLessons] = useState([]);
 
   const { role } = useContext(LoginContext);
 
@@ -31,6 +32,18 @@ const LectDetails = ({ route, navigation }) => {
       />
     );
   };
+
+  useEffect(() => {
+    let temp=[]
+    lectionaryitems.map(i=>{
+      if(`${i.month} ${i.year}`==item){
+        console.log("found");
+        temp=temp.concat(i.lessons);
+      }
+    })
+    console.log(temp)
+    setLessons(temp)
+  }, [])
 
   const handleDelete = () => {
     console.log(key);
@@ -105,11 +118,11 @@ const LectDetails = ({ route, navigation }) => {
           </View>
         </View>
         <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
-          {/* <FlatList
+          <FlatList
             numColumns={1}
             keyExtractor={(item) => item.uid}
             contentContainerStyle={{ paddingBottom: 80 }}
-            data={{item}}
+            data={lessons}
             // refreshing={loading}
             // onRefresh={handleRefresh}
             renderItem={({ item }) => (
@@ -151,7 +164,7 @@ const LectDetails = ({ route, navigation }) => {
               // Galio Card--------------------------------------------
             )}
             ItemSeparatorComponent={renderSeparator}
-          /> */}
+          />
         </View>
       </View>
     </ScrollView>
