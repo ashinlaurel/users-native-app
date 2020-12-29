@@ -125,6 +125,7 @@ const CreateNewUser = ({ navigation }) => {
                 .then(function () {
                   console.log("Document successfully updated!");
                   setLoading(false)
+                  Alert.alert("Member Created");
                 })
                 .catch(function (error) {
                   // The document probably doesn't exist.
