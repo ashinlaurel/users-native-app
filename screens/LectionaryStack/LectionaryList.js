@@ -61,8 +61,8 @@ const LectionaryList = ({ navigation }) => {
     temp2.map(i=>{
       if(!months.has(i)) months.add(i);
     })
-    console.log("Here")
-    console.log(months);
+    // console.log("Here")
+    // console.log(months);
     await setlectTitles([...months]);
     await setLectionaryItems(tempusers);
     await setFilterLectItems(tempusers);

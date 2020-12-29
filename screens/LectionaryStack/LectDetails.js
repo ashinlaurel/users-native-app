@@ -38,6 +38,7 @@ const LectDetails = ({ route, navigation }) => {
     lectionaryitems.map(i=>{
       if(`${i.month} ${i.year}`==item){
         console.log("found");
+        temp=temp.concat({title:`${i.heading} - ${moment(i.date).format('MMM Do')}`,lesson:""})
         temp=temp.concat(i.lessons);
       }
     })
@@ -65,9 +66,9 @@ const LectDetails = ({ route, navigation }) => {
           t.flex,
           t.itemsCenter,
           t.justifyCenter,
-          t.mY0,
+          // t.mY0,
           t.mX2,
-          t.mT40,
+          t.mT20,
           t.bgBlue300,
           t.rounded,
         ]}
@@ -82,17 +83,17 @@ const LectDetails = ({ route, navigation }) => {
               style={[
                 t.border4,
                 t.borderWhite,
-                t.w48,
-                t.h48,
+                t.w32,
+                t.h32,
                 t.roundedFull,
                 t.overflowHidden,
                 t.mX4,
-                t._mT32,
+                t._mT20,
               ]}
             />
           </View>
           <Text
-            style={[t.text5xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
+            style={[t.text2xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
           >{item}
             {/* {moment(date).format("MMMM YYYY")} */}
           </Text>
@@ -107,16 +108,16 @@ const LectDetails = ({ route, navigation }) => {
           t.justifyStart,
           t.mX2,
           t.bgGray200,
-          t.mY4,
+          t.mY2,
         ]}
       >
-        <View style={[]}>
+        {/* <View style={[]}>
           <View style={[]}>
             <View style={[t.flex, t.flexCol, t.mX4]}>
               <Text style={[t.textXl, t.fontBold]}>{item}</Text>
             </View>
           </View>
-        </View>
+        </View> */}
         <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
           <FlatList
             numColumns={1}
@@ -147,16 +148,27 @@ const LectDetails = ({ route, navigation }) => {
                   <View
                     style={[t.flex, t.flexRow, t.justifyBetween, t.itemsCenter]}
                   >
+                  {item.lesson==""?(
                     <Text
-                      style={[t.textBase, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
+                      style={[t.textBase, t.fontSemibold, t.mX2, t.mL3,t.fontBold]}
                     >
                       {item.title}
                     </Text>
+                  ):(
                     <Text
-                      style={[t.textBase, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
+                      style={[t.textBase, t.fontSemibold, t.mX2, t.mL3,]}
+                    >
+                      {item.title}
+                    </Text>
+                  )}
+                    
+                    
+                    <Text
+                      style={[t.textBase,t.flex1, t.fontSemibold, t.mX1, t.mL3]}
                     >
                       {item.lesson}
                     </Text>
+                    
                   </View>
                 </View>
               </TouchableOpacity>
