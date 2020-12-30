@@ -51,34 +51,34 @@ const OrganisationDetails = ({ route, navigation }) => {
         <Text style={[t.textXl, t.textCenter]}>Details: {details}</Text>
       </View> */}
 
-      <View>
+      {/* <View>
         <Entypo
           name="bell"
           size={20}
           color="#e80e5a"
           style={[ t.textCenter]}
         />
-      </View>
+      </View> */}
 
       <Text style={[t.textXl, t.mY3, t.textCenter,t.fontBold]}>{name}</Text>
 
       <View style={[t.wFull,]}>
 
-        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
+        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.pX5 ,t.flexWrap]}>
           <Entypo name="pin" size={24} color="grey" style={[t.mX2]} />
           <Text style={[t.textBase,t.fontBold]}>Location:  </Text>
           
           <Text style={[t.textBase]}>{address}</Text>
         </View>
 
-        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
+        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.pX5 ,t.flexWrap]}>
           <Entypo name="phone" size={24} color="grey" style={[t.mX2]} />
           <Text style={[t.textBase,t.fontBold]}>Phone:  </Text>
 
           <Text style={[t.textBase]}>{phone}</Text>
         </View>
 
-        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5 ,t.flexWrap]}>
+        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.pX5 ,t.flexWrap]}>
           <MaterialCommunityIcons
             name="email"
             size={24}
@@ -88,15 +88,15 @@ const OrganisationDetails = ({ route, navigation }) => {
           <Text style={[t.textBase,t.fontBold]}>Email:  </Text>
           <Text style={[t.textBase]}>{email}</Text>
         </View>
-        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.bgWhite,t.shadowMd,t.pX5,t.flexWrap]}>
+        <View style={[t.flex, t.flexRow, t.pY2, t.mY1,t.pX5,t.flexWrap]}>
           <Entypo name="edit" size={24} color="grey" style={[t.mX2]} />
           <Text style={[t.textBase,t.fontBold]}>Details:  </Text>
           <Text style={[t.textBase]}>{details}</Text>
         </View>
       </View>
 
-      <View style={[t.mY2]}>
-        <View style={[t.bgPink600, t.mX1, t.w40, t.roundedFull, t.shadowLg]}>
+      <View style={[t.mY1]}>
+        <View style={[t.bgPink600, t.mX1, t.w40, t.roundedLg, t.shadowMd]}>
           {/* <Ripple rippleContainerBorderRadius={20} rippleColor="pink"> */}
           <TouchableOpacity
             onPress={() => {
@@ -108,7 +108,7 @@ const OrganisationDetails = ({ route, navigation }) => {
               style={[
                 t.textBase,
                 t.textWhite,
-                t.mY2,
+                t.mY1,
                 t.mX1,
                 t.pY1,
                 t.textCenter,
@@ -129,10 +129,10 @@ const OrganisationDetails = ({ route, navigation }) => {
               onPress={() => {
                 navigation.navigate("EditOrg", route.params);
               }}
-              style={[t.bgBlue600, t.mX10, t.mT3, t.roundedFull, t.shadowMd]}
+              style={[t.bgBlue600, t.mX10, t.mT3, t.roundedLg, t.shadowMd]}
             >
               <Text
-                style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}
+                style={[t.mX5, t.mY2, t.uppercase, t.fontSemibold, t.textWhite]}
               >
                 Edit
               </Text>
@@ -153,10 +153,10 @@ const OrganisationDetails = ({ route, navigation }) => {
                   { cancelable: false }
                 );
               }}
-              style={[t.bgBlue600, t.mX10, t.mT3, t.roundedFull, t.shadowMd]}
+              style={[t.bgBlue600, t.mX10, t.mT3, t.roundedLg, t.shadowMd]}
             >
               <Text
-                style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}
+                style={[t.mX5, t.mY2, t.uppercase, t.fontSemibold, t.textWhite]}
               >
                 Delete
               </Text>

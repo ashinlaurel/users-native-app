@@ -21,6 +21,7 @@ import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
 import { DataContext } from "../../context/DataContext";
 import { LoginContext } from "../../context/LoginContext";
+import bg from "../../assets/bg.png";
 
 const Circulars = ({ navigation }) => {
   const { role } = useContext(LoginContext);
