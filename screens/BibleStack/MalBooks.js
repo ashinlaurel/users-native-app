@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/firebase";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 
-import { View, Text, Button, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, Button, FlatList, TouchableOpacity,ImageBackground } from "react-native";
 import { t } from "react-native-tailwindcss";
+import bg from "../../assets/bg.png";
 
 const MalBooks = ({ navigation }) => {
   const [old, setOld] = useState(true);
@@ -311,7 +312,11 @@ const MalBooks = ({ navigation }) => {
   };
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+    <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
+    <ImageBackground
+        source={bg}
+        style={{ width: "100%", height: "100%", alignItems: "center" }}
+      >
       <View style={[t.mT2, t.mY3]}>
         <Button
           title={old ? "New Testement" : "Old Testement"}
@@ -378,6 +383,7 @@ const MalBooks = ({ navigation }) => {
           // ItemSeparatorComponent={renderSeparator}
         />
       </View>
+      </ImageBackground>
     </View>
   );
 };

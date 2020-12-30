@@ -11,7 +11,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 const AdminDetails = ({ route, navigation }) => {
   // console.log("hello");
-  const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { user, setUser, isLoggedIn, setIsLoggedIn ,setRole} = useContext(LoginContext);
 
   const logout = async () => {
     auth.signOut().then(
@@ -24,6 +24,8 @@ const AdminDetails = ({ route, navigation }) => {
         await AsyncStorage.setItem("user", "null");
         await AsyncStorage.setItem("isLoggedIn", "false");
         navigation.navigate("Home");
+        setRole(2);
+
       },
       function (error) {
         // An error happened.

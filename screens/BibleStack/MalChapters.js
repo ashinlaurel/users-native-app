@@ -7,11 +7,13 @@ import {
   FlatList,
   TouchableOpacity,
   StyleSheet,
+  ImageBackground
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import malbible from "../../assets/biblejs";
 // import malbible from "../../assets/malbiblejs";
+import bg from "../../assets/bg.png";
 
 const MalChapters = ({ navigation, route }) => {
   const { num, book } = route.params;
@@ -51,7 +53,11 @@ const MalChapters = ({ navigation, route }) => {
   };
 
   return (
-    <View style={[t.flex, t.itemsCenter, t.mT2]}>
+    <View style={[t.flex, t.itemsCenter]}>
+    <ImageBackground
+        source={bg}
+        style={{ width: "100%", height: "100%", alignItems: "center" }}
+      >
       <Text style={[t.text3xl, t.fontBold, t.mY5]}>{book}</Text>
       <View style={[t.pB32]}>
         <FlatList
@@ -82,6 +88,7 @@ const MalChapters = ({ navigation, route }) => {
           //   ItemSeparatorComponent={renderSeparator}
         />
       </View>
+      </ImageBackground>
     </View>
   );
 };

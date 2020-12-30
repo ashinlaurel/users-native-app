@@ -7,10 +7,12 @@ import {
   FlatList,
   TouchableOpacity,
   StyleSheet,
+  ImageBackground
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import bible from "../../assets/biblejs";
+import bg from "../../assets/bg.png";
 
 const Chapters = ({ navigation, route }) => {
   const { num, book } = route.params;
@@ -50,7 +52,11 @@ const Chapters = ({ navigation, route }) => {
   };
 
   return (
-    <View style={[t.flex, t.itemsCenter, t.mT2]}>
+    <View style={[t.flex, t.itemsCenter]}>
+    <ImageBackground
+        source={bg}
+        style={{ width: "100%", height: "100%", alignItems: "center" }}
+      >
       <Text style={[t.text3xl, t.fontBold, t.mY5]}>{book}</Text>
       <View style={[t.pB32]}>
         <FlatList
@@ -81,6 +87,7 @@ const Chapters = ({ navigation, route }) => {
           //   ItemSeparatorComponent={renderSeparator}
         />
       </View>
+      </ImageBackground>
     </View>
   );
 };

@@ -9,6 +9,7 @@ import {
   Modal,
   Keyboard,
   TouchableWithoutFeedback,
+  ImageBackground,
   Image,
   ListView,
 } from "react-native";
@@ -17,6 +18,7 @@ import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
 import { DataContext } from "../../context/DataContext";
+import bg from "../../assets/bg.png";
 
 const Circulars = ({ navigation }) => {
   const [circulars, setCirculars] = useState([
@@ -57,7 +59,11 @@ const Circulars = ({ navigation }) => {
   };
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+    <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
+    <ImageBackground
+        source={bg}
+        style={{ width: "100%", height: "100%", alignItems: "center" }}
+      >
       <View style={[t.wFull]}>
         <TextInput
           placeholder="Search"
@@ -117,6 +123,7 @@ const Circulars = ({ navigation }) => {
           )}
         />
       </View>
+      </ImageBackground>
     </View>
   );
 };

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/firebase";
 
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList ,ImageBackground} from "react-native";
 import { t } from "react-native-tailwindcss";
 
 import bible from "../../assets/biblejs";
+import bg from "../../assets/bg.png";
 
 const Verses = ({ navigation, route }) => {
   const [verses, setVerses] = useState([]);
@@ -34,7 +35,11 @@ const Verses = ({ navigation, route }) => {
   };
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT10]}>
+    <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
+    <ImageBackground
+        source={bg}
+        style={{ width: "100%", height: "100%", alignItems: "center" }}
+      >
       <Text style={[t.text3xl, t.fontBold, t.mY2]}>
         {book}-{vnum}
       </Text>
@@ -79,6 +84,7 @@ const Verses = ({ navigation, route }) => {
           ItemSeparatorComponent={renderSeparator}
         />
       </View>
+      </ImageBackground>
     </View>
   );
 };

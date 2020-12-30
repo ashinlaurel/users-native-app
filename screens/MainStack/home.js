@@ -12,11 +12,13 @@ import {
   TouchableWithoutFeedback,
   Image,
   ListView,
+  ImageBackground
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import { DataContext } from "../../context/DataContext";
 import { useFocusEffect } from "@react-navigation/native";
+import bg from "../../assets/bg.png";
 
 const Home = ({ navigation }) => {
   const [users, setUsers] = useState([
@@ -72,7 +74,11 @@ const Home = ({ navigation }) => {
   };
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+    <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
+    <ImageBackground
+        source={bg}
+        style={{ width: "100%", height: "100%", alignItems: "center" }}
+      >
       <View style={[t.wFull]}>
         <TextInput
           placeholder="Search"
@@ -159,6 +165,7 @@ const Home = ({ navigation }) => {
           ItemSeparatorComponent={renderSeparator}
         />
       </View>
+      </ImageBackground>
     </View>
   );
 };

@@ -12,11 +12,13 @@ import {
   TouchableWithoutFeedback,
   Image,
   ListView,
+  ImageBackground
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import { DataContext } from "../../context/DataContext";
+import bg from "../../assets/bg.png";
 
 const LectionaryList = ({ navigation }) => {
   const [lectionaryitems, setLectionaryItems] = useState([
@@ -70,7 +72,11 @@ const LectionaryList = ({ navigation }) => {
   };
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+    <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
+    <ImageBackground
+        source={bg}
+        style={{ width: "100%", height: "100%", alignItems: "center" }}
+      >
       <View style={[t.wFull]}>
         <TextInput
           placeholder="Search"
@@ -97,8 +103,8 @@ const LectionaryList = ({ navigation }) => {
             t.pY1,
             t.pX5,
             t.bgWhite,
-            // t.roundedFull,
-            t.border,
+            t.roundedFull,
+            // t.border,
             t.mX5,
             t.mY3,
           ]}
@@ -134,6 +140,7 @@ const LectionaryList = ({ navigation }) => {
           )}
         />
       </View>
+      </ImageBackground>
     </View>
   );
 };

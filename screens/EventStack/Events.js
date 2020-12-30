@@ -9,7 +9,7 @@ import {
   Modal,
   Keyboard,
   TouchableWithoutFeedback,
-  Image,
+  ImageBackground,
   ListView,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
@@ -17,6 +17,7 @@ import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
 import { DataContext } from "../../context/DataContext";
+import bg from "../../assets/bg.png";
 
 const Events = ({ navigation }) => {
   const [events, setEvents] = useState([
@@ -56,7 +57,11 @@ const Events = ({ navigation }) => {
   };
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+    <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
+    <ImageBackground
+        source={bg}
+        style={{ width: "100%", height: "100%", alignItems: "center" }}
+      >
       <View style={[t.wFull]}>
         <TextInput
           placeholder="Search"
@@ -73,8 +78,8 @@ const Events = ({ navigation }) => {
             t.pY1,
             t.pX5,
             t.bgWhite,
-            // t.roundedFull,
-            t.border,
+            t.roundedFull,
+            // t.border,
             t.mX5,
             t.mY3,
           ]}
@@ -119,6 +124,7 @@ const Events = ({ navigation }) => {
           // ItemSeparatorComponent={renderSeparator}
         />
       </View>
+      </ImageBackground>
     </View>
   );
 };

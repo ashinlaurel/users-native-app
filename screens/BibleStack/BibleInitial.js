@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/firebase";
-import { View, FlatList } from "react-native";
+import { View, FlatList,ImageBackground } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
+import bg from "../../assets/bg.png";
 
 const BibleInitial = ({ navigation }) => {
   const [events, setEvents] = useState([
@@ -13,7 +14,11 @@ const BibleInitial = ({ navigation }) => {
   const [search, setSearch] = useState("");
 
   return (
-    <View style={[t.flex, t.justifyCenter, t.itemsCenter, t.mT8]}>
+    <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
+    <ImageBackground
+        source={bg}
+        style={{ width: "100%", height: "100%", alignItems: "center" }}
+      >
       <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <View style={[t.pY3]}>
           <View style={[t.mY2]}>
@@ -60,6 +65,7 @@ const BibleInitial = ({ navigation }) => {
           </View>
         </View>
       </View>
+      </ImageBackground>
     </View>
   );
 };
