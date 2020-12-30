@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db, storage } from "../../firebase/firebase";
+import { Ionicons } from "@expo/vector-icons";
 import {
   View,
   Text,
@@ -20,9 +21,11 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const CreateNewCircular = () => {
   const [imageUri, setImageUri] = useState(
-    "https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png"
+    "https://www.pngkey.com/png/detail/98-981538_icono-pdf-vector-pdf-icon-free.png"
   );
   const [docUri, setDocUri] = useState("");
+  const [thedoc, setTheDoc] = useState([]);
+  const [docstatus, setDocStatus] = useState(0);
 
   const selectDocument = async () => {
     try {
@@ -32,6 +35,8 @@ const CreateNewCircular = () => {
       if (!result.cancelled) {
         // console.log(result.uri);
         setDocUri(result.uri);
+        setTheDoc(result);
+        setDocStatus(1);
         // console.log(docUri);
       }
       console.log(result);
@@ -75,7 +80,10 @@ const CreateNewCircular = () => {
                 .update({ docUrl: URL })
                 .then(function () {
                   console.log("Document successfully updated!");
-                  Alert.alert("Circular uploaded")
+                  Alert.alert("Circular uploaded");
+                  setTheDoc([]);
+                  setDocUri("");
+                  setDocStatus(0);
                 })
                 .catch(function (error) {
                   // The document probably doesn't exist.
@@ -109,6 +117,7 @@ const CreateNewCircular = () => {
               />
             ) : null}
           </View>
+
           <View style={[t.flexRow, t.justifyCenter, t.itemsCenter, t.mT2]}>
             <TouchableOpacity style={[t.mX2]}>
               <Button
@@ -119,6 +128,24 @@ const CreateNewCircular = () => {
             </TouchableOpacity>
           </View>
         </View>
+
+        {docstatus == 1 ? (
+          <View
+            style={[t.mT4, t.flex, t.flexRow, t.justifyBetween, t.wFull, t.pX4]}
+          >
+            <View>
+              <Text style={[t.fontSemibold, t.textLg]}>
+                PDF Name : {thedoc.name}
+              </Text>
+              <Text style={[t.fontSemibold, t.textLg]}>
+                Size : {thedoc.size / 1000} KB
+              </Text>
+            </View>
+            <View>
+              <Ionicons name="md-checkmark-circle" size={32} color="green" />
+            </View>
+          </View>
+        ) : null}
         <Formik
           initialValues={{
             title: "",
