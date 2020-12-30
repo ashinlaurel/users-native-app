@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LectDetails from "./LectDetails";
 import LectionaryList from "./LectionaryList";
+import EditLectionary from "./EditLectionary";
 
 // import CreateNewEvent from "./createnewevent";
 // -----------------------------------------------------------------
@@ -38,16 +39,16 @@ export default function LectionaryStack() {
           headerTintColor: "#fff",
         }}
       />
-      {/* <Stack.Screen
-        name="Edit Event"
-        component={EditEvent}
+      <Stack.Screen
+        name="Edit Lectionary"
+        component={EditLectionary}
         options={{
           headerStyle: {
             backgroundColor: "#1B719E",
           },
           headerTintColor: "#fff",
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 }
