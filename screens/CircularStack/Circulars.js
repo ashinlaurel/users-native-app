@@ -20,11 +20,7 @@ import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
 import { DataContext } from "../../context/DataContext";
-<<<<<<< HEAD
-import bg from "../../assets/bg.png";
-=======
 import { LoginContext } from "../../context/LoginContext";
->>>>>>> 56ca58f8194327db658d01bcc3f5264d92a37f6e
 
 const Circulars = ({ navigation }) => {
   const { role } = useContext(LoginContext);
