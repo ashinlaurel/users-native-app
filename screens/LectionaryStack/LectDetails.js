@@ -37,18 +37,18 @@ const LectDetails = ({ route, navigation }) => {
     let temp=[]
     lectionaryitems.map(i=>{
       if(`${i.month} ${i.year}`==item){
-        console.log("found");
-        temp=temp.concat({title:`${i.heading} - ${moment(i.date).format('MMM Do')}`,lesson:""})
+        console.log("foud",i);
+        temp=temp.concat({title:`${i.heading} - ${moment(i.date).format('MMM Do')}`,lesson:"",key:i.key,obj:i})
         temp=temp.concat(i.lessons);
       }
     })
-    console.log(temp)
+    // console.log(temp)
     setLessons(temp)
   }, [])
 
-  const handleDelete = () => {
-    console.log(key);
-    db.collection("messages")
+  const handleDelete = (key) => {
+    // console.log(key);
+    db.collection("lectionary")
       .doc(key)
       .delete()
       .then(function () {
@@ -57,7 +57,7 @@ const LectDetails = ({ route, navigation }) => {
       .catch(function (error) {
         console.error("Error removing document: ", error);
       });
-    navigation.navigate("Messages");
+    navigation.navigate("Lectionary List");
   };
   return (
     <ScrollView>
@@ -143,17 +143,91 @@ const LectDetails = ({ route, navigation }) => {
                     t.flexRow,
                     t.itemsCenter,
                     t.justifyStart,
+                    t.flexWrap
                   ]}
                 >
                   <View
-                    style={[t.flex, t.flexRow, t.justifyBetween, t.itemsCenter]}
+                    style={[t.flex, t.flexRow, t.justifyBetween, t.itemsCenter,t.flexWrap]}
                   >
-                  {item.lesson==""?(
+                  {item.key?(
+                    <>
                     <Text
                       style={[t.textBase, t.fontSemibold, t.mX2, t.mL3,t.fontBold]}
                     >
                       {item.title}
                     </Text>
+
+                    {role == 0 ? (
+                        <>
+
+                        <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("Edit Lectionary", item);
+                  }}
+                  style={[
+                    t.bgBlue600,
+                    t.mX3,
+                    t.mT1,
+                    t.roundedSm,
+                    t.shadowMd,
+                  ]}
+                >
+                  <Text
+                    style={[
+                      t.mX3,
+                      t.mY1,
+                      t.uppercase,
+                      t.fontBold,
+                      t.textWhite,
+                      t.textSm,
+                    ]}
+                  >
+                    Edit
+                  </Text>
+                </TouchableOpacity>
+
+
+                        <TouchableOpacity
+                  onPress={() => {
+                    Alert.alert(
+                      "Are you sure you want to delete this message permanently ?",
+                      "",
+                      [
+                        {
+                          text: "Yes",
+                          onPress: () => handleDelete(item.key),
+                          style: "cancel",
+                        },
+                        { text: "No", onPress: () => console.log("No delete") },
+                      ],
+                      { cancelable: false }
+                    );
+                  }}
+                  style={[
+                    t.bgBlue600,
+                    t.mX2,
+                    t.mT1,
+                    t.roundedSm,
+                    t.shadowMd,
+                  ]}
+                >
+                  <Text
+                    style={[
+                      t.mX3,
+                      t.mY1,
+                      t.uppercase,
+                      t.fontBold,
+                      t.textWhite,
+                      t.textSm
+                    ]}
+                  >
+                    Delete
+                  </Text>
+                </TouchableOpacity>
+
+                      </>):null}
+
+                    </>
                   ):(
                     <Text
                       style={[t.textBase, t.fontSemibold, t.mX2, t.mL3,]}
