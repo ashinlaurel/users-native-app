@@ -21,6 +21,8 @@ import CreateNewCircular from "./CreateCircularStack/CreateCircularStack";
 import VerifyUsersStack from "./verifyUsers/VerifyUsersStack";
 import CreateLectionaryStack from "./CreateLectionaryStack/CreateLectionaryStack";
 import LoginCode from "./LoginCodeStack/LoginCode";
+import ContactUs from "./ContactUs/ContactUs"
+import ContactUsInfoStack from "./ContactUs/ContactUsInfoStack";
 
 const Drawer = createDrawerNavigator();
 
@@ -79,6 +81,14 @@ export default function MainDrawer() {
             <Drawer.Screen
               name="Add/Remove Login code"
               component={LoginCode}
+            />
+          </>
+        ) : null}
+        {isLoggedIn && role == 0 ? (
+          <>
+            <Drawer.Screen
+              name="Update Contact info"
+              component={ContactUsInfoStack}
             />
           </>
         ) : null}

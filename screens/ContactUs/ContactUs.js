@@ -1,65 +1,92 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
+import { db } from "../../firebase/firebase"
 
 const ContactDetails = ({ route }) => {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  
+  
+  useEffect(() => {
+    var docRef = db.collection("contactinfo").doc("nE27zOdX2f17ug2kg7kh");
+
+docRef.get().then(function(doc) {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+        setName(doc.data().name);
+        setPhone(doc.data().phone);
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch(function(error) {
+    console.log("Error getting document:", error);
+});
+    
+  }, [])
   return (
     <View
       style={[
         t.flex,
-        t.itemsCenter,
-        t.justifyCenter,
+        // t.itemsCenter,
+        // t.justifyCenter,
         t.mY0,
-        t.mX2,
-        t.mT10,
+        t.pX10,
+        t.mT1,
         t.mB20,
         t.bgWhite,
         // t.roundedFull,
-        t.shadowXl,
-        t.rounded,
-        t.pY10,
+        // t.shadowXl,
+        // t.rounded,
+        t.pY5,
       ]}
     >
       <View style={[]}>
-        <View>
-          <Entypo
-            name="bell"
-            size={64}
-            color="#e80e5a"
-            style={[t.mT4, t.textCenter, t.pY2]}
-          />
+      <View
+        style={[
+          t.flex,
+          t.itemsCenter,
+          t.justifyCenter,
+          t.mY5,
+          t.mX2,
+          t.mT10,
+          // t.bgBlue300,
+          t.rounded,
+        ]}
+      >
+        <View style={[t.textCenter, t.pB2, t.flexCol, t.itemsCenter]}>
+          
+          <Text
+            style={[t.text2xl, t.textCenter, t.pY1, t.textGray900, t.fontBold]}
+          >
+            Contact Us!
+          </Text>
+          
+          
         </View>
-
-        <Text style={[t.text5xl, t.mY3, t.textCenter]}>Mar Thoma Church</Text>
+      </View>
+      
 
         <View style={[]}>
           <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
-            <Entypo name="pin" size={32} color="grey" style={[t.mX2]} />
+            <Entypo name="user" size={24} color="grey" style={[t.mX2]} />
 
-            <Text style={[t.textBase]}>Location</Text>
+            <Text >{name}</Text>
           </View>
 
           <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
-            <Entypo name="calendar" size={32} color="grey" style={[t.mX2]} />
+            <Entypo name="phone" size={24} color="grey" style={[t.mX2]} />
 
-            <Text style={[t.textBase]}>
-              {moment().format("dddd, MMMM Do YYYY ")}
+            <Text >
+              {phone}
             </Text>
           </View>
 
-          <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
-            <MaterialCommunityIcons
-              name="clock-outline"
-              size={32}
-              color="grey"
-              style={[t.mX2]}
-            />
-
-            <Text style={[t.textBase]}>time</Text>
-          </View>
+          
         </View>
       </View>
     </View>
