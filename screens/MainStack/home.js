@@ -12,7 +12,7 @@ import {
   TouchableWithoutFeedback,
   Image,
   ListView,
-  ImageBackground
+  ImageBackground,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
@@ -49,6 +49,9 @@ const Home = ({ navigation }) => {
     const snapshot = await usersRef.get();
     if (snapshot.empty) {
       console.log("No matching documents.");
+      setUsers([]);
+      setFilterUsers([]);
+      setLoading(false);
       return;
     }
     let tempusers = snapshot.docs.map((i) => ({
@@ -75,96 +78,102 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
-    <ImageBackground
+      <ImageBackground
         source={bg}
         style={{ width: "100%", height: "100%", alignItems: "center" }}
       >
-      <View style={[t.wFull]}>
-        <TextInput
-          placeholder="Search"
-          placeholderTextColor="black"
-          onChangeText={(text) => {
-            setSearch(text);
-            let temp = users.filter((user) =>
-              user.name.toLowerCase().includes(search.toLowerCase())
-            );
-            setFilterUsers(temp);
-          }}
-          value={search}
+        <View style={[t.wFull]}>
+          <TextInput
+            placeholder="Search"
+            placeholderTextColor="black"
+            onChangeText={(text) => {
+              setSearch(text);
+              let temp = users.filter((user) =>
+                user.name.toLowerCase().includes(search.toLowerCase())
+              );
+              setFilterUsers(temp);
+            }}
+            value={search}
+            style={[
+              t.pY1,
+              t.pX5,
+              t.bgWhite,
+              t.roundedFull,
+              // t.border,
+              t.mX5,
+              t.mY3,
+            ]}
+            keyboardType="default"
+          />
+        </View>
+        <View
           style={[
-            t.pY1,
-            t.pX5,
-            t.bgWhite,
-            t.roundedFull,
-            // t.border,
-            t.mX5,
-            t.mY3,
+            // t.flex,
+            // t.itemsCenter,
+            // t.justifyCenter,
+            t.mY1,
+            t.wFull,
+            // t.border2,
           ]}
-          keyboardType="default"
-        />
-      </View>
-      <View
-        style={[
-          // t.flex,
-          // t.itemsCenter,
-          // t.justifyCenter,
-          t.mY1,
-          t.wFull,
-          // t.border2,
-        ]}
-      >
-        <FlatList
-          numColumns={1}
-          keyExtractor={(item) => item.uid}
-          contentContainerStyle={{ paddingBottom: 80 }}
-          data={filterusers}
-          refreshing={loading}
-          onRefresh={handleRefresh}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={[]}
-              onPress={() => {
-                // console.log(item);
-                // handlePress(item);
-                navigation.navigate("UserDetails", item);
-              }}
-            >
-              <View
-                style={[
-                  t.pY3,
-                  t.wFull,
-                  t.textCenter,
-                  t.flexRow,
-                  t.itemsCenter,
-                  t.justifyStart,
-                ]}
+        >
+          <FlatList
+            numColumns={1}
+            keyExtractor={(item) => item.uid}
+            contentContainerStyle={{ paddingBottom: 80 }}
+            data={filterusers}
+            refreshing={loading}
+            onRefresh={handleRefresh}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={[]}
+                onPress={() => {
+                  // console.log(item);
+                  // handlePress(item);
+                  navigation.navigate("UserDetails", item);
+                }}
               >
-                <Image
-                  source={{
-                    uri: item.imgUrl,
-                  }}
-                  style={[t.w16, t.h16, t.roundedFull, t.overflowHidden, t.mX4]}
-                />
-                <View style={[]}>
-                  <Text
-                    style={[t.textXl, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
-                  >
-                    {item.name}
-                  </Text>
-                  <Text
-                    style={[t.textBase, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
-                  >
-                    {item.houseName}
-                  </Text>
+                <View
+                  style={[
+                    t.pY3,
+                    t.wFull,
+                    t.textCenter,
+                    t.flexRow,
+                    t.itemsCenter,
+                    t.justifyStart,
+                  ]}
+                >
+                  <Image
+                    source={{
+                      uri: item.imgUrl,
+                    }}
+                    style={[
+                      t.w16,
+                      t.h16,
+                      t.roundedFull,
+                      t.overflowHidden,
+                      t.mX4,
+                    ]}
+                  />
+                  <View style={[]}>
+                    <Text
+                      style={[t.textXl, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
+                    >
+                      {item.name}
+                    </Text>
+                    <Text
+                      style={[t.textBase, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
+                    >
+                      {item.houseName}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
 
-            // Galio Card--------------------------------------------
-          )}
-          ItemSeparatorComponent={renderSeparator}
-        />
-      </View>
+              // Galio Card--------------------------------------------
+            )}
+            ItemSeparatorComponent={renderSeparator}
+          />
+        </View>
       </ImageBackground>
     </View>
   );

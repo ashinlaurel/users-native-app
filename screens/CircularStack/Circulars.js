@@ -20,11 +20,8 @@ import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
 import { DataContext } from "../../context/DataContext";
-<<<<<<< HEAD
 import bg from "../../assets/bg.png";
-=======
 import { LoginContext } from "../../context/LoginContext";
->>>>>>> 56ca58f8194327db658d01bcc3f5264d92a37f6e
 
 const Circulars = ({ navigation }) => {
   const { role } = useContext(LoginContext);
@@ -117,38 +114,38 @@ const Circulars = ({ navigation }) => {
 
   return (
     <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
-    <ImageBackground
+      <ImageBackground
         source={bg}
         style={{ width: "100%", height: "100%", alignItems: "center" }}
       >
-      <View style={[t.wFull]}>
-        <TextInput
-          placeholder="Search"
-          placeholderTextColor="black"
-          onChangeText={(text) => {
-            setSearch(text);
-            let temp = circulars.filter((circular) =>
-              circular.title.toLowerCase().includes(search.toLowerCase())
-            );
-            setFilterCirculars(temp);
-          }}
-          value={search}
-          style={[
-            t.pY1,
-            t.pX5,
-            t.bgWhite,
-            t.roundedFull,
-            // t.border,
-            t.mX5,
-            t.mY3,
-          ]}
-          keyboardType="default"
-        />
-        {/* <TouchableOpacity onPress={() => navigation.navigate("Create Event")}>
+        <View style={[t.wFull]}>
+          <TextInput
+            placeholder="Search"
+            placeholderTextColor="black"
+            onChangeText={(text) => {
+              setSearch(text);
+              let temp = circulars.filter((circular) =>
+                circular.title.toLowerCase().includes(search.toLowerCase())
+              );
+              setFilterCirculars(temp);
+            }}
+            value={search}
+            style={[
+              t.pY1,
+              t.pX5,
+              t.bgWhite,
+              t.roundedFull,
+              // t.border,
+              t.mX5,
+              t.mY3,
+            ]}
+            keyboardType="default"
+          />
+          {/* <TouchableOpacity onPress={() => navigation.navigate("Create Event")}>
           <Text style={[t.bgBlue400, t.mt5]}>Create Event</Text>
         </TouchableOpacity> */}
-      </View>
-      {/* <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
+        </View>
+        {/* <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
         <FlatList
           numColumns={1}
           keyExtractor={(item) => item.uid}
@@ -180,78 +177,78 @@ const Circulars = ({ navigation }) => {
           )}
         />
       </View> */}
-      <View
-        style={[
-          // t.flex,
-          // t.itemsCenter,
-          // t.justifyCenter,
-          t.mY1,
-          t.wFull,
-          // t.border2,
-        ]}
-      >
-        <FlatList
-          numColumns={1}
-          keyExtractor={(item) => item.uid}
-          contentContainerStyle={{ paddingBottom: 80 }}
-          data={filterCirculars}
-          refreshing={loading}
-          onRefresh={handleRefresh}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={[t.mB2, t.mX6, t.roundedBLg]}
-              onPress={() => {
-                navigation.navigate("Circular View", item);
-                // createTwoButtonAlert();
-              }}
-              onLongPress={() => {
-                role == 0
-                  ? createTwoButtonAlert(item.key)
-                  : console.log("Not Admin");
-              }}
-            >
-              <View
-                style={[
-                  t.pY8,
-                  t.wFull,
-                  t.textCenter,
-                  t.flexRow,
-                  t.itemsCenter,
-                  t.justifyStart,
-                  t.bgWhite,
-                  t.roundedBLg,
-                ]}
+        <View
+          style={[
+            // t.flex,
+            // t.itemsCenter,
+            // t.justifyCenter,
+            t.mY1,
+            t.wFull,
+            // t.border2,
+          ]}
+        >
+          <FlatList
+            numColumns={1}
+            keyExtractor={(item) => item.uid}
+            contentContainerStyle={{ paddingBottom: 80 }}
+            data={filterCirculars}
+            refreshing={loading}
+            onRefresh={handleRefresh}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={[t.mB2, t.mX6, t.roundedBLg]}
+                onPress={() => {
+                  navigation.navigate("Circular View", item);
+                  // createTwoButtonAlert();
+                }}
+                onLongPress={() => {
+                  role == 0
+                    ? createTwoButtonAlert(item.key)
+                    : console.log("Not Admin");
+                }}
               >
-                {/* <Image
+                <View
+                  style={[
+                    t.pY8,
+                    t.wFull,
+                    t.textCenter,
+                    t.flexRow,
+                    t.itemsCenter,
+                    t.justifyStart,
+                    t.bgWhite,
+                    t.roundedBLg,
+                  ]}
+                >
+                  {/* <Image
                   source={{
                     uri: item.imgUrl,
                   }}
                   style={[t.w16, t.h16, t.roundedFull, t.overflowHidden, t.mX4]}
                 /> */}
-                <Ionicons
-                  name="md-document"
-                  size={32}
-                  color="black"
-                  style={[t.mX2]}
-                />
-                <View style={[]}>
-                  <Text style={[t.textXl, t.mX2, t.mL3, t.mR32]}>
-                    {item.title}
-                  </Text>
-                  {/* <Text
+                  <Ionicons
+                    name="md-document"
+                    size={32}
+                    color="black"
+                    style={[t.mX2]}
+                  />
+                  <View style={[]}>
+                    <Text style={[t.textXl, t.mX2, t.mL3, t.mR32]}>
+                      {item.title}
+                    </Text>
+                    {/* <Text
                     style={[t.textBase, t.fontSemibold, t.mX2, t.mL3, t.mR32]}
                   >
                     {item.houseName}
                   </Text> */}
+                  </View>
                 </View>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
 
-            // Galio Card--------------------------------------------
-          )}
-          // ItemSeparatorComponent={renderSeparator}
-        />
-      </View>
+              // Galio Card--------------------------------------------
+            )}
+            // ItemSeparatorComponent={renderSeparator}
+          />
+        </View>
       </ImageBackground>
     </View>
   );
