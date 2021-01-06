@@ -37,12 +37,12 @@ const Message = ({ route, navigation }) => {
           t.justifyCenter,
           t.mY0,
           t.mX2,
-          t.mT40,
+          t.mT20,
           t.bgBlue300,
           t.rounded,
         ]}
       >
-        <View style={[t.textCenter, t.pB10, t.flexCol, t.itemsCenter]}>
+        <View style={[t.textCenter, t.pB2, t.flexCol, t.itemsCenter]}>
           <View>
             <Image
               source={{
@@ -52,21 +52,21 @@ const Message = ({ route, navigation }) => {
               style={[
                 t.border4,
                 t.borderWhite,
-                t.w48,
-                t.h48,
+                t.w24,
+                t.h24,
                 t.roundedFull,
                 t.overflowHidden,
                 t.mX4,
-                t._mT32,
+                t._mT20,
               ]}
             />
           </View>
           <Text
-            style={[t.text5xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
+            style={[t.text2xl, t.textCenter, t.pT1, t.textGray900, t.fontBold]}
           >
             {mainheading}
           </Text>
-          <Text style={[t.text2xl, t.textCenter, t.textGray800, t.pB2]}>
+          <Text style={[t.textLg, t.textCenter, t.textGray800, t.pB2]}>
             {moment().format("dddd, MMMM Do YYYY ")}
           </Text>
           {role == 0 ? (
@@ -80,16 +80,16 @@ const Message = ({ route, navigation }) => {
                     t.bgBlue600,
                     t.mX10,
                     t.mT3,
-                    t.roundedFull,
+                    t.roundedLg,
                     t.shadowMd,
                   ]}
                 >
                   <Text
                     style={[
-                      t.mX10,
+                      t.mX5,
                       t.mY2,
                       t.uppercase,
-                      t.fontBold,
+                      t.fontSemibold,
                       t.textWhite,
                     ]}
                   >
@@ -116,16 +116,16 @@ const Message = ({ route, navigation }) => {
                     t.bgBlue600,
                     t.mX10,
                     t.mT3,
-                    t.roundedFull,
+                    t.roundedLg,
                     t.shadowMd,
                   ]}
                 >
                   <Text
                     style={[
-                      t.mX10,
+                      t.mX5,
                       t.mY2,
                       t.uppercase,
-                      t.fontBold,
+                      t.fontSemibold,
                       t.textWhite,
                     ]}
                   >
@@ -154,8 +154,8 @@ const Message = ({ route, navigation }) => {
         <View style={[]}>
           <View style={[]}>
             <View style={[t.flex, t.flexCol, t.mX4]}>
-              <Text style={[t.text3xl, t.fontBold, t.mB1]}>{subheading}</Text>
-              <Text style={[t.textXl]}>{content}</Text>
+              <Text style={[t.textXl, t.fontBold, t.mB1]}>{subheading}</Text>
+              <Text style={[]}>{content}</Text>
             </View>
           </View>
         </View>
