@@ -30,6 +30,14 @@ const Login = (props) => {
 
   const loginUser = async (values) => {
     // console.log(values.email, values.password);
+    if(values.email==""){
+      Alert.alert("Please provide email");
+      return;
+    }
+    if(values.password==""){
+      Alert.alert("Please provide password");
+      return;
+    }
     let r = 2;
     try {
       let user = await auth.signInWithEmailAndPassword(
@@ -73,6 +81,10 @@ const Login = (props) => {
 
 const LoginWithCode = (mycode)=>{
     let data;
+    if(mycode==""){
+      Alert.alert("Please enter code");
+      return;
+    }
     db.collection("logincode").doc("1").get().then(function(doc) {
       if (doc.exists) {
           console.log("Document data:", doc.data());

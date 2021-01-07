@@ -19,7 +19,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const CreateNew = () => {
   const sendUser = async (values) => {
-    if (values.mainheading == "" || values.subheading == "") {
+    if (values.mainheading == "" || values.subheading == ""|| values.content == "") {
       Alert.alert("Error", "Please fill the information ");
       return;
     }

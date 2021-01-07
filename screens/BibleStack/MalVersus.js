@@ -4,7 +4,7 @@ import { rdb } from "../../firebase/firebase";
 import { View, Text, FlatList ,ImageBackground} from "react-native";
 import { t } from "react-native-tailwindcss";
 
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 // import malbible from "../../assets/malbiblejs";
 
 const MalVerses = ({ navigation, route }) => {

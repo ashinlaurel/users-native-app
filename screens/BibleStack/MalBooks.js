@@ -4,7 +4,7 @@ import { Entypo, MaterialIcons } from "@expo/vector-icons";
 
 import { View, Text, Button, FlatList, TouchableOpacity,ImageBackground } from "react-native";
 import { t } from "react-native-tailwindcss";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 
 const MalBooks = ({ navigation }) => {
   const [old, setOld] = useState(true);

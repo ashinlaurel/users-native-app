@@ -18,7 +18,7 @@ import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import { DataContext } from "../../context/DataContext";
 import { useFocusEffect } from "@react-navigation/native";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 
 const Home = ({ navigation }) => {
   const [users, setUsers] = useState([

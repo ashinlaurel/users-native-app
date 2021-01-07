@@ -16,7 +16,7 @@ import { LoginContext } from "../../context/LoginContext";
 import { ScrollView } from "react-native-gesture-handler";
 import * as Notifications from 'expo-notifications'
 //bg
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 import logo from "../../assets/logo.png";
 
 let ScreenHeight = Dimensions.get("window").height;

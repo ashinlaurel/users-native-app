@@ -12,7 +12,7 @@ import {
 import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import bible from "../../assets/biblejs";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 
 const Chapters = ({ navigation, route }) => {
   const { num, book } = route.params;
