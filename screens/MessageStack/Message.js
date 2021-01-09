@@ -29,13 +29,12 @@ const Message = ({ route, navigation }) => {
     navigation.navigate("Messages");
   };
   return (
-    <ScrollView>
+    <ScrollView style={[t.bgGray200]}>
       <View
         style={[
           t.flex,
           t.itemsCenter,
           t.justifyCenter,
-
           t.mX10,
           t.mT24,
           t.bgGray400,
@@ -77,7 +76,7 @@ const Message = ({ route, navigation }) => {
                   onPress={() => {
                     navigation.navigate("Edit Message", route.params);
                   }}
-                  style={[t.bgBlue600, t.mX1, t.mT3, t.roundedLg, t.shadowMd]}
+                  style={[t.mX1, t.mT3, t.roundedLg, t.border]}
                 >
                   <Text
                     style={[
@@ -85,7 +84,7 @@ const Message = ({ route, navigation }) => {
                       t.mY1,
                       t.uppercase,
                       t.fontSemibold,
-                      t.textWhite,
+                      t.textBlack,
                       t.textXs,
                     ]}
                   >
@@ -108,7 +107,7 @@ const Message = ({ route, navigation }) => {
                       { cancelable: false }
                     );
                   }}
-                  style={[t.bgBlue600, t.mX1, t.mT3, t.roundedLg, t.shadowMd]}
+                  style={[t.mX1, t.mT3, t.roundedLg, t.border]}
                 >
                   <Text
                     style={[
@@ -116,7 +115,7 @@ const Message = ({ route, navigation }) => {
                       t.mY1,
                       t.uppercase,
                       t.fontSemibold,
-                      t.textWhite,
+                      t.textBlack,
                       t.textXs,
                     ]}
                   >

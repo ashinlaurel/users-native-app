@@ -114,8 +114,17 @@ const CreateNewEvent = () => {
           }}
         >
           {(props) => (
-            <View style={[t.mY8, t.wFull, t.pX3]}>
-              <Text style={[t.text4xl, t.mB8, t.mX4, t.textCenter, t.fontBold]}>
+            <View style={[t.mY8, t.wFull, t.pX3, t.bgGray200]}>
+              <Text
+                style={[
+                  t.text4xl,
+                  t.mY8,
+                  t.mX4,
+                  t.textCenter,
+                  t.fontMedium,
+                  t.mB10,
+                ]}
+              >
                 Add New Event
               </Text>
               <TextInput
@@ -150,38 +159,48 @@ const CreateNewEvent = () => {
                   ))}
                 </Picker>
               </View>
-              <View style={[t.mY2, t.wFull, t.pX3]}>
-                <Button
-                  title="Select Date"
-                  onPress={showDatePicker}
-                  color="#1B719E"
-                />
-                <DateTimePickerModal
-                  isVisible={isDatePickerVisible}
-                  mode="date"
-                  onConfirm={(date) =>
-                    handleDateConfirm(date, props.setFieldValue)
-                  }
-                  onCancel={hideDatePicker}
-                />
-              </View>
-              <View style={[t.mY2, t.wFull, t.pX3]}>
-                <Button
-                  title="Select Time"
-                  onPress={showTimePicker}
-                  color="#1B719E"
-                />
-                <DateTimePickerModal
-                  isVisible={isTimePickerVisible}
-                  mode="time"
-                  onConfirm={(date) =>
-                    handleTimeConfirm(date, props.setFieldValue)
-                  }
-                  onCancel={hideTimePicker}
-                />
+              <View
+                style={[
+                  t.flex,
+                  t.flexRow,
+                  t.justifyCenter,
+                  t.itemsCenter,
+                  t.mT4,
+                ]}
+              >
+                <View style={[t.mY2, t.pX1, t.w40]}>
+                  <Button
+                    title="Select Date"
+                    onPress={showDatePicker}
+                    color="#1B719E"
+                  />
+                  <DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode="date"
+                    onConfirm={(date) =>
+                      handleDateConfirm(date, props.setFieldValue)
+                    }
+                    onCancel={hideDatePicker}
+                  />
+                </View>
+                <View style={[t.mY2, t.pX1, t.w40]}>
+                  <Button
+                    title="Select Time"
+                    onPress={showTimePicker}
+                    color="#1B719E"
+                  />
+                  <DateTimePickerModal
+                    isVisible={isTimePickerVisible}
+                    mode="time"
+                    onConfirm={(date) =>
+                      handleTimeConfirm(date, props.setFieldValue)
+                    }
+                    onCancel={hideTimePicker}
+                  />
+                </View>
               </View>
 
-              <View style={[t.mY2, t.mX3]}>
+              <View style={[t.mY2, t.mX24]}>
                 <Button
                   title="Submit"
                   color="#1B719E"

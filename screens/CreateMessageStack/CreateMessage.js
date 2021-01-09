@@ -102,7 +102,7 @@ const CreateMessage = () => {
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedLg, t.mY3, t.h40]}
               />
 
-              <View style={[t.mY2]}>
+              <View style={[t.mY2, t.wFull, t.pX32]}>
                 <Button
                   title="Submit"
                   color="gray"

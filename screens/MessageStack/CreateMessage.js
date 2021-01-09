@@ -65,7 +65,7 @@ const CreateNew = () => {
           {(props) => (
             <View style={[t.mY8, t.wFull, t.pX3]}>
               <Text style={[t.text4xl, t.mY8, t.mX4, t.textCenter, t.fontBold]}>
-                Add New Message
+                Add New Messagez
               </Text>
               <TextInput
                 placeholder="Main Heading"

@@ -41,7 +41,7 @@ const AdminDetails = ({ route, navigation }) => {
         t.itemsCenter,
         t.justifyCenter,
         t.mY0,
-        t.mX1,
+        t.mX8,
         t.mT10,
         t.mB20,
         t.bgGray100,

@@ -32,7 +32,7 @@ const CreateNewOrganisation = () => {
       })
       .then(() => {
         console.log("here");
-        Alert.alert("New Organisation created")
+        Alert.alert("New Organisation created");
       })
 
       .catch((err) => {
@@ -62,7 +62,16 @@ const CreateNewOrganisation = () => {
         >
           {(props) => (
             <View style={[t.mY8, t.wFull, t.pX3]}>
-              <Text style={[t.text4xl, t.mB8, t.mX4, t.textCenter, t.fontBold]}>
+              <Text
+                style={[
+                  t.text4xl,
+                  t.mY8,
+                  t.mX4,
+                  t.textCenter,
+                  t.fontMedium,
+                  t.mB10,
+                ]}
+              >
                 Add New Organisation
               </Text>
               <TextInput
@@ -70,7 +79,7 @@ const CreateNewOrganisation = () => {
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("name")}
                 value={props.values.name}
-                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3, t.mT4]}
               />
 
               <TextInput
@@ -102,7 +111,7 @@ const CreateNewOrganisation = () => {
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
 
-              <View style={[t.mY2]}>
+              <View style={[t.mY2, t.wFull, t.pX32, t.mT4]}>
                 <Button
                   title="Submit"
                   color="gray"
