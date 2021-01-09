@@ -8,6 +8,7 @@ import {
   Button,
   Modal,
   Image,
+  Alert,
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
@@ -19,8 +20,13 @@ const Register = (props) => {
   const [modalState, setModalState] = useState(false);
   const { navigate } = props.navigation;
   const registerUser = (values) => {
+    if (values.name=="" || values.email=="" ||values.password=="") {
+      Alert.alert("Provide required fields")
+      // setError("Passwords Dont Match!");
+      return;
+    }
     if (values.password != values.confPassword) {
-      setError("Passwords Dont Match!");
+      Alert.alert("Passwords Dont Match!");
       return;
     }
     // console.log(values);

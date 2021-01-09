@@ -23,6 +23,9 @@ import CreateLectionaryStack from "./CreateLectionaryStack/CreateLectionaryStack
 import LoginCode from "./LoginCodeStack/LoginCode";
 import ContactUs from "./ContactUs/ContactUs"
 import ContactUsInfoStack from "./ContactUs/ContactUsInfoStack";
+import CreateMessageStack from "./CreateMessageStack/CreateMessageStack";
+import CreateOrganisationStack from "./CreateOrganisationStack/CreateOrganisationStack";
+import CreateLoginCodeStack from "./CreateLoginCodeStack/CreateLoginCodeStack";
 
 const Drawer = createDrawerNavigator();
 
@@ -41,7 +44,7 @@ export default function MainDrawer() {
         <Drawer.Screen name="Sign Up" component={RegisterStack} />
         {isLoggedIn && role == 0 ? (
           <>
-            <Drawer.Screen name="Create Message" component={CreateNewMessage} />
+            <Drawer.Screen name="Create Message" component={CreateMessageStack} />
           </>
         ) : null}
         {isLoggedIn && role == 0 ? (
@@ -51,14 +54,14 @@ export default function MainDrawer() {
         ) : null}
         {isLoggedIn && role == 0 ? (
           <>
-            <Drawer.Screen name="Create Event" component={CreateNewEvent} />
+            <Drawer.Screen name="Create Event" component={CreateEventStack} />
           </>
         ) : null}
         {isLoggedIn && role == 0 ? (
           <>
             <Drawer.Screen
               name="Create Organisation"
-              component={CreateNewOrganisation}
+              component={CreateOrganisationStack}
             />
           </>
         ) : null}
@@ -80,7 +83,7 @@ export default function MainDrawer() {
           <>
             <Drawer.Screen
               name="Add/Remove Login code"
-              component={LoginCode}
+              component={CreateLoginCodeStack}
             />
           </>
         ) : null}

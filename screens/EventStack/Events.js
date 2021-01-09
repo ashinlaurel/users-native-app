@@ -17,7 +17,7 @@ import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
 import { DataContext } from "../../context/DataContext";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 
 const Events = ({ navigation }) => {
   const [events, setEvents] = useState([

@@ -5,7 +5,7 @@ import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 
 const BibleInitial = ({ navigation }) => {
   const [events, setEvents] = useState([

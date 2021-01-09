@@ -28,6 +28,10 @@ const ContactUsUpdate = () => {
  
   const sendUser = async (values) => {
     // console.log(values.name == "");
+    if(values.name=="" || values.phone==""){
+      Alert.alert("Required fields are not filled");
+      return;
+    }
 
     var Ref = db.collection("contactinfo").doc("nE27zOdX2f17ug2kg7kh");
 

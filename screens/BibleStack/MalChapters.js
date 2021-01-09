@@ -13,7 +13,7 @@ import { t } from "react-native-tailwindcss";
 import { TextInput } from "react-native-gesture-handler";
 import malbible from "../../assets/biblejs";
 // import malbible from "../../assets/malbiblejs";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 
 const MalChapters = ({ navigation, route }) => {
   const { num, book } = route.params;

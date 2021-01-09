@@ -17,7 +17,7 @@ import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
 import { ScrollView } from "react-native-gesture-handler";
 
-const CreateNew = () => {
+const CreateMessage = () => {
   const sendUser = async (values) => {
     if (values.mainheading == "" || values.subheading == ""|| values.content == "") {
       Alert.alert("Error", "Please fill the information ");
@@ -103,4 +103,4 @@ const CreateNew = () => {
   );
 };
 
-export default CreateNew;
+export default CreateMessage;

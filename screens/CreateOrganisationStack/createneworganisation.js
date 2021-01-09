@@ -17,22 +17,22 @@ import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
 import { ScrollView } from "react-native-gesture-handler";
 
-const CreateNew = () => {
+const CreateNewOrganisation = () => {
   const sendUser = async (values) => {
-    if (values.mainheading == "" || values.subheading == ""|| values.content == "") {
-      Alert.alert("Error", "Please fill the information ");
+    if (values.name == "") {
+      Alert.alert("Error", "A Organisation name is necessary ");
       return;
     }
     let newId, URL;
     console.log(values);
-    db.collection("messages")
+    db.collection("organisations")
       .add(values)
       .then((ref) => {
         console.log("Added document with ID: ", ref.id);
       })
       .then(() => {
         console.log("here");
-        Alert.alert("New message created");
+        Alert.alert("New Organisation created")
       })
 
       .catch((err) => {
@@ -47,9 +47,11 @@ const CreateNew = () => {
       <View style={[t.flexCol, t.itemsCenter, t.justifyCenter]}>
         <Formik
           initialValues={{
-            mainheading: "",
-            subheading: "",
-            content: "",
+            name: "",
+            address: "",
+            phone: "",
+            email: "",
+            details: "",
           }}
           onSubmit={(values, actions) => {
             actions.resetForm();
@@ -60,32 +62,44 @@ const CreateNew = () => {
         >
           {(props) => (
             <View style={[t.mY8, t.wFull, t.pX3]}>
-              <Text style={[t.text4xl, t.mY8, t.mX4, t.textCenter, t.fontBold]}>
-                Add New Message
+              <Text style={[t.text4xl, t.mB8, t.mX4, t.textCenter, t.fontBold]}>
+                Add New Organisation
               </Text>
               <TextInput
-                placeholder="Main Heading"
+                placeholder="Organisation Name"
                 placeholderTextColor="black"
-                onChangeText={props.handleChange("mainheading")}
-                value={props.values.mainheading}
+                onChangeText={props.handleChange("name")}
+                value={props.values.name}
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
 
               <TextInput
-                placeholder="Sub Heading"
+                placeholder="Address"
                 placeholderTextColor="black"
-                onChangeText={props.handleChange("subheading")}
-                value={props.values.subheading}
+                onChangeText={props.handleChange("address")}
+                value={props.values.address}
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
               <TextInput
-                placeholder="Message"
+                placeholder="Phone"
                 placeholderTextColor="black"
-                onChangeText={props.handleChange("content")}
-                value={props.values.content}
-                multiline={true}
-                textAlignVertical="top"
-                style={[t.pY2, t.pX4, t.bgWhite, t.roundedLg, t.mY3, t.h40]}
+                onChangeText={props.handleChange("phone")}
+                value={props.values.phone}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
+              />
+              <TextInput
+                placeholder="Email"
+                placeholderTextColor="black"
+                onChangeText={props.handleChange("email")}
+                value={props.values.email}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
+              />
+              <TextInput
+                placeholder="Details"
+                placeholderTextColor="black"
+                onChangeText={props.handleChange("details")}
+                value={props.values.details}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
 
               <View style={[t.mY2]}>
@@ -103,4 +117,4 @@ const CreateNew = () => {
   );
 };
 
-export default CreateNew;
+export default CreateNewOrganisation;

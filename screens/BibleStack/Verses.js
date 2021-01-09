@@ -5,7 +5,7 @@ import { View, Text, FlatList ,ImageBackground} from "react-native";
 import { t } from "react-native-tailwindcss";
 
 import bible from "../../assets/biblejs";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 
 const Verses = ({ navigation, route }) => {
   const [verses, setVerses] = useState([]);
