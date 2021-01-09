@@ -11,7 +11,9 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 const AdminDetails = ({ route, navigation }) => {
   // console.log("hello");
-  const { user, setUser, isLoggedIn, setIsLoggedIn ,setRole} = useContext(LoginContext);
+  const { user, setUser, isLoggedIn, setIsLoggedIn, setRole } = useContext(
+    LoginContext
+  );
 
   const logout = async () => {
     auth.signOut().then(
@@ -25,7 +27,6 @@ const AdminDetails = ({ route, navigation }) => {
         await AsyncStorage.setItem("isLoggedIn", "false");
         navigation.navigate("Home");
         setRole(2);
-
       },
       function (error) {
         // An error happened.
@@ -51,7 +52,7 @@ const AdminDetails = ({ route, navigation }) => {
       <View>
         <FontAwesome
           name="user-circle"
-          size={64}
+          size={100}
           color="#e80e5a"
           style={[t.mT4, t.textCenter]}
         />
@@ -59,13 +60,13 @@ const AdminDetails = ({ route, navigation }) => {
 
       <View style={[]}>
         <View style={[t.flex, t.flexRow, t.pY2, t.mY1]}>
-          <Text style={[t.text2xl]}>Email: {user.email}</Text>
+          <Text style={[t.textBase]}>Email: {user.email}</Text>
         </View>
       </View>
       {/* <Text style={[t.textBase, t.textCenter, t.mY5]}>
         You are logged in as Admin
       </Text> */}
-      <View style={[t.mX3]}>
+      <View style={[t.mX3, t.mY10]}>
         <Button title="Logout" color="" onPress={logout} />
       </View>
     </View>

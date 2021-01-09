@@ -14,7 +14,7 @@ import {
 import { t } from "react-native-tailwindcss";
 import { LoginContext } from "../../context/LoginContext";
 import { ScrollView } from "react-native-gesture-handler";
-import * as Notifications from 'expo-notifications'
+import * as Notifications from "expo-notifications";
 //bg
 import bg from "../../assets/bg.jpg";
 import logo from "../../assets/logo.png";
@@ -64,9 +64,9 @@ const InitialScreen = ({ navigation }) => {
                   ]}
                 >
                   <TouchableOpacity
-                    onPress={ () => {
+                    onPress={() => {
                       // await schedulePushNotification();
-                      navigation.navigate("Message")
+                      navigation.navigate("Message");
                     }}
                   >
                     <Entypo
@@ -330,8 +330,8 @@ async function schedulePushNotification() {
   await Notifications.scheduleNotificationAsync({
     content: {
       title: "You've got mail! 📬",
-      body: 'Here is the notification body',
-      data: { data: 'goes here' },
+      body: "Here is the notification body",
+      data: { data: "goes here" },
     },
     trigger: { seconds: 2 },
   });

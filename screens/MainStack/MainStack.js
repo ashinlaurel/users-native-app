@@ -52,7 +52,7 @@ export default function MainStack() {
                   onPress={() => {
                     console.log(isLoggedIn);
                     isLoggedIn
-                      ? navigation.navigate("AdminDetails")
+                      ? navigation.navigate("Account")
                       : navigation.navigate("Login");
                   }}
                 >
@@ -165,7 +165,7 @@ export default function MainStack() {
           }}
         />
         <Stack.Screen
-          name="AdminDetails"
+          name="Account"
           component={AdminDetails}
           options={{
             headerStyle: {
