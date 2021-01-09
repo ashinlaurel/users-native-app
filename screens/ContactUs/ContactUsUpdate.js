@@ -30,22 +30,22 @@ const ContactUsUpdate = () => {
       return;
     }
 
-    // var Ref = db.collection("contactinfo").doc("nE27zOdX2f17ug2kg7kh");
+    var Ref = db.collection("contactinfo").doc("nE27zOdX2f17ug2kg7kh");
 
-    // // Set the "capital" field of the city 'DC'
-    //  Ref.update({
-    //   name: values.name,
-    //   phone: values.phone
-    // })
-    // .then(function() {
-    //     console.log("Document successfully updated!");
-    //     Alert.alert("Contact Updated");
-    // })
-    // .catch(function(error) {
-    //     // The document probably doesn't exist.
-    //     console.error("Error updating document: ", error);
-    //     Alert.alert("Error");
-    // });
+    // Set the "capital" field of the city 'DC'
+    Ref.update({
+      name: values.name,
+      phone: values.phone,
+    })
+      .then(function () {
+        console.log("Document successfully updated!");
+        Alert.alert("Contact Updated");
+      })
+      .catch(function (error) {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
+        Alert.alert("Error");
+      });
   };
 
   return (
