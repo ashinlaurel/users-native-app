@@ -13,7 +13,7 @@ import { LoginContext } from "../../context/LoginContext";
 const LectDetails = ({ route, navigation }) => {
   //
   // Extracting from the route params-------------------------------------------------
-  const { item,lectionaryitems } = route.params;
+  const { item, lectionaryitems } = route.params;
   const [lessons, setLessons] = useState([]);
 
   const { role } = useContext(LoginContext);
@@ -34,17 +34,22 @@ const LectDetails = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    let temp=[]
-    lectionaryitems.map(i=>{
-      if(`${i.month} ${i.year}`==item){
-        console.log("foud",i);
-        temp=temp.concat({title:`${i.heading} - ${moment(i.date).format('MMM Do')}`,lesson:"",key:i.key,obj:i})
-        temp=temp.concat(i.lessons);
+    let temp = [];
+    lectionaryitems.map((i) => {
+      if (`${i.month} ${i.year}` == item) {
+        console.log("foud", i);
+        temp = temp.concat({
+          title: `${i.heading} - ${moment(i.date).format("MMM Do")}`,
+          lesson: "",
+          key: i.key,
+          obj: i,
+        });
+        temp = temp.concat(i.lessons);
       }
-    })
+    });
     // console.log(temp)
-    setLessons(temp)
-  }, [])
+    setLessons(temp);
+  }, []);
 
   const handleDelete = (key) => {
     // console.log(key);
@@ -94,10 +99,10 @@ const LectDetails = ({ route, navigation }) => {
           </View>
           <Text
             style={[t.text2xl, t.textCenter, t.pT1, t.textGray800, t.fontBold]}
-          >{item}
+          >
+            {item}
             {/* {moment(date).format("MMMM YYYY")} */}
           </Text>
-          
         </View>
       </View>
       {/* Details---------------------------- */}
@@ -143,106 +148,108 @@ const LectDetails = ({ route, navigation }) => {
                     t.flexRow,
                     t.itemsCenter,
                     t.justifyStart,
-                    t.flexWrap
+                    t.flexWrap,
                   ]}
                 >
                   <View
-                    style={[t.flex, t.flexRow, t.justifyBetween, t.itemsCenter,t.flexWrap]}
-                  >
-                  {item.key?(
-                    <>
-                    <Text
-                      style={[t.textBase, t.fontSemibold, t.mX2, t.mL3,t.fontBold]}
-                    >
-                      {item.title}
-                    </Text>
-
-                    {role == 0 ? (
-                        <>
-
-                        <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate("Edit Lectionary", item);
-                  }}
-                  style={[
-                    t.bgBlue600,
-                    t.mX3,
-                    t.mT1,
-                    t.roundedSm,
-                    t.shadowMd,
-                  ]}
-                >
-                  <Text
                     style={[
-                      t.mX3,
-                      t.mY1,
-                      t.uppercase,
-                      t.fontBold,
-                      t.textWhite,
-                      t.textSm,
+                      t.flex,
+                      t.flexRow,
+                      t.justifyBetween,
+                      t.itemsCenter,
+                      t.flexWrap,
                     ]}
                   >
-                    Edit
-                  </Text>
-                </TouchableOpacity>
+                    {item.key ? (
+                      <>
+                        <Text
+                          style={[
+                            t.textBase,
+                            t.fontSemibold,
+                            t.mX2,
+                            t.mL3,
+                            t.fontBold,
+                          ]}
+                        >
+                          {item.title}
+                        </Text>
 
+                        {role == 0 ? (
+                          <>
+                            <TouchableOpacity
+                              onPress={() => {
+                                navigation.navigate("Edit Lectionary", item);
+                              }}
+                              style={[t.mX1, t.roundedLg, t.border, t.mL16]}
+                            >
+                              <Text
+                                style={[
+                                  t.mX3,
+                                  t.mY1,
+                                  t.uppercase,
+                                  t.fontBold,
+                                  t.textBlack,
+                                  t.textXs,
+                                ]}
+                              >
+                                Edit
+                              </Text>
+                            </TouchableOpacity>
 
-                        <TouchableOpacity
-                  onPress={() => {
-                    Alert.alert(
-                      "Are you sure you want to delete this message permanently ?",
-                      "",
-                      [
-                        {
-                          text: "Yes",
-                          onPress: () => handleDelete(item.key),
-                          style: "cancel",
-                        },
-                        { text: "No", onPress: () => console.log("No delete") },
-                      ],
-                      { cancelable: false }
-                    );
-                  }}
-                  style={[
-                    t.bgBlue600,
-                    t.mX2,
-                    t.mT1,
-                    t.roundedSm,
-                    t.shadowMd,
-                  ]}
-                >
-                  <Text
-                    style={[
-                      t.mX3,
-                      t.mY1,
-                      t.uppercase,
-                      t.fontBold,
-                      t.textWhite,
-                      t.textSm
-                    ]}
-                  >
-                    Delete
-                  </Text>
-                </TouchableOpacity>
+                            <TouchableOpacity
+                              onPress={() => {
+                                Alert.alert(
+                                  "Are you sure you want to delete this message permanently ?",
+                                  "",
+                                  [
+                                    {
+                                      text: "Yes",
+                                      onPress: () => handleDelete(item.key),
+                                      style: "cancel",
+                                    },
+                                    {
+                                      text: "No",
+                                      onPress: () => console.log("No delete"),
+                                    },
+                                  ],
+                                  { cancelable: false }
+                                );
+                              }}
+                              style={[t.mX1, t.roundedLg, t.border]}
+                            >
+                              <Text
+                                style={[
+                                  t.mX3,
+                                  t.mY1,
+                                  t.uppercase,
+                                  t.fontBold,
+                                  t.textBlack,
+                                  t.textXs,
+                                ]}
+                              >
+                                Delete
+                              </Text>
+                            </TouchableOpacity>
+                          </>
+                        ) : null}
+                      </>
+                    ) : (
+                      <Text style={[t.textBase, t.fontSemibold, t.mX2, t.mL3]}>
+                        {item.title}
+                      </Text>
+                    )}
 
-                      </>):null}
-
-                    </>
-                  ):(
                     <Text
-                      style={[t.textBase, t.fontSemibold, t.mX2, t.mL3,]}
-                    >
-                      {item.title}
-                    </Text>
-                  )}
-                    
-                    
-                    <Text
-                      style={[t.textBase,t.flex1, t.fontSemibold, t.mX1, t.mL3]}
+                      style={[
+                        t.textBase,
+                        t.flex1,
+                        t.fontSemibold,
+                        t.mX1,
+                        t.mL3,
+                      ]}
                     >
                       {item.lesson}
                     </Text>
-                    
                   </View>
                 </View>
               </TouchableOpacity>

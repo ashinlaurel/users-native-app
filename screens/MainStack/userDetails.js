@@ -115,9 +115,9 @@ const UserDetails = ({ route, navigation }) => {
           t.itemsCenter,
           t.justifyCenter,
           t.mY0,
-          t.mX2,
+          t.mX4,
           t.mT40,
-          t.bgRed300,
+          t.bgGray400,
           t.rounded,
         ]}
       >
@@ -187,29 +187,14 @@ const UserDetails = ({ route, navigation }) => {
                 t.shadowMd,
                 t.pX5,
                 t.flexWrap,
+                t.mX2,
+                t.roundedL,
               ]}
             >
               <Entypo name="pin" size={24} color="grey" style={[t.mX2]} />
               <Text style={[t.textBase, t.fontBold]}>Occupation: </Text>
               <Text style={[t.textBase]}>{job}</Text>
             </View>
-
-            {/* <View
-              style={[
-                t.flex,
-                t.flexRow,
-                t.pY2,
-                t.mY1,
-                t.bgWhite,
-                t.shadowMd,
-                t.pX5,
-                t.flexWrap,
-              ]}
-            >
-              <Entypo name="calendar" size={24} color="grey" style={[t.mX2]} />
-              <Text style={[t.textBase, t.fontBold]}>Age: </Text>
-              <Text style={[t.textBase]}>{age}</Text>
-            </View> */}
 
             <View
               style={[
@@ -221,6 +206,8 @@ const UserDetails = ({ route, navigation }) => {
                 t.shadowMd,
                 t.pX5,
                 t.flexWrap,
+                t.mX2,
+                t.roundedL,
               ]}
             >
               <TouchableOpacity
@@ -247,6 +234,8 @@ const UserDetails = ({ route, navigation }) => {
               t.shadowMd,
               t.pX5,
               t.flexWrap,
+              t.mX2,
+              t.roundedL,
             ]}
           >
             <Entypo name="calendar" size={24} color="grey" style={[t.mX2]} />
@@ -267,6 +256,8 @@ const UserDetails = ({ route, navigation }) => {
               t.shadowMd,
               t.pX5,
               t.flexWrap,
+              t.mX2,
+              t.roundedL,
             ]}
           >
             <Entypo name="calendar" size={24} color="grey" style={[t.mX2]} />
@@ -276,15 +267,31 @@ const UserDetails = ({ route, navigation }) => {
         </View>
         {role == 0 ? (
           <>
-            <View style={[t.flex, t.flexRow, t.wFull, t.justifyAround]}>
+            <View
+              style={[
+                t.flex,
+                t.flexRow,
+                t.justifyCenter,
+                t.pL1,
+                t.wFull,
+                t.mT4,
+              ]}
+            >
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate("EditMember", route.params);
                 }}
-                style={[t.bgBlue600, t.mX10, t.mY5, t.roundedFull, t.shadowMd]}
+                style={[t.mX1, t.mT3, t.roundedLg, t.border]}
               >
                 <Text
-                  style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}
+                  style={[
+                    t.mX4,
+                    t.mY1,
+                    t.uppercase,
+                    t.fontSemibold,
+                    t.textBlack,
+                    t.textXs,
+                  ]}
                 >
                   Edit
                 </Text>
@@ -305,10 +312,17 @@ const UserDetails = ({ route, navigation }) => {
                     { cancelable: false }
                   );
                 }}
-                style={[t.bgBlue600, t.mX10, t.mY5, t.roundedFull, t.shadowMd]}
+                style={[t.mX1, t.mT3, t.roundedLg, t.border]}
               >
                 <Text
-                  style={[t.mX10, t.mY2, t.uppercase, t.fontBold, t.textWhite]}
+                  style={[
+                    t.mX4,
+                    t.mY1,
+                    t.uppercase,
+                    t.fontSemibold,
+                    t.textBlack,
+                    t.textXs,
+                  ]}
                 >
                   Delete
                 </Text>

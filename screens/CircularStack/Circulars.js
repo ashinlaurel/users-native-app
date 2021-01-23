@@ -20,7 +20,7 @@ import { TextInput } from "react-native-gesture-handler";
 import { Card } from "@paraboly/react-native-card";
 import moment from "moment";
 import { DataContext } from "../../context/DataContext";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 import { LoginContext } from "../../context/LoginContext";
 
 const Circulars = ({ navigation }) => {
@@ -209,14 +209,15 @@ const Circulars = ({ navigation }) => {
               >
                 <View
                   style={[
-                    t.pY8,
+                    t.pY4,
                     t.wFull,
                     t.textCenter,
                     t.flexRow,
                     t.itemsCenter,
                     t.justifyStart,
                     t.bgWhite,
-                    t.roundedBLg,
+                    t.roundedLg,
+                    t.pX4,
                   ]}
                 >
                   {/* <Image
@@ -227,7 +228,7 @@ const Circulars = ({ navigation }) => {
                 /> */}
                   <Ionicons
                     name="md-document"
-                    size={32}
+                    size={28}
                     color="black"
                     style={[t.mX2]}
                   />

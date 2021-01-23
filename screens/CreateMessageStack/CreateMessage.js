@@ -19,7 +19,11 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const CreateMessage = () => {
   const sendUser = async (values) => {
-    if (values.mainheading == "" || values.subheading == ""|| values.content == "") {
+    if (
+      values.mainheading == "" ||
+      values.subheading == "" ||
+      values.content == ""
+    ) {
       Alert.alert("Error", "Please fill the information ");
       return;
     }
@@ -59,16 +63,26 @@ const CreateMessage = () => {
           }}
         >
           {(props) => (
-            <View style={[t.mY8, t.wFull, t.pX3]}>
-              <Text style={[t.text4xl, t.mY8, t.mX4, t.textCenter, t.fontBold]}>
+            <View style={[t.mY8, t.wFull, t.pX3, t.bgGray200]}>
+              <Text
+                style={[
+                  t.text4xl,
+                  t.mY8,
+                  t.mX4,
+                  t.textCenter,
+                  t.fontMedium,
+                  t.mB10,
+                ]}
+              >
                 Add New Message
               </Text>
+
               <TextInput
                 placeholder="Main Heading"
                 placeholderTextColor="black"
                 onChangeText={props.handleChange("mainheading")}
                 value={props.values.mainheading}
-                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
+                style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3, t.mT10]}
               />
 
               <TextInput
@@ -88,7 +102,7 @@ const CreateMessage = () => {
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedLg, t.mY3, t.h40]}
               />
 
-              <View style={[t.mY2]}>
+              <View style={[t.mY2, t.wFull, t.pX32]}>
                 <Button
                   title="Submit"
                   color="gray"

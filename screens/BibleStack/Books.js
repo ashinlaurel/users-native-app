@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/firebase";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 
-import { View, Text, Button, FlatList, TouchableOpacity ,ImageBackground} from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  FlatList,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import { t } from "react-native-tailwindcss";
 
 import bg from "../../assets/bg.jpg";
@@ -313,76 +320,115 @@ const Books = ({ navigation }) => {
 
   return (
     <View style={[t.flex, t.justifyCenter, t.itemsCenter]}>
-    <ImageBackground
+      <ImageBackground
         source={bg}
         style={{ width: "100%", height: "100%", alignItems: "center" }}
       >
-      <View style={[t.mT2, t.mY3]}>
-        <Button
-          title={old ? "New Testement" : "Old Testement"}
-          onPress={() => setOld(!old)}
-          style={[]}
-        />
-      </View>
-      <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
-        <FlatList
-          numColumns={1}
-          keyExtractor={(item) => item.num}
-          contentContainerStyle={{ paddingBottom: 80 }}
-          data={books}
-          // refreshing={loading}
-          // onRefresh={handleRefresh}
-          renderItem={({ item }) => (
-            <View>
-              {(old && parseInt(item.num) < 40) ||
-              (!old && parseInt(item.num) >= 40) ? (
-                <View>
-                  <TouchableOpacity
-                    style={[]}
-                    onPress={() => {
-                      // console.log(item);
-                      // handlePress(item);
-                      navigation.navigate("Chapters", item);
-                    }}
-                  >
-                    <View
-                      style={[
-                        t.pY3,
-                        t.wFull,
-                        t.textCenter,
-                        t.flexRow,
-                        t.itemsCenter,
-                        t.justifyStart,
-                      ]}
+        <View style={[t.mT6, t.mB2, t.flexRow, t.flex]}>
+          <TouchableOpacity
+            onPress={() => {
+              if (!old) {
+                setOld(!old);
+              }
+            }}
+            style={[t.mX1, t.mT3, t.roundedLg, t.border]}
+          >
+            <Text
+              style={[
+                t.mX4,
+                t.mY1,
+                t.uppercase,
+                t.fontSemibold,
+                t.textBlack,
+                t.textSm,
+              ]}
+            >
+              Old Testament
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              if (old) {
+                setOld(!old);
+              }
+            }}
+            style={[t.mX1, t.mT3, t.roundedLg, t.border]}
+          >
+            <Text
+              style={[
+                t.mX4,
+                t.mY1,
+                t.uppercase,
+                t.fontSemibold,
+                t.textBlack,
+                t.textSm,
+              ]}
+            >
+              New Testament
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={[t.flex, t.itemsCenter, t.justifyCenter, t.mY1]}>
+          <FlatList
+            numColumns={1}
+            keyExtractor={(item) => item.num}
+            contentContainerStyle={{ paddingBottom: 80 }}
+            data={books}
+            // refreshing={loading}
+            // onRefresh={handleRefresh}
+            renderItem={({ item }) => (
+              <View>
+                {(old && parseInt(item.num) < 40) ||
+                (!old && parseInt(item.num) >= 40) ? (
+                  <View>
+                    <TouchableOpacity
+                      style={[]}
+                      onPress={() => {
+                        // console.log(item);
+                        // handlePress(item);
+                        navigation.navigate("Chapters", item);
+                      }}
                     >
-                      <Entypo
-                        name="book"
-                        size={32}
-                        color="black"
-                        style={[t.mT4, t.textCenter]}
-                      />
-                      <View style={[]}>
-                        <Text
-                          style={[
-                            t.text2xl,
-                            t.fontSemibold,
-                            t.mX2,
-                            t.mL3,
-                            t.mR32,
-                          ]}
-                        >
-                          {item.book}
-                        </Text>
+                      <View
+                        style={[
+                          t.pY3,
+                          t.wFull,
+                          t.textCenter,
+                          t.flexRow,
+                          t.itemsCenter,
+                          t.justifyStart,
+                          t.borderB,
+                          t.borderGray500,
+                        ]}
+                      >
+                        <Entypo
+                          name="book"
+                          size={28}
+                          color="black"
+                          style={[t.mT4, t.textCenter]}
+                        />
+                        <View style={[]}>
+                          <Text
+                            style={[
+                              t.textXl,
+                              t.fontSemibold,
+                              t.mX2,
+                              t.mL3,
+                              t.mR40,
+                            ]}
+                          >
+                            {item.book}
+                          </Text>
+                        </View>
                       </View>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              ) : null}
-            </View>
-          )}
-          // ItemSeparatorComponent={renderSeparator}
-        />
-      </View>
+                    </TouchableOpacity>
+                  </View>
+                ) : null}
+              </View>
+            )}
+            // ItemSeparatorComponent={renderSeparator}
+          />
+        </View>
       </ImageBackground>
     </View>
   );

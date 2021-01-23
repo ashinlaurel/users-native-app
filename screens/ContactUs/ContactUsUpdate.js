@@ -19,16 +19,13 @@ import { Formik } from "formik";
 import { ScrollView } from "react-native-gesture-handler";
 
 const ContactUsUpdate = () => {
-  
   const [err, setErr] = useState("");
 
   // Getting organisations for drop down menu -------------------------------------------------------------------
-  
 
- 
   const sendUser = async (values) => {
     // console.log(values.name == "");
-    if(values.name=="" || values.phone==""){
+    if (values.name == "" || values.phone == "") {
       Alert.alert("Required fields are not filled");
       return;
     }
@@ -36,20 +33,19 @@ const ContactUsUpdate = () => {
     var Ref = db.collection("contactinfo").doc("nE27zOdX2f17ug2kg7kh");
 
     // Set the "capital" field of the city 'DC'
-     Ref.update({
+    Ref.update({
       name: values.name,
-      phone: values.phone
+      phone: values.phone,
     })
-    .then(function() {
+      .then(function () {
         console.log("Document successfully updated!");
         Alert.alert("Contact Updated");
-    })
-    .catch(function(error) {
+      })
+      .catch(function (error) {
         // The document probably doesn't exist.
         console.error("Error updating document: ", error);
         Alert.alert("Error");
-    });
-    
+      });
   };
 
   return (
@@ -59,8 +55,6 @@ const ContactUsUpdate = () => {
           initialValues={{
             name: "",
             phone: "",
-          
-            
           }}
           onSubmit={(values, actions) => {
             actions.resetForm();
@@ -88,8 +82,6 @@ const ContactUsUpdate = () => {
                 value={props.values.phone}
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
               />
-        
-
 
               <View style={[t.mY2, t.mX3]}>
                 <Button

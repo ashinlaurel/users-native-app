@@ -29,16 +29,15 @@ const Message = ({ route, navigation }) => {
     navigation.navigate("Messages");
   };
   return (
-    <ScrollView>
+    <ScrollView style={[t.bgGray200]}>
       <View
         style={[
           t.flex,
           t.itemsCenter,
           t.justifyCenter,
-          t.mY0,
-          t.mX2,
-          t.mT20,
-          t.bgBlue300,
+          t.mX10,
+          t.mT24,
+          t.bgGray400,
           t.rounded,
         ]}
       >
@@ -61,8 +60,9 @@ const Message = ({ route, navigation }) => {
               ]}
             />
           </View>
+
           <Text
-            style={[t.text2xl, t.textCenter, t.pT1, t.textGray900, t.fontBold]}
+            style={[t.text3xl, t.textCenter, t.pT1, t.textGray900, t.fontBold]}
           >
             {mainheading}
           </Text>
@@ -71,26 +71,21 @@ const Message = ({ route, navigation }) => {
           </Text>
           {role == 0 ? (
             <>
-              <View style={[t.flex, t.flexRow, t.wFull, t.justifyAround]}>
+              <View style={[t.flex, t.flexRow, t.justifyAround, t.pL1]}>
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("Edit Message", route.params);
                   }}
-                  style={[
-                    t.bgBlue600,
-                    t.mX10,
-                    t.mT3,
-                    t.roundedLg,
-                    t.shadowMd,
-                  ]}
+                  style={[t.mX1, t.mT3, t.roundedLg, t.border]}
                 >
                   <Text
                     style={[
-                      t.mX5,
-                      t.mY2,
+                      t.mX4,
+                      t.mY1,
                       t.uppercase,
                       t.fontSemibold,
-                      t.textWhite,
+                      t.textBlack,
+                      t.textXs,
                     ]}
                   >
                     Edit
@@ -112,21 +107,16 @@ const Message = ({ route, navigation }) => {
                       { cancelable: false }
                     );
                   }}
-                  style={[
-                    t.bgBlue600,
-                    t.mX10,
-                    t.mT3,
-                    t.roundedLg,
-                    t.shadowMd,
-                  ]}
+                  style={[t.mX1, t.mT3, t.roundedLg, t.border]}
                 >
                   <Text
                     style={[
-                      t.mX5,
-                      t.mY2,
+                      t.mX4,
+                      t.mY1,
                       t.uppercase,
                       t.fontSemibold,
-                      t.textWhite,
+                      t.textBlack,
+                      t.textXs,
                     ]}
                   >
                     Delete
@@ -151,11 +141,13 @@ const Message = ({ route, navigation }) => {
           t.mY4,
         ]}
       >
-        <View style={[]}>
+        <View style={[t.wFull]}>
           <View style={[]}>
             <View style={[t.flex, t.flexCol, t.mX4]}>
-              <Text style={[t.textXl, t.fontBold, t.mB1]}>{subheading}</Text>
-              <Text style={[]}>{content}</Text>
+              <Text style={[t.textXl, t.fontBold, t.mB1, t.borderB, t.pB1]}>
+                {subheading}
+              </Text>
+              <Text style={[t.textBase, t.mT2]}>{content}</Text>
             </View>
           </View>
         </View>
