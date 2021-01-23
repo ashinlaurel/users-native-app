@@ -29,23 +29,30 @@ const Home = ({ navigation }) => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // const [loading, setLoading] = useState(false);
+  const [lastvisible, setLastvisible] = useState(null)
+  const [limit, setLimit] = useState(9);
+
   // useMemo(() => setFilterUsers(filterusers), [filterusers]);
   // First Time Getting Data
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
-      handleRefresh();
+      // handleRefresh();
+      handleInitial();
     });
     return unsubscribe;
   }, []);
-  // Handling the Refresh
-  const handleRefresh = async () => {
+  
+  // Init getter
+  const handleInitial = async () => {
     setLoading(true);
+    console.log("HEERRREEEE")
     // setTimeout(() => {
     //   setLoading(false);
     // }, 1000);
 
-    const usersRef = db.collection("dirusers");
+    const usersRef = db.collection("dirusers").orderBy('name').limit(6);
     const snapshot = await usersRef.get();
     if (snapshot.empty) {
       console.log("No matching documents.");
@@ -58,10 +65,46 @@ const Home = ({ navigation }) => {
       key: i.id,
       ...i.data(),
     }));
-    await setUsers(tempusers);
-    await setFilterUsers(tempusers);
+    console.log(tempusers)
+    console.log("lastKey",tempusers[tempusers.length - 1].key)
+    setLastvisible(tempusers[tempusers.length - 1].key);
+     setUsers(tempusers);
+     setFilterUsers(tempusers);
     setLoading(false);
   };
+
+  
+  // Handling the Refresh
+
+    const handleRefresh = async () => {
+      setLoading(true);
+      console.log("REFRESH")
+      // setTimeout(() => {
+      //   setLoading(false);
+      // }, 1000);
+  
+      const usersRef = db.collection("dirusers").orderBy('name').startAfter(lastvisible).limit(6);
+      const snapshot = await usersRef.get();
+      if (snapshot.empty) {
+        console.log("No matching documents.");
+        setUsers([]);
+        setFilterUsers([]);
+        setLoading(false);
+        return;
+      }
+      let tempusers = snapshot.docs.map((i) => ({
+        key: i.id,
+        ...i.data(),
+      }));
+      console.log("lastKey",tempusers[tempusers.length - 1].key)
+      console.log(tempusers)
+      setLastvisible(tempusers[tempusers.length - 1].key);
+       setUsers([...users,...tempusers]);
+       setFilterUsers([...users,...tempusers]);
+      //  setFilterUsers(tempusers);
+      setLoading(false);
+    };
+  
 
   const renderSeparator = () => {
     return (
@@ -122,7 +165,10 @@ const Home = ({ navigation }) => {
             contentContainerStyle={{ paddingBottom: 80 }}
             data={filterusers}
             refreshing={loading}
-            onRefresh={handleRefresh}
+            onRefresh={handleInitial}
+            onEndReached={handleRefresh}
+            onEndReachedThreshold={0}
+            // refreshing={()=>setLoading(true)}
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={[]}

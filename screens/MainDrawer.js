@@ -83,7 +83,7 @@ export default function MainDrawer() {
           <>
             <Drawer.Screen
               name="Add/Remove Login code"
-              component={CreateLoginCodeStack}
+              component={CreateLoginCodeStack }
             />
           </>
         ) : null}
