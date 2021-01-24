@@ -52,7 +52,7 @@ const Home = ({ navigation }) => {
     //   setLoading(false);
     // }, 1000);
 
-    const usersRef = db.collection("dirusers").orderBy('name').limit(6);
+    const usersRef = db.collection("dirusers").orderBy('name').limit(9);
     const snapshot = await usersRef.get();
     if (snapshot.empty) {
       console.log("No matching documents.");
@@ -65,9 +65,9 @@ const Home = ({ navigation }) => {
       key: i.id,
       ...i.data(),
     }));
-    console.log(tempusers)
-    console.log("lastKey",tempusers[tempusers.length - 1].key)
-    setLastvisible(tempusers[tempusers.length - 1].key);
+    // console.log(tempusers)
+    console.log("lastKey",tempusers[tempusers.length - 1])
+    setLastvisible(tempusers[tempusers.length - 1].name);
      setUsers(tempusers);
      setFilterUsers(tempusers);
     setLoading(false);
@@ -83,7 +83,7 @@ const Home = ({ navigation }) => {
       //   setLoading(false);
       // }, 1000);
   
-      const usersRef = db.collection("dirusers").orderBy('name').startAfter(lastvisible).limit(6);
+      const usersRef = db.collection("dirusers").orderBy('name').startAfter(lastvisible).limit(9);
       const snapshot = await usersRef.get();
       if (snapshot.empty) {
         console.log("No matching documents.");
@@ -97,8 +97,8 @@ const Home = ({ navigation }) => {
         ...i.data(),
       }));
       console.log("lastKey",tempusers[tempusers.length - 1].key)
-      console.log(tempusers)
-      setLastvisible(tempusers[tempusers.length - 1].key);
+      // console.log(tempusers)
+      setLastvisible(tempusers[tempusers.length - 1].name);
        setUsers([...users,...tempusers]);
        setFilterUsers([...users,...tempusers]);
       //  setFilterUsers(tempusers);
@@ -167,7 +167,7 @@ const Home = ({ navigation }) => {
             refreshing={loading}
             onRefresh={handleInitial}
             onEndReached={handleRefresh}
-            onEndReachedThreshold={0}
+            onEndReachedThreshold={2}
             // refreshing={()=>setLoading(true)}
             renderItem={({ item }) => (
               <TouchableOpacity
@@ -190,8 +190,12 @@ const Home = ({ navigation }) => {
                 >
                   <Image
                     source={{
-                      uri: item.imgUrl,
+                      uri: `${item.imgUrl!=""?`${image.imgUrl}`:`https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png`}`,
                     }}
+                    defaultSource={{
+                      uri: "https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png"
+                    }}
+                    
                     style={[
                       t.w16,
                       t.h16,
