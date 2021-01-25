@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "bmtchurch",
-    "slug": "bmtchurch",
+    "name": "bethelmukkolachurch",
+    "slug": "bethelmukkolachurch",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,9 +23,10 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.turnbox.turnbox",
+      "package": "com.bethel.mukkola",
       "googleServicesFile": "./google-services.json",
-      "useNextNotificationsApi": true
+      "useNextNotificationsApi": true,
+      "permissions":[]
     },
     "description": ""
   }
