@@ -27,6 +27,7 @@ import CircularStack from "../CircularStack/CircularStack";
 import LectionaryStack from "../LectionaryStack/LectionaryStack";
 import ContactDetails from "../ContactUs/ContactUs";
 import EditMember from "./EditMember";
+import FamilyDetails from "./FamilyDetails";
 // -----------------------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -77,6 +78,16 @@ export default function MainStack() {
         <Stack.Screen
           name="Members"
           component={Home}
+          options={{
+            headerStyle: {
+              backgroundColor: "#1B719E",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="FamilyDetails"
+          component={FamilyDetails}
           options={{
             headerStyle: {
               backgroundColor: "#1B719E",

@@ -19,13 +19,22 @@ import { TextInput } from "react-native-gesture-handler";
 import { DataContext } from "../../context/DataContext";
 import { useFocusEffect } from "@react-navigation/native";
 import bg from "../../assets/bg.jpg";
-import { LoginContext } from "../../context/LoginContext";
 
-const Home = ({ navigation }) => {
+const FamilyDetails = ({route, navigation }) => {
+  const {
+    name,
+    age,
+    address,
+    job,
+    phone,
+    imgUrl,
+    key,
+    houseName,
+    houseId,
+  } = route.params;
   const [users, setUsers] = useState([
     // { name: "Ashin Laurel", age: 21, address: "Trivandrum", uid: "1" },
   ]);
-  const { role } = useContext(LoginContext); 
   const { filterusers, setFilterUsers } = useContext(DataContext);
   // const [filterusers, setFilterUsers] = useState(users);
   const [search, setSearch] = useState("");
@@ -49,14 +58,12 @@ const Home = ({ navigation }) => {
   // Init getter
   const handleInitial = async () => {
     setLoading(true);
-    console.log("HEERRREEEE")
+    console.log("HEERRREEEE",houseId)
     // setTimeout(() => {
     //   setLoading(false);
     // }, 1000);
-    let usersRef;
-    if(role==0)  usersRef = db.collection("dirusers").orderBy('name').limit(9);
-    else  usersRef = db.collection("dirusers").where('isFamilyHead',"==",true).orderBy('name').limit(9);
-    // const usersRef = db.collection("dirusers").orderBy('name').limit(9);
+
+    const usersRef = db.collection("dirusers").where('houseId',"==",houseId)
     const snapshot = await usersRef.get();
     if (snapshot.empty) {
       console.log("No matching documents.");
@@ -69,7 +76,7 @@ const Home = ({ navigation }) => {
       key: i.id,
       ...i.data(),
     }));
-    // console.log(tempusers)
+    console.log(tempusers)
     console.log("lastKey",tempusers[tempusers.length - 1])
     setLastvisible(tempusers[tempusers.length - 1].name);
      setUsers(tempusers);
@@ -78,40 +85,7 @@ const Home = ({ navigation }) => {
   };
 
   
-  // Handling the Refresh
-
-    const handleRefresh = async () => {
-      setLoading(true);
-      console.log("REFRESH")
-      // setTimeout(() => {
-      //   setLoading(false);
-      // }, 1000);
-      let usersRef;
-      if(role==0)  usersRef = db.collection("dirusers").orderBy('name').startAfter(lastvisible).limit(9);
-      else  usersRef = db.collection("dirusers").where('isFamilyHead',"==",true).orderBy('name').startAfter(lastvisible).limit(9);
-
-      const snapshot = await usersRef.get();
-      if (snapshot.empty) {
-        console.log("No matching documents.");
-        // setUsers([]);
-        // setFilterUsers([]);
-        setLoading(false);
-        return;
-      }
-      let tempusers = snapshot.docs.map((i) => ({
-        key: i.id,
-        ...i.data(),
-      }));
-      
-      console.log("lastKey",tempusers[tempusers.length - 1].key)
-      // console.log(tempusers)
-      setLastvisible(tempusers[tempusers.length - 1].name);
-       setUsers([...users,...tempusers]);
-       setFilterUsers([...users,...tempusers]);
-      //  setFilterUsers(tempusers);
-      
-      setLoading(false);
-    };
+  
   
 
   const renderSeparator = () => {
@@ -134,28 +108,7 @@ const Home = ({ navigation }) => {
         style={{ width: "100%", height: "100%", alignItems: "center" }}
       >
         <View style={[t.wFull]}>
-          <TextInput
-            placeholder="Search"
-            placeholderTextColor="black"
-            onChangeText={(text) => {
-              setSearch(text);
-              let temp = users.filter((user) =>
-                user.name.toLowerCase().includes(search.toLowerCase())
-              );
-              setFilterUsers(temp);
-            }}
-            value={search}
-            style={[
-              t.pY1,
-              t.pX5,
-              t.bgWhite,
-              t.roundedFull,
-              // t.border,
-              t.mX5,
-              t.mY3,
-            ]}
-            keyboardType="default"
-          />
+          <Text style={[t.text2xl,t.mXAuto,t.mY4,t.pX5,t.fontBold,t.textGray800]}>{houseName}</Text>
         </View>
         <View
           style={[
@@ -174,7 +127,7 @@ const Home = ({ navigation }) => {
             data={filterusers}
             refreshing={loading}
             onRefresh={handleInitial}
-            onEndReached={handleRefresh}
+            // onEndReached={handleRefresh}
             onEndReachedThreshold={2}
             // refreshing={()=>setLoading(true)}
             renderItem={({ item }) => (
@@ -183,7 +136,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   // console.log(item);
                   // handlePress(item);
-                  navigation.navigate("FamilyDetails", item);
+                  navigation.navigate("UserDetails", item);
                 }}
               >
                 <View
@@ -237,4 +190,4 @@ const Home = ({ navigation }) => {
   );
 };
 
-export default Home;
+export default FamilyDetails;

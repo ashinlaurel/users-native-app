@@ -18,6 +18,7 @@ import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import { ScrollView } from "react-native-gesture-handler";
 import { firestore } from "firebase";
+import CheckBox from '@react-native-community/checkbox';
 
 const CreateNewUser = ({ navigation }) => {
   const [imageUri, setImageUri] = useState(
@@ -26,6 +27,7 @@ const CreateNewUser = ({ navigation }) => {
   const [houseName, setHouseName] = useState("");
   const [houseId, setHouseId] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isFamilyHead, setIsFamilyHead] = useState(false)
 
   const selectPicture = async () => {
     try {
@@ -96,6 +98,7 @@ const CreateNewUser = ({ navigation }) => {
     let newId, URL;
     values.houseName = houseName;
     values.houseId = houseId;
+    values.isFamilyHead=isFamilyHead;
     db.collection("dirusers")
       .add(values)
       .then((ref) => {
@@ -230,6 +233,16 @@ const CreateNewUser = ({ navigation }) => {
                 <Text style={[t.fontSemibold,t.uppercase]}>House Name: {houseName}</Text>
               </View>
               :null}
+              <View style={[t.flex,t.flexRow,t.mYAuto]}>
+                  <Text style={[t.mYAuto,t.mT1]}>
+              Family Head:</Text>
+
+              <CheckBox
+                  disabled={false}
+                  value={isFamilyHead}
+                  onValueChange={(newValue) => setIsFamilyHead(newValue)}
+                />
+                </View>
 
               <TextInput
                 placeholder="Age"

@@ -16,11 +16,13 @@ import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import { ScrollView } from "react-native-gesture-handler";
+import CheckBox from '@react-native-community/checkbox';
 
 const EditMember = ({ route, navigation }) => {
   const { name, age, address, job, phone, imgUrl, key } = route.params;
   console.log(name);
   const [imageUri, setImageUri] = useState(imgUrl);
+  const [isFamilyHead, setIsFamilyHead] = useState(false);
 
   const selectPicture = async () => {
     try {
@@ -90,16 +92,16 @@ const EditMember = ({ route, navigation }) => {
     // address = values.address;
     // job = values.job;
     // phone = values.phone;
+    let payload={};
+    if(values.name) payload.name=values.name;
+    if(values.age) payload.age=values.age;
+    if(values.address) payload.address=values.address;
+    if(values.job) payload.job=values.job;
+    if(values.phone) payload.phone=values.phone;
 
     db.collection("dirusers")
       .doc(key)
-      .update({
-        name: values.name,
-        age: values.age,
-        address: values.address,
-        job: values.job,
-        phone: values.phone,
-      })
+      .update(payload)
       .then(() => {
         Alert.alert("Information updated");
       })
@@ -218,6 +220,16 @@ const EditMember = ({ route, navigation }) => {
                 style={[t.pY2, t.pX4, t.bgWhite, t.roundedFull, t.mY3]}
                 keyboardType="number-pad"
               />
+              <View style={[t.flex,t.flexRow,t.mYAuto]}>
+                  <Text style={[t.mYAuto,t.mT1]}>
+              Family Head:</Text>
+
+              <CheckBox
+                  disabled={false}
+                  value={isFamilyHead}
+                  onValueChange={(newValue) => setIsFamilyHead(newValue)}
+                />
+                </View>
               <TextInput
                 placeholder="Phone"
                 placeholderTextColor="black"

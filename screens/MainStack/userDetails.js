@@ -125,7 +125,8 @@ const UserDetails = ({ route, navigation }) => {
           <View>
             <Image
               source={{
-                uri: imgUrl,
+                // uri: imgUrl, 
+                      uri: `${imgUrl!=""?`${imgUrl}`:`https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png`}`,
               }}
               style={[
                 t.border4,
