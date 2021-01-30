@@ -55,7 +55,7 @@ const Home = ({ navigation }) => {
     // }, 1000);
     let usersRef;
     if(role==0)  usersRef = db.collection("dirusers").orderBy('name').limit(9);
-    else  usersRef = db.collection("dirusers").where('isFamilyHead',"==",true).orderBy('name').limit(9);
+    else  usersRef = db.collection("dirusers").where('FamilyHead',"==",true).orderBy('name').limit(9);
     // const usersRef = db.collection("dirusers").orderBy('name').limit(9);
     const snapshot = await usersRef.get();
     if (snapshot.empty) {
@@ -88,7 +88,7 @@ const Home = ({ navigation }) => {
       // }, 1000);
       let usersRef;
       if(role==0)  usersRef = db.collection("dirusers").orderBy('name').startAfter(lastvisible).limit(9);
-      else  usersRef = db.collection("dirusers").where('isFamilyHead',"==",true).orderBy('name').startAfter(lastvisible).limit(9);
+      else  usersRef = db.collection("dirusers").where('FamilyHead',"==",true).orderBy('name').startAfter(lastvisible).limit(9);
 
       const snapshot = await usersRef.get();
       if (snapshot.empty) {
@@ -134,7 +134,7 @@ const Home = ({ navigation }) => {
         style={{ width: "100%", height: "100%", alignItems: "center" }}
       >
         <View style={[t.wFull]}>
-          <TextInput
+          {/* <TextInput
             placeholder="Search"
             placeholderTextColor="black"
             onChangeText={(text) => {
@@ -155,7 +155,7 @@ const Home = ({ navigation }) => {
               t.mY3,
             ]}
             keyboardType="default"
-          />
+          /> */}
         </View>
         <View
           style={[

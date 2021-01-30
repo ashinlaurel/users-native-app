@@ -35,14 +35,10 @@ const FamilyDetails = ({route, navigation }) => {
   const [users, setUsers] = useState([
     // { name: "Ashin Laurel", age: 21, address: "Trivandrum", uid: "1" },
   ]);
-  const { filterusers, setFilterUsers } = useContext(DataContext);
   // const [filterusers, setFilterUsers] = useState(users);
-  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
   // const [loading, setLoading] = useState(false);
-  const [lastvisible, setLastvisible] = useState(null)
-  const [limit, setLimit] = useState(9);
 
   // useMemo(() => setFilterUsers(filterusers), [filterusers]);
   // First Time Getting Data
@@ -77,10 +73,10 @@ const FamilyDetails = ({route, navigation }) => {
       ...i.data(),
     }));
     console.log(tempusers)
-    console.log("lastKey",tempusers[tempusers.length - 1])
-    setLastvisible(tempusers[tempusers.length - 1].name);
+    // console.log("lastKey",tempusers[tempusers.length - 1])
+    // setLastvisible(tempusers[tempusers.length - 1].name);
      setUsers(tempusers);
-     setFilterUsers(tempusers);
+    //  setFilterUsers(tempusers);
     setLoading(false);
   };
 
@@ -124,10 +120,10 @@ const FamilyDetails = ({route, navigation }) => {
             numColumns={1}
             keyExtractor={(item) => item.uid}
             contentContainerStyle={{ paddingBottom: 80 }}
-            data={filterusers}
+            data={users}
             refreshing={loading}
             onRefresh={handleInitial}
-            // onEndReached={handleRefresh}
+            onEndReached={handleInitial}
             onEndReachedThreshold={2}
             // refreshing={()=>setLoading(true)}
             renderItem={({ item }) => (
@@ -153,9 +149,7 @@ const FamilyDetails = ({route, navigation }) => {
                     source={{
                       uri: `${item.imgUrl!=""?`${item.imgUrl}`:`https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png`}`,
                     }}
-                    defaultSource={{
-                      uri: "https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png"
-                    }}
+                    
                     
                     style={[
                       t.w16,

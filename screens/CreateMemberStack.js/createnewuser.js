@@ -98,7 +98,8 @@ const CreateNewUser = ({ navigation }) => {
     let newId, URL;
     values.houseName = houseName;
     values.houseId = houseId;
-    values.isFamilyHead=isFamilyHead;
+    values.FamilyHead=isFamilyHead;
+    values.imgUrl="";
     db.collection("dirusers")
       .add(values)
       .then((ref) => {
@@ -110,7 +111,7 @@ const CreateNewUser = ({ navigation }) => {
         return res.blob();
       })
       .then((blob) => {
-        let refer = storage.ref().child(`/images/dir/${newId}`).put(blob);
+        let refer = storage.ref().child(`/images/dir/${values.name}${new Date()}`).put(blob);
         refer.on(
           "state_changed",
           function () { },
@@ -149,6 +150,7 @@ const CreateNewUser = ({ navigation }) => {
           console.log("House Name added")
           setHouseName("");
           setHouseId("");
+          setLoading(false)
         })
       })
 

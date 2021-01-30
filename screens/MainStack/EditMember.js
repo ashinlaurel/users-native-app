@@ -19,8 +19,8 @@ import { ScrollView } from "react-native-gesture-handler";
 import CheckBox from '@react-native-community/checkbox';
 
 const EditMember = ({ route, navigation }) => {
-  const { name, age, address, job, phone, imgUrl, key } = route.params;
-  console.log(name);
+  const { name, age, address, job, phone, imgUrl, key  } = route.params;
+  console.log(name,route.params);
   const [imageUri, setImageUri] = useState(imgUrl);
   const [isFamilyHead, setIsFamilyHead] = useState(false);
 
@@ -62,6 +62,7 @@ const EditMember = ({ route, navigation }) => {
 
   useEffect(() => {
     getPermissionAsync();
+    setIsFamilyHead(route.params.FamilyHead);
     return () => {
       console.log("Permission call");
     };
@@ -98,6 +99,8 @@ const EditMember = ({ route, navigation }) => {
     if(values.address) payload.address=values.address;
     if(values.job) payload.job=values.job;
     if(values.phone) payload.phone=values.phone;
+    payload.FamilyHead=isFamilyHead;
+    console.log(payload)
 
     db.collection("dirusers")
       .doc(key)
@@ -118,7 +121,7 @@ const EditMember = ({ route, navigation }) => {
           return res.blob();
         })
         .then((blob) => {
-          let refer = storage.ref().child(`/images/dir/${newId}`).put(blob);
+          let refer = storage.ref().child(`/images/dir/${values.name}${new Date()}`).put(blob);
           refer.on(
             "state_changed",
             function () {},
