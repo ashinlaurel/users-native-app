@@ -29,7 +29,7 @@
     "firebase": "^7.17.1",
     "formik": "^2.1.5",
     "lodash": "^4.17.19",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "navigation": "^5.3.1",
     "react": "^16.11.0",
     "react-confirm-alert": "^2.6.2",
